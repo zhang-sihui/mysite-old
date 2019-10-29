@@ -1,0 +1,54 @@
+body {
+	background-color: #fff;
+	}
+
+a:hover {
+    color: green;
+    text-decoration:underline;
+}
+
+div {
+	text-align: center;
+	}
+
+div a {
+	color: black;
+	text-decoration: none;
+	}
+
+input {
+    border-radius: 3px;
+    color: #24292e;
+    border: 1px solid #d1d5da;
+    min-height: 24;
+    line-height: 20px;
+    padding: 6px 8px;
+    width: 266px;
+    }
+
+.button {
+	border-radius: 6px;          /* 圆角 */
+	background-color: #e7e7e7;    /* 背景颜色*/
+	border: 1px solid #d1d5da;;
+	color: black;                 /* 字体颜色 */
+    padding: 5px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.register {
+    border-radius: 6px;          /* 圆角 */
+	background-color: #e7e7e7;    /* 背景颜色*/
+	border: 1px solid #d1d5da;;
+	color: black;                 /* 字体颜色 */
+    padding: 5px 20px;
+	text-align: center;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}

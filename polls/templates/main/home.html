@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<ul>
+    <li><a href="http://127.0.0.1:8000/admin" target="_blank">
+        <i class="fa fa-home" aria-hidden="true"></i></a></li>
+    <li><a href="{% url 'polls:index' %}">Vote</a></li>
+    <li><a href="{% url 'polls:upload' %}">File</a></li>
+    <li><a href="{% url 'polls:image' %}">Image</a></li>
+    <li><a href="{% url 'polls:music' %}">Music</a></li>
+    <li><a href="{% url 'polls:film' %}">Film</a></li>
+    <li><a href="{% url 'blog:index' %}">blog</a></li>
+    <li style="float:right">
+        <a href="{% url 'users:index' %}">Login</a></li>
+</ul>
+<h1>Welcome, Dear friends!</h1>
+<h2>
+    This is Zhang Sihui's personal website.
+</h2>
+<dl>My info:
+    <dt><i class="fa fa-at" aria-hidden="true"></i>
+        <a href="#">name: zhangsihui</a></dt>
+    <dt><i class="fa fa-link" aria-hidden="true"></i>
+        <a href="https://mail.qq.com/" target="_blank">email: zhang_sihui@qq.com</a></dt>
+    <dt><br>based Django2.1 and Python3.7</dt>
+</dl>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="/static/css/user.css">
+</head>
+<body>
+<a class="button" href="{% url 'polls:home' %}">
+    <i class="fa fa-home" aria-hidden="true"></i>Back</a>
+<div>
+    <h1>Welcome, Friend!</h1>
+    <br>
+    <a class="button" href="{% url 'users:login' %}">Login</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uploaded</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<button><a class="thumbnail" href="{% url 'polls:upload' %}">Back</a></button>
+
+{% if file_list %}
+<ol>
+    {% for file in file_list %}
+    <li style="float:none">
+        <label>{{ file }}</label>
+    </li>
+    {% endfor %}
+</ol>
+{% else %}
+<p>No file.</p>
+{% endif %}
+</body>
+</html>

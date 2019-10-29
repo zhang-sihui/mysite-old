@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/user.css">
+</head>
+<body>
+<a class="button" href="{% url 'users:login' %}">Back</a>
+<div>
+    <h2>Create your account</h2>
+</div>
+<div class="tt">
+    <div class="line">
+        <div class="div">Username:</div>
+        <div class="div"><input type="text"></div>
+        <div class="div">4-20 characters, does not support Chinese characters,
+            supports combination of letters and numbers</div>
+    </div>
+    <br>
+    <div class="line">
+        <div class="div">Password:</div>
+        <div class="div"><input type="text"></div>
+        <div class="div">6-20 characters, does not support Chinese characters,
+            supports combination of letters and numbers</div>
+    </div>
+    <br>
+    <div class="line">
+        <div class="div">Confirm password:</div>
+        <div class="div"><input type="text"></div>
+        <div class="div">Please enter your password again</div>
+    </div>
+    <br>
+    <div class="register">
+         Sign up now
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/user.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+
+</head>
+<body>
+<a class="button" href="{% url 'users:index' %}">Back</a>
+<div><h1>Sign in</h1>
+    <form name="input" action="" method="post">
+        <label>Username</label>
+        <input class="input" type="text" name="userName" autofocus="autofocus"><br><br>
+        <label>Password</label>
+        <input class="input" type="password" name="pwd">
+        <br><br><a href="#" target="_blank"><i class="fa fa-link" aria-hidden="true"></i>
+        Forget Password?</a>
+    </form>
+    <h4><a href="{% url 'users:register' %}"><i class="fa fa-link" aria-hidden="true"></i>
+        New user? Click here to Register.</a></h4>
+<input type="submit" class="button" value="submit">
+</div>
+
+</body>
+</html>

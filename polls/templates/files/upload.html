@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Upload{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/upload.css">
+    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<script>
+</script>
+<body>
+<button><a class="thumbnail" href="{% url 'polls:home' %}">Back</a></button>
+<button><a class="thumbnail" href="{% url 'polls:upload' %}">Refresh</a></button>
+<button><a class="thumbnail" href="{% url 'polls:uploaded' %}">Uploaded</a></button>
+<button><a class="thumbnail" href="{% url 'polls:show' %}">Download</a></button>
+
+<h3>File Upload</h3>
+<br>
+<br>
+<div class="file-box">
+    <div class="form">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" id="textfield" class="txt"/>
+            <input type="button" class="btn" value="Browse"/>
+            <input type="file" name="file" class="file" id="fileField"
+                   onchange="document.getElementById('textfield').value=this.files[0].name"/>
+            <input type="submit" class="btn" value="Upload"/>
+        </form>
+        <h4>10MiB maximum size</h4>
+    </div>
+</div>
+<h3>{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if success_message %}<p><strong>{{ success_message }}</strong></p>{% endif %}
+</h3>
+<br>
+<br>
+
+<h2>Tips:
+    Refresh the page Please use the Refresh button,<br>
+    do not use the browser's own icon, thank you.
+    <a class="thumbnail" href="{% url 'polls:upload' %}">
+        <i class="fa fa-refresh" aria-hidden="true"></i></a>
+</h2>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File list</title>
+    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
+    <link rel="stylesheet" href="/static/css/show.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<div>
+    <button><a href="{% url 'polls:upload' %}">Back</a></button>
+</div>
+
+{% if file_list %}
+<ol>
+    {% for num, file in file_dict.items %}
+    <li>
+        <a href="polls/download/{{ num }}/">
+            <i class="fa fa-link" aria-hidden="true"></i>
+            {{ file }}
+        </a>
+    </li>
+    {% endfor %}
+</ol>
+{% else %}
+<p>No file.</p>
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>Tip: </h3>
+<h4>Click on the file name to download the file.</h4>
+</body>
+</html>
