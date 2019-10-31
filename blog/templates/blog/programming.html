@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <title>Programming</title>
     <link rel="stylesheet" href="/static/css/blog.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
 <button><a href="{% url 'blog:index' %}">Back</a></button>
-<h2>Updating</h2>
-<ol>
-    <li>
-
-    </li>
-</ol>
+<br>
+<article id="list" class="site-content">
+    <h3>Programming</h3>
+    <hr style="color: #fff;">
+    {% for context in context %}
+    <ol>
+        <li>
+            <div class="card bg-secondary mb-3">
+                <div class="card-header">Release time: {{ context.pub_date }}</div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a class="text-warning" href="{% url 'blog:blog_list' context.id %}">{{ context.title }}</a>
+                    </h4>
+                    <p class="card-text">Category: {{ context.category }}</p>
+                </div>
+            </div>
+            <br>
+        </li>
+    </ol>
+    {% endfor %}
+</article>
 
 </body>
 </html>

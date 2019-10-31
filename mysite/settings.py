@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'mdeditor',
 ]
 
 MIDDLEWARE = [
@@ -136,5 +138,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+BLOG_ROOT = os.path.join(BASE_DIR, 'blog')
+BLOG_URL = '/article/index/'
 
 

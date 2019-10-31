@@ -4,30 +4,41 @@
     <meta charset="UTF-8">
     <title>Blog</title>
     <link rel="stylesheet" href="/static/css/blog.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <button><a href="{% url 'polls:home' %}">Back</a></button>
 <h2>Hello, Friend! Blog home page!!</h2>
-<hr>
-    <ul>
-        <li><a href="{% url 'blog:programming' %}">Programming</a></li>
-        <li><a href="{% url 'blog:thinking' %}">Thinking</a></li>
-        <li><a href="{% url 'blog:other' %}">Other</a></li>
-    </ul>
-<hr>
-
-<div class="site-content">
+<ul class="nav menu">
+    <li><a href="{% url 'blog:index' %}">Home</a></li>
+    <li><a href="{% url 'blog:programming' %}">Programming</a></li>
+    <li><a href="{% url 'blog:thinking' %}">Thinking</a></li>
+    <li><a href="{% url 'blog:other' %}">Other</a></li>
+</ul>
+<article id="list" class="site-content">
     <h3>Overview</h3>
     <hr style="color: #fff;">
-    <ul>
-        <li><a href="#" target="_blank">
-            Pythonanywhere of Question</a></li>
-    </ul>
-</div>
+    {% for context in context %}
+    <ol>
+        <li>
+            <div class="card bg-secondary mb-3">
+                <div class="card-header">Release time: {{ context.pub_date }}</div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a class="text-warning" href="{% url 'blog:blog_list' context.id %}">{{ context.title }}</a>
+                    </h4>
+                    <p class="card-text">Category: {{ context.category }}</p>
+                </div>
+            </div>
+            <br>
+        </li>
+    </ol>
+    {% endfor %}
+</article>
 
 <div class="widget-area">
     <h4>Note:</h4>
-    Pending
+    Not
 </div>
 
 </body>

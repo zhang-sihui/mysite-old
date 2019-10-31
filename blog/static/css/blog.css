@@ -22,31 +22,36 @@ button {
 
 ul {
     list-style-type: none;
-    margin: 0px;
-    padding: 0 0 0 70px;
+    margin: 0 0 0 40px;
+    padding: 0;
     overflow: hidden;
+    border-bottom: 1px solid #ededed;
+    border-top: 1px solid #ededed;
+    display: inline-block!important;
+    text-align: left;
+    width: 100%;
 }
 
 li {
     color: #6A6A6A;
     float: left;
-    padding: 5px;
-    margin: 5px;
+    padding: 0px;
+    margin: 0 0  0 10px;
     list-style: none;
 }
 
-.site-content {
+.site-content {  /* Overview下方内容 */
     float: left;
-    width: 60%;
+    width: 66%;
     margin: 0;
-    padding: 30px 0 0 30px;
+    padding: 10px 0 0 10px;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-    min-width: 500px;
+    min-width: 600px;
 }
 
-.widget-area {
+.widget-area {   /* Note下方内容  */
     float: right;
     width: 30%;
     margin: 0;
@@ -56,11 +61,78 @@ li {
 }
 
 h3 {
-    padding: 0 0 0 50px;
+    padding: 0 0 0 20px;
     column-span: all;
 }
 
 body {
     color: #444;
     line-height: 1;
+    padding: 5px;
+    margin: 0;
 }
+
+hr {
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 600px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 0;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card-title {
+    color: inherit;
+}
+
+.card-warning {
+    color: #f0ad4e;
+}
+
+.article-box {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 0;
+    padding: 20px 100px 0 100px;
+
+}
+.article {
+    text-align: left;
+}
+
