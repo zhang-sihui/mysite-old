@@ -11,9 +11,10 @@
 <div class="article-box">
     <div class="article">
         <h1>{{ context.title }}</h1>
-        <p>Time: {{ context.pub_date }} Category: {{ context.category }}</p>
+        <p>Time: {{ context.pub_date }} | Category: {{ context.category }}</p>
+        <hr>
         <div>{{ context.body | safe }}</div>
     </div>
-    <div>
+</div>
 </body>
 </html>

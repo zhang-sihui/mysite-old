@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Uploaded</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style3.css">
     <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<button><a class="thumbnail" href="{% url 'polls:upload' %}">Back</a></button>
 
-{% if file_list %}
-<ol>
-    {% for file in file_list %}
-    <li style="float:none">
-        <label>{{ file }}</label>
-    </li>
-    {% endfor %}
-</ol>
-{% else %}
-<p>No file.</p>
-{% endif %}
+<button class="bn"><a class="lk" href="{% url 'polls:upload' %}">Back</a></button>
+
+<div class="list-box">
+    {% if file_name_list %}
+    <ul class="list-group">
+        {% for file in file_name_list %}
+        <li class="list-group-item">{{ file }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No file.</p>
+    {% endif %}
+</div>
 </body>
 </html>

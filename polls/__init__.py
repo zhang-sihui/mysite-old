@@ -1,5 +1,5 @@
 import os
-from os import path
 
-base_dir = (os.path.dirname(path.realpath(__file__)))
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # mysite
+app_dir = os.path.dirname(os.path.abspath(__file__))
 

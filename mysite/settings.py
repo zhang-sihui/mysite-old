@@ -24,11 +24,7 @@ SECRET_KEY = '+j1x03ogt^+uzt@c_3@2)9$1o^0g5v#!*q%9lh#$3p&2ktc&hq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# 同时配置, Production
-# DEBUG = False
-# ALLOWED_HOSTS = ['*']
-
-# 同时设置， 开发模式
+# 开发模式
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -92,7 +88,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'mysite',
     #     'USER': 'root',
-    #     'PASSWORD': 'root',
+    #     'PASSWORD': '****',
     #     'HOST': 'localhost',
     #     'PORT': '3306',
     # },
@@ -137,8 +133,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-BLOG_ROOT = os.path.join(BASE_DIR, 'blog')
-BLOG_URL = '/article/index/'
-
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog', 'article')
+MEDIA_URL = '/media/'

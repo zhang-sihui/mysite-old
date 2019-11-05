@@ -16,7 +16,7 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('uploaded/', views.uploaded, name='uploaded'),
     path('show/', views.show, name='show'),
-    re_path('download/(?P<id>\\d+)', views.download, name='download'),
+    re_path('download/(?P<file_id>\\d+)/', views.download, name='download'),
     # interest
     path('image/', views.image, name='image'),
     path('music/', views.music, name='music'),

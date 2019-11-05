@@ -1,0 +1,55 @@
+/* polls */
+
+/* index(vote) detail result */
+.content-box {
+    padding:20px 0 0 100px;
+}
+
+/* index(vote) detail */
+.btn-a {
+    text-decoration: none;
+    color: black;
+}
+.btn-a:hover {
+    color: green;
+    text-decoration:underline;
+}
+
+.bn {  /* button */
+    background-color: #e7e7e7; color: black;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+/* index(vote) result */
+.text-a {
+    color: #17A2B8;
+}
+.text-a:hover {
+    color: green;
+    text-decoration:underline;
+}
+
+/* detail */
+.vote {
+    background-color: #e7e7e7; color: black;
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}
+.vote:hover {
+    border: 1px dashed green;
+    color: green;
+    text-decoration: underline;
+}

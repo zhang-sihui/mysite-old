@@ -7,7 +7,7 @@ import datetime
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    category = models.CharField(max_length=100,)
+    category = models.CharField(max_length=100, default='programming')
     body = MDTextField()
     pub_date = models.DateTimeField('date published', default=timezone.now)
 

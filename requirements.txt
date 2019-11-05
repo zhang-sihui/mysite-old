@@ -1,0 +1,4 @@
+Python3.7.3
+Django2.1.3
+markdown3.1.1
+django-mdeditor0.1.16

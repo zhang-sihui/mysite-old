@@ -1,0 +1,127 @@
+/* files */
+
+/*show upload uploaded */
+.lk {   /* 链接 */
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+}
+.lk:hover {
+    color: #004085;
+    text-decoration:underline;
+}
+.bn {  /* button */
+    color: #004085;
+    background-color: #e7e7e7; color: black;
+    border:0px none;
+    border-radius: 5px;
+    width: 100px auto;
+    height:34px;
+    line-height:16px!important;
+    cursor:pointer;
+    margin: 10px 0 2px 10px;
+}
+
+/* show uploaded */
+.list-box {  /* 文件展示列表 */
+    margin: 30px;
+}
+
+/* upload */
+.file-box {  /* 文件上传主窗口 */
+    position:relative;
+    height: 200px;
+    width: 550px;
+    margin: 30px 0 0 275px;
+    border-radius: 6px;
+    background-color: #fff;
+    border:1px solid #aaa;
+}
+
+.title {
+      text-align: center;
+      margin: 10px 0 10px 0;
+      font-size:24px;
+}
+
+.form {
+    text-align: center;
+    width: 520px;
+    height: 35px;
+}
+
+.txt {  /* 显示文件名 */
+    height:34px;
+    padding:0px;
+    border:1px solid #aaa;
+    width:240px;
+    border-radius:3px;
+    }
+.txt:hover {
+    border:1px solid #add8e6;
+}
+
+.file {  /* 文件上传实际按键 */
+    width:100px;
+    height:34px;
+    border-radius: 3px;
+    line-height:16px;
+    border: 1px;
+    padding: 0px;
+    opacity: 0;
+    position: relative;
+    top: -5px;
+    left: -97px;
+    cursor:pointer;
+}
+
+.sbt {  /* 虚拟文件浏览按键 */
+    color:#fff;
+    background-color:#e7e7e7; color: black;
+    border: 1px none;
+    width: 100px;
+    height:34px;
+    border-radius: 3px;
+    line-height:16px!important;
+    cursor:pointer;
+    padding: 0px;
+    font-size: 16px;
+    position: relative;
+    left: 5px;
+}
+
+.sbn {  /* Upload */
+    border:none;
+    background-color:#e7e7e7; color: black;
+    border-radius:3px;
+    width:100px;
+    height:34px;
+    line-height:16px!important;
+    padding: 0;
+    font-size:16px;
+    position: relative;
+    right: -190px;
+    top: -40px;
+    cursor:pointer;
+}
+.sbn:hover {
+    border: 1px solid #ccc;
+    background-color:#E9ECEF;
+}
+
+.message {  /* 文件上传反馈信息 */
+    padding: 10px 240px 0 150px;
+    width:600px;
+    position:relative;
+    left:100px;
+}
+.message-success {
+    background-color:#D4EDDA;
+    text-align:center;
+    padding: 10px 200px 10px 150px;
+}
+.message-danger {
+    background-color:#F8D7DA;
+    padding: 10px 200px 10px 150px;
+    text-align:center;
+}
