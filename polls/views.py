@@ -71,10 +71,16 @@ def upload(request):
             return render(request, 'files/upload.html',
                           {'error_message': 'no file. please choose a file.'})
         else:
-            File.objects.create(file_name='%s' % up_file)  # 文件名存入数据库
-            handle_uploaded_file(up_file, str(up_file))  # 处理文件
-            return render(request, 'files/upload.html',
-                          {'success_message': 'upload success. please continue.'})
+            db_file = File.objects.get(file_name=up_file)
+            if not db_file:  # 判断数据库中是否已有正在上传的文件名
+                File.objects.create(file_name='%s' % up_file)  # 如果没有，文件名存入数据库
+                handle_uploaded_file(up_file, str(up_file))  # 处理文件
+                return render(request, 'files/upload.html',
+                              {'success_message': 'upload success. please continue.'})
+            else:   # 数据库中已存在，直接处理文件
+                handle_uploaded_file(up_file, str(up_file))  # 处理文件
+                return render(request, 'files/upload.html',
+                              {'success_message': 'upload success. please continue.'})
     return render(request, 'files/upload.html')
 
 
@@ -90,8 +96,11 @@ def handle_uploaded_file(file, filename):
 
 # 展示上传的文件
 def uploaded(request):
+    test = File.objects.filter(id=7).delete()
+    print(test)
     # 获取数据库存储的所有文件名及对应id,格式为[("",""),("","")]
     db_files_list = File.objects.values_list()
+    print(db_files_list)
     file_name_list = []
     for db_file in db_files_list:  # 获取单个文件名及id元组("id", "name")
         file_name = db_file[1]  # 获取数据库文件名
