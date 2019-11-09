@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 from . import views
 
 app_name = 'blog'
@@ -11,5 +11,7 @@ urlpatterns = [
     path('programming/', views.programming, name='programming'),
     path('thinking/', views.thinking, name='thinking'),
     path('other/', views.other, name='other'),
+
+    path('search/', views.search, name='search'),
 
 ]

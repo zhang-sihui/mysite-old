@@ -24,12 +24,36 @@
             <form method="get" action="{% url 'blog:search' %}">
                 {% csrf_token %}
                 <input class="txt" type="search" name="q" placeholder="Search" required>
-                <button type="submit">Search</button>
+                <button type="submit" value="Search">Search</button>
             </form>
         </div>
     </div>
     <div class="content-list">
         <hr style="color: #fff;">
+        {% if search_list %}
+        {% for search in search_list %}
+        <ol>
+            <li>
+                <div class="card bg-secondary mb-3">
+                    <div class="card-header">Release time: {{ search.pub_date }}</div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a class="text-warning" href="{% url 'blog:blog_list' search.id %}">
+                                {{ search.title }}</a>
+                        </h4>
+                        <p class="card-text">Category: {{ search.category }}</p>
+                    </div>
+                </div>
+                <br>
+            </li>
+        </ol>
+        {% endfor %}
+        {% else %}
+        {% if error_msg %}
+        <div class="tip">
+            <h2>{{ error_msg }}</h2>
+        </div>
+        {% endif %}
         {% for context in contexts %}
         <ol>
             <li>
@@ -46,8 +70,10 @@
             </li>
         </ol>
         {% endfor %}
+        {% endif %}
     </div>
 </article>
+
 <div class="widget-area">
     <h4>Note:</h4>
     Not

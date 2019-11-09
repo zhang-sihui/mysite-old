@@ -1,14 +1,13 @@
-a {
+a {   /* 链接 */
     text-decoration: none;
     color: black;
 }
-
 a:hover {
     color: green;
     text-decoration:underline;
 }
 
-button {
+button {  /* 按钮 */
     background-color: #e7e7e7; color: black;
     border: none;
     color: white;
@@ -20,7 +19,7 @@ button {
     border-radius: 8px;
 }
 
-ul {
+ul {   /*  */
     list-style-type: none;
     margin: 0 0 0 40px;
     padding: 0;
@@ -40,7 +39,7 @@ li {
     list-style: none;
 }
 
-.site-content {  /* Overview下方内容 */
+.site-content {  /* Overview开始下方块内容 */
     float: left;
     width: 66%;
     margin: 0;
@@ -51,7 +50,34 @@ li {
     min-width: 600px;
 }
 
-.widget-area {   /* Note下方内容  */
+.site-t {  /* overview及搜索表单 */
+    margin:0 0 30px 0;
+    float: center;
+}
+.desc-title {  /* overview */
+    float: left;
+}
+.search-form {  /* 搜索表单 */
+    padding: 10px 0 0 190px;
+    float:right;
+    height: 56px;
+}
+.txt {  /* 搜索栏样式 */
+    height:30px;
+    padding:0px;
+    border:1px solid #aaa;
+    width:240px;
+    border-radius:3px;
+    }
+.txt:hover {
+    border:1px solid #add8e6;
+}
+
+.content-list {  /* 具体内容列表 */
+    padding: 20px;
+}
+
+.widget-area {   /* 右侧Note下方内容  */
     float: right;
     width: 30%;
     margin: 0;
@@ -64,20 +90,33 @@ h3 {
     padding: 0 0 0 20px;
     column-span: all;
 }
+h2 {
+    text-align: center;
+}
 
-body {
+.tip {   /* 提示块内容 */
+    background-color: grey;
+    width: 300px;
+    height: 30px;
+    margin: 10px;
+    position: relative;
+    left: 200px;
+    border-radius:3px;
+}
+
+body {  /*  */
     color: #444;
     line-height: 1;
     padding: 5px;
     margin: 0;
 }
 
-hr {
+hr {  /*  */
     padding: 0;
     margin: 0;
 }
 
-.card {
+.card {   /*  */
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -94,29 +133,26 @@ hr {
     border-radius: 0;
 }
 
-.card-header {
+.card-header {  /* 内容列表方块，包含时间，标题，分类 */
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
     background-color: rgba(0,0,0,0.03);
     border-bottom: 1px solid rgba(0,0,0,0.125);
 }
-
 .card-body {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1.25rem;
 }
-
 .card-title {
     color: inherit;
 }
-
 .card-warning {
     color: #f0ad4e;
 }
 
-.article-box {
+.article-box {   /* 文章内容块 */
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -132,6 +168,7 @@ hr {
     padding: 20px 100px 0 100px;
 
 }
+
 .article {
     text-align: left;
 }

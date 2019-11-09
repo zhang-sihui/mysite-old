@@ -8,8 +8,8 @@ from .models import Article
 
 
 def index(request):
-    context = Article.objects.all().order_by('-pub_date')[:5]
-    return render(request, 'blog/index.html', {'context': context})
+    contexts = Article.objects.all().order_by('-pub_date')[:5]
+    return render(request, 'blog/index.html', {'contexts': contexts})
 
 
 def blog_list(request, id):
@@ -34,5 +34,15 @@ def thinking(request):
 
 
 def other(request):
-    context = Article.objects.filter(category='other').order_by('-pub_date')[:5]
-    return render(request, 'blog/other.html', {'context': context})
+    contexts = Article.objects.filter(category='other').order_by('-pub_date')[:5]
+    return render(request, 'blog/other.html', {'contexts': contexts})
+
+
+def search(request):
+    q = request.GET.get('q')
+    contexts = Article.objects.all().order_by('-pub_date')[:5]
+    search_list = Article.objects.filter(title__icontains=q)
+    error_msg = 'No result'
+    return render(request, 'blog/search.html', {'search_list': search_list,
+                                                'error_msg': error_msg,
+                                                'contexts': contexts})
