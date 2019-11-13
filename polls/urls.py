@@ -21,6 +21,7 @@ urlpatterns = [
     path('image/', views.image, name='image'),
     path('music/', views.music, name='music'),
     path('film/', views.film, name='film'),
+
 ]
 # error
 handler404 = test.page_not_founds

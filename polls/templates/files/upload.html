@@ -8,11 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <button class="bn"><a class="lk" href="{% url 'polls:home' %}">Back</a></button>
+    <button class="bn"><a class="lk" href="{% url 'polls:show' %}">Back</a></button>
     <button class="bn"><a class="lk" href="{% url 'polls:upload' %}">Refresh</a></button>
     <button class="bn"><a class="lk" href="{% url 'polls:uploaded' %}">Uploaded</a></button>
-    <button class="bn"><a class="lk" href="{% url 'polls:show' %}">Download</a></button>
-
     <div class="file-box">
         <div class="title">
             <p>File Upload</p>
@@ -32,10 +30,10 @@
 
     <div class="message">
         {% if error_message %}
-        <div class="message-danger"><strong>{{ error_message }}</strong></div>
+        <div class="message_danger"><strong>{{ error_message }}</strong></div>
         {% endif %}
         {% if success_message %}
-        <div class="message-success"><strong>{{ success_message }}</strong></div>
+        <div class="message_success"><strong>{{ success_message }}</strong></div>
         {% endif %}
         <h4>Tips:
             Refresh the page Please use the Refresh button,<br>

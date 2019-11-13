@@ -1,6 +1,6 @@
 import os
 from os import path
-from django.http import HttpResponseRedirect, FileResponse, HttpResponse
+from django.http import HttpResponseRedirect, FileResponse
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import escape_uri_path
@@ -71,7 +71,10 @@ def upload(request):
             return render(request, 'files/upload.html',
                           {'error_message': 'no file. please choose a file.'})
         else:
-            db_file = File.objects.get(file_name=up_file)
+            # 这里filter不替换为get，因为get查询不到会报错，而filter查询不到，会返回空列表，
+            # 而我们上传的文件，数据库中很可能不存在（存在也不要上传了），这时代码会报错，而不是返回空列表
+            # 所以应该使用filter查询。
+            db_file = File.objects.filter(file_name=up_file)
             if not db_file:  # 判断数据库中是否已有正在上传的文件名
                 File.objects.create(file_name='%s' % up_file)  # 如果没有，文件名存入数据库
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
@@ -94,13 +97,15 @@ def handle_uploaded_file(file, filename):
             destination.write(chunk)
 
 
-# 展示上传的文件
+# 展示已经上传的文件
 def uploaded(request):
-    test = File.objects.filter(id=7).delete()
-    print(test)
     # 获取数据库存储的所有文件名及对应id,格式为[("",""),("","")]
     db_files_list = File.objects.values_list()
-    print(db_files_list)
+    test1 = File.objects.filter(id=1)
+    test2 = File.objects.get(id=13)
+    print(test1)
+    print('-'*30)
+    print(test2)
     file_name_list = []
     for db_file in db_files_list:  # 获取单个文件名及id元组("id", "name")
         file_name = db_file[1]  # 获取数据库文件名

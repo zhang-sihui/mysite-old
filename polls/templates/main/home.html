@@ -13,12 +13,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="http://127.0.0.1:8000/admin" target="_blank">
                     <i class="fa fa-home" aria-hidden="true"></i></a></li>
                 <li class="list-inline-item"><a href="{% url 'polls:index' %}">Vote</a></li>
-                <li class="list-inline-item"><a href="{% url 'polls:upload' %}">File</a></li>
+                <li class="list-inline-item"><a href="{% url 'polls:show' %}">File</a></li>
                 <li class="list-inline-item"><a href="{% url 'polls:image' %}">Image</a></li>
                 <li class="list-inline-item"><a href="{% url 'polls:music' %}">Music</a></li>
                 <li class="list-inline-item"><a href="{% url 'polls:film' %}">Film</a></li>
@@ -29,16 +28,22 @@
         </div>
     </div>
     <h1>Welcome, Dear friends!</h1>
-    <h2>
-        This is Zhang Sihui's personal website.
-    </h2>
-    <dl>My info:
-        <dt><i class="fa fa-at" aria-hidden="true"></i>
-            <a class="lk" href="#">name: zhangsihui</a></dt>
-        <dt><i class="fa fa-link" aria-hidden="true"></i>
-            <a class="lk" href="https://mail.qq.com/" target="_blank">email: zhang_sihui@qq.com</a></dt>
-        <dt><br>Based on Django2.1 and Python3.7</dt>
-    </dl>
+    <h2>This is Zhang Sihui's personal website.</h2>
+    <div>
+        <dl>My info:
+            <dt><i class="fa fa-at" aria-hidden="true"></i>
+                <a class="lk" href="#">name: zhangsihui</a></dt>
+            <dt><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a class="lk" href="https://mail.qq.com/" target="_blank">
+                    email: zhang_sihui@qq.com</a></dt>
+            <dt><i class="fa fa-github" aria-hidden="true"></i>
+                <a class="lk" href="https://github.com/zhang-sihui/mysite">
+                    All the code is on github, click here</a></dt>
+            <dt><br><i class="fa fa-comment-o" aria-hidden="true"></i>
+                Based on Django2.1 and Python3.7
+            </dt>
+        </dl>
+    </div>
 </div>
 </body>
 </html>

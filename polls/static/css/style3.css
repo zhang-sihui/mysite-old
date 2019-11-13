@@ -114,14 +114,15 @@
     width:600px;
     position:relative;
     left:100px;
+    border-radius: 8px;
 }
-.message-success {
+.message_success {
     background-color:#D4EDDA;
     text-align:center;
     padding: 10px 200px 10px 150px;
 }
-.message-danger {
-    background-color:#F8D7DA;
+.message_danger {
+    background-color:#FFF3CD;
     padding: 10px 200px 10px 150px;
     text-align:center;
 }
