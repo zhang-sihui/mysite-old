@@ -1,54 +1,48 @@
-body {
-	background-color: #fff;
-	}
-
-a:hover {
-    color: green;
-    text-decoration:underline;
+/* index */
+ul {    /* 列表 */
+    list-style-type: none;
+}
+/* index login register */
+.some-text {  /* 文本 */
+    text-align: center;
+}
+/* index login register ResetPwd */
+.lk {   /* 链接 */
+    color: grey;
+    padding: 10px;
+}
+/* register ResetPwd ChangePwd */
+.btn-a {    /* 按钮链接 */
+    color: white;
+}
+.btn-a:hover {
+    color: white;
+    text-decoration: none;
+}
+/* login register ResetPwd ChangePwd */
+.form-block {
+    padding: 10px;
+    height: 70px;
 }
 
-div {
-	text-align: center;
-	}
-
-div a {
-	color: black;
-	text-decoration: none;
-	}
-
-input {
-    border-radius: 3px;
-    color: #24292e;
-    border: 1px solid #d1d5da;
-    min-height: 24;
-    line-height: 20px;
-    padding: 6px 8px;
-    width: 266px;
-    }
-
-.button {
-	border-radius: 6px;          /* 圆角 */
-	background-color: #e7e7e7;    /* 背景颜色*/
-	border: 1px solid #d1d5da;;
-	color: black;                 /* 字体颜色 */
-    padding: 5px 15px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
+/* index login register ResetPwd ChangePwd */
+.bn {
+	border-radius: 6px;         /* 圆角 */
+	background-color: #e7e7e7;  /* 背景颜色 */
+	border: 1px solid #d1d5da;; /* 边框宽度，样式，颜色  */
+	color: black;               /* 字体颜色 */
+    padding: 4px 1px;           /* 组件内部上下左右空隙 */
+	text-align: center;         /* 字体居中 */
+	display: inline-block;      /* 组件之间没有空隙 */
+	font-size: 16px;            /* 字体大小 */
+	margin: 8px;                /* 与其他块的空隙 */
+	cursor: pointer;            /* 鼠标放在组件上，鼠标由箭头转换成手 */
+	width: 90px;                /* 组件宽度 */
 }
-
-.register {
-    border-radius: 6px;          /* 圆角 */
-	background-color: #e7e7e7;    /* 背景颜色*/
-	border: 1px solid #d1d5da;;
-	color: black;                 /* 字体颜色 */
-    padding: 5px 20px;
-	text-align: center;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
+/* login register ResetPwd ChangePwd */
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

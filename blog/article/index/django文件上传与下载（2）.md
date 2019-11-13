@@ -1,68 +1,23 @@
-import os
-from os import path
-from django.http import HttpResponseRedirect, FileResponse
-from django.urls import reverse
-from django.utils import timezone
-from django.utils.encoding import escape_uri_path
-from django.views import generic
-from django.shortcuts import get_object_or_404, render
-from .models import Choice, Question, File
-from . import base_dir
+0.这篇文章我默认你对Django已经有所了解，即熟悉基本项目目录，url设置，以及各代码所在文件夹。
+只是不知如何具体操作，这里提供借鉴。Python3.7,Django2.1。
+1.文件上传与下载，仅通过web端实现上传与下载，上传的文件展示并下载，并不是很难，下面就说说怎么做。
+2.上传前端代码：upload.html
+<body>
+<form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file"/>
+            <input type="submit"value="Upload"/>
+</form>
+{% if error_message %}
+        <strong>{{ error_message }}</strong>
+        {% endif %}
+        {% if success_message %}
+        <strong>{{ success_message }}</strong>
+{% endif %}
+</body>
+上传表单，input标签内的name值file传入后端即获取的文件名，下面的代码是上传错误与成功的反馈信息。
 
-
-# Create your views here.
-# 网站主页面
-def home(request):
-    return render(request, 'main/home.html')
-
-
-class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
-
-    def get_queryset(self):
-        """Return the last five published questions.(not including
-        those set to be published in the future)."""
-        return Question.objects.filter(
-            pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'polls/detail.html'
-
-    def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
-        return Question.objects.filter(pub_date__lte=timezone.now())
-
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'polls/results.html'
-
-
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-
-
+3.后端获取文件名，并处理app/views：
 # 文件上传
 def upload(request):
     if request.method == 'POST':
@@ -71,10 +26,7 @@ def upload(request):
             return render(request, 'files/upload.html',
                           {'error_message': 'no file. please choose a file.'})
         else:
-            # 这里filter不替换为get，因为get查询不到会报错，而filter查询不到，会返回空列表，
-            # 而我们上传的文件，数据库中很可能不存在（存在也不要上传了），这时代码会报错，而不是返回空列表
-            # 所以应该使用filter查询。
-            db_file = File.objects.filter(file_name=up_file)
+            db_file = File.objects.get(file_name=up_file)
             if not db_file:  # 判断数据库中是否已有正在上传的文件名
                 File.objects.create(file_name='%s' % up_file)  # 如果没有，文件名存入数据库
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
@@ -93,12 +45,24 @@ def handle_uploaded_file(file, filename):
     if not path.exists(file_path):  # 判断存储文件的路径是否存在
         os.mkdir(file_path)
     with open(file_path + '/' + filename, 'wb+') as destination:
-        for chunk in file.chunks():
+        for chunk in file.chunks():  # 分块写入文件
             destination.write(chunk)
 
 
-# 展示已经上传的文件
+# app/models
+class File(models.Model):
+    file_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.file_name
+
+上面两个函数处理上传的文件有相应注释，第三段是数据模型，仅用来储存文件名，没有储存文件路径，
+有兴趣和尝试。
+
+4.展示数据库存储的文件名 app/views：
+# 展示上传的文件
 def uploaded(request):
+    test = File.objects.filter(id=7).delete()
     # 获取数据库存储的所有文件名及对应id,格式为[("",""),("","")]
     db_files_list = File.objects.values_list()
     file_name_list = []
@@ -106,8 +70,24 @@ def uploaded(request):
         file_name = db_file[1]  # 获取数据库文件名
         file_name_list.append(file_name)  # 数据库文件名存储列表中
     return render(request, 'files/uploaded.html', {'file_name_list': file_name_list})
+	
+前端代码：uploaded.html
+<html lang="en">
+<body>
+{% if file_name_list %}
+    <ul>
+        {% for file in file_name_list %}
+        <li>{{ file }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No file.</p>
+    {% endif %}
+</body>
+</html>
 
-
+5.展示可供下载的文件，文件夹中存储的文件，和上一步的区别在于，文件的文件被删除，数据库仍有记录，
+所以以文件夹为准。请看注释。
 # 展示可供下载的文件()
 def show(request):
     """
@@ -130,7 +110,31 @@ def show(request):
         return render(request, 'files/show.html', {'dir_file_list': dir_file_list,
                                                    'files_dict': files_dict})
 
+对应前端代码：show.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File list</title>
+</head>
+<body>
+    {% if dir_file_list %}
+    <ul>{% for id, file in files_dict.items %}
+        <li>
+            <a href="polls/download/{{ id }}/">
+			{{ file }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No File.</p>
+    {% endif %}
+    <br>
+</body>
+</html>
 
+6.文件下载实现：
 # 文件下载
 def download(request, file_id):
     file = File.objects.get(id=file_id)
@@ -145,26 +149,33 @@ def download(request, file_id):
     return response
 
 
-# 图片
-def image(request):
-    return render(request, 'interest/image.html')
+7.urls.py设置：
+from django.urls import path, re_path
 
+app_name = 'polls'
 
-# 电影
-def film(request):
-    return render(request, 'interest/film.html')
+urlpatterns = [
+	# ...
+    # files
+    path('upload/', views.upload, name='upload'),
+    path('uploaded/', views.uploaded, name='uploaded'),
+    path('show/', views.show, name='show'),
+    re_path('download/(?P<file_id>\\d+)/', views.download, name='download'),
+]
 
+8.为简化代码，获取项目目录路径，设置在__init__.py中：
+import os
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# 音乐
-def music(request):
-    return render(request, 'interest/music.html')
-
-
-# 404
-def page_not_founds(request):
-    return render(request, "error/404.html")
-
-
-# 500
-def server_error(request):
-    return render(request, "error/500.html")
+9.[app]/views中需要导入一些包和方法。
+import os
+from os import path
+from django.http import HttpResponseRedirect, FileResponse
+from django.urls import reverse
+from django.utils import timezone
+from django.utils.encoding import escape_uri_path
+from django.views import generic
+from django.shortcuts import get_object_or_404, render
+from .models import File
+from . import base_dir
+以上文件视情况导入。

@@ -37,7 +37,7 @@
                     <div class="card-header">Release time: {{ context.pub_date }}</div>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a class="text-warning" href="{% url 'blog:blog_list' context.id %}">{{ context.title }}</a>
+                            <a class="text-warning" href="{% url 'blog:blog_body' context.id %}">{{ context.title }}</a>
                         </h4>
                         <p class="card-text">Category: {{ context.category }}</p>
                     </div>
@@ -49,8 +49,12 @@
     </div>
 </article>
 <div class="widget-area">
-    <h4>Note:</h4>
-    Not
+    <h4>Notice:</h4>
+    {% for notice in notices %}
+    <p> {{ notice.notice }}</p><br>
+    <p> {{ notice.content }}</p>
+    {% endfor %}
+
 </div>
 
 </body>

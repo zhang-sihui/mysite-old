@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>ChangePwd</title>
     <link rel="stylesheet" href="/static/css/user.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -10,10 +10,9 @@
 <body>
 <button class="bn"><a class="lk" href="{% url 'users:login' %}">Back</a></button>
 
-<div><h4 class="text-center">创建帐户</h4></div>
 
 <div class="col-md-6 col-md-offset-6 col-center-block">
-    <form class='form-register' action="" method="post">
+    <form class='form-change-pwd' action="" method="post">
 
         {% if success_message %}
         <div class="alert alert-success">{{ success_message }}</div>
@@ -23,35 +22,26 @@
         {% endif %}
 
         {% csrf_token %}
-
+        <div><h4 class="text-center">修改密码</h4></div>
         <div class="form-group">
-            {{ register_form.username.label_tag }}
-            {{ register_form.username}}
-            <div class="some-text">4-20字符，支持中文、字母和数字的组合</div>
+            {{ change_pwd_form.username.label_tag }}
+            {{ change_pwd_form.username}}
         </div>
 
         <div class="form-group">
-            {{ register_form.password1.label_tag }}
-            {{ register_form.password1 }}
-            <div class="some-text">6-20个字符，不支持中文，支持字母、数字和字符组合</div>
+            {{ change_pwd_form.old_password.label_tag }}
+            {{ change_pwd_form.old_password }}
         </div>
 
         <div class="form-group">
-            {{ register_form.password2.label_tag }}
-            {{ register_form.password2 }}
-            <div class="some-text">请再次输入密码</div>
+            {{ change_pwd_form.new_password.label_tag }}
+            {{ change_pwd_form.new_password }}
         </div>
 
         <div class="form-group">
-            {{ register_form.email.label_tag }}
-            {{ register_form.email }}
-            <div class="some-text">电子邮箱很重要，找回密码需要她，请认真填写</div>
-        </div>
-
-        <div class="form-group">
-            {{ register_form.captcha.errors }}
-            {{ register_form.captcha.label_tag }}
-            {{ register_form.captcha }}
+            {{ change_pwd_form.captcha.errors }}
+            {{ change_pwd_form.captcha.label_tag }}
+            {{ change_pwd_form.captcha }}
         </div>
         <div class="form-block">
             <button class="bn btn-secondary pull-left"><a class="btn-a" href="{% url 'users:login' %}">登录</a></button>
@@ -59,7 +49,6 @@
             <button type="submit" class="bn btn-secondary pull-right">提交</button>
         </div>
     </form>
-
 </div>
 
 </body>

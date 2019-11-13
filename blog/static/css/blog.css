@@ -51,16 +51,17 @@ li {
 }
 
 .site-t {  /* overview及搜索表单 */
-    margin:0 0 30px 0;
+    margin:0 0 10px 0;
+    padding: 5px;
     float: center;
 }
 .desc-title {  /* overview */
     float: left;
 }
 .search-form {  /* 搜索表单 */
-    padding: 10px 0 0 190px;
+    padding: 10px 0 10px 190px;
     float:right;
-    height: 56px;
+    height: 46px;
 }
 .txt {  /* 搜索栏样式 */
     height:30px;

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'mdeditor',
+    'mdeditor',  # django markdown 富文本编辑器
+    'captcha',   # 图片验证码
 ]
 
 MIDDLEWARE = [

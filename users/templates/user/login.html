@@ -5,22 +5,48 @@
     <title>Login</title>
     <link rel="stylesheet" href="/static/css/user.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 <body>
-<a class="button" href="{% url 'users:index' %}">Back</a>
-<div><h1>Sign in</h1>
-    <form name="input" action="" method="post">
-        <label>Username</label>
-        <input class="input" type="text" name="userName" autofocus="autofocus"><br><br>
-        <label>Password</label>
-        <input class="input" type="password" name="pwd">
-        <br><br><a href="#" target="_blank"><i class="fa fa-link" aria-hidden="true"></i>
-        Forget Password?</a>
+<button class="bn"><a class="lk" href="{% url 'users:index' %}">Back</a></button>
+
+<div class="col-md-6 col-md-offset-6 col-center-block">
+    <form class='form-login' action="" method="post">
+
+        {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+
+        {% csrf_token %}
+        <h2 class="text-center">欢迎登录</h2>
+        <div class="form-group">
+            {{ login_form.username.label_tag }}
+            {{ login_form.username}}
+        </div>
+        <div class="form-group">
+            {{ login_form.password.label_tag }}
+            {{ login_form.password }}
+        </div>
+        <div class="form-group">
+            {{ login_form.captcha.errors }}
+            {{ login_form.captcha.label_tag }}
+            {{ login_form.captcha }}
+        </div>
+        <div class="form-block">
+            <button type="reset" class="bn btn-secondary pull-left">重置</button>
+            <button type="submit" class="bn btn-secondary pull-right">提交</button>
+        </div>
     </form>
-    <h4><a href="{% url 'users:register' %}"><i class="fa fa-link" aria-hidden="true"></i>
-        New user? Click here to Register.</a></h4>
-<input type="submit" class="button" value="submit">
+</div>
+
+<div class="some-text">
+    <a class="lk" href="{% url 'users:change_pwd' %}"><i class="fa fa-link" aria-hidden="true"></i>
+        修改密码?</a>
+    <a class="lk" href="{% url 'users:reset_pwd' %}"><i class="fa fa-link" aria-hidden="true"></i>
+        忘记密码?</a>
+    <a class="lk" href="{% url 'users:register' %}"><i class="fa fa-link" aria-hidden="true"></i>
+        新用户? 点这里去注册.</a>
 </div>
 
 </body>
