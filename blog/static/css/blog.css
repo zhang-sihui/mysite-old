@@ -52,14 +52,17 @@ li {
 
 .site-t {  /* overview及搜索表单 */
     margin:0 0 10px 0;
-    padding: 5px;
+    padding: 3px;
     float: center;
+    height: 60px;
 }
 .desc-title {  /* overview */
     float: left;
+    width: 150px;
+    height: 46px;
 }
 .search-form {  /* 搜索表单 */
-    padding: 10px 0 10px 190px;
+    padding: 10px 0 5px 10px;
     float:right;
     height: 46px;
 }
@@ -75,7 +78,10 @@ li {
 }
 
 .content-list {  /* 具体内容列表 */
-    padding: 20px;
+    padding: 2px;
+    height: 600px;
+    margin: 2px;
+    width: 670px;
 }
 
 .widget-area {   /* 右侧Note下方内容  */

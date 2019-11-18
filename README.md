@@ -34,3 +34,5 @@ starting with version 1.0.0 for personal website content.
         1. 增加用户登录，登录、注册、修改密码、重置密码。
         2. 调整了文件上传功能页面的展示，修复一些问题。
         3. 博客功能中增加功能：后台添加提示。
+    * v1.4.0:
+        1. 将polls应用中的image改成单独的应用photos。

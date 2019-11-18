@@ -27,7 +27,7 @@ class Article(models.Model):
 
 class Notice(models.Model):
     notice = models.CharField(max_length=200)
-    content = models.TextField(max_length=200, default=' ')
+    content = MDTextField()
     pub_date = models.DateTimeField('date published', default=timezone.now)
 
     def __str__(self):

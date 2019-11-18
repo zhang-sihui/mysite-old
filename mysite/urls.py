@@ -24,6 +24,8 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('users/', include('users.urls')),
     path('blog/', include('blog.urls')),
+    path('photos/', include('photos.urls')),
+
     path('mdeditor', include('mdeditor.urls')),
     path('captcha', include('captcha.urls'))
 ]
