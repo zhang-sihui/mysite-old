@@ -5,14 +5,14 @@ from .models import User
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'user/index.html')
+def user(request):
+    return render(request, 'user/user.html')
 
 
 # 登录
 def login(request):
     if request.session.get('is_login', None):  # 如果用户在线，不能重复登录
-        return redirect('users:index')
+        return redirect('users:user')
 
     if request.method == 'POST':
         login_form = UserForm(request.POST)
@@ -26,7 +26,7 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.username
-                    return redirect('users:index')
+                    return redirect('users:user')
                 else:
                     message = '密码不正确！'
             except:
@@ -39,21 +39,21 @@ def login(request):
 # 登出
 def logout(request):
     if not request.session.get('is_login', None):  # 判断用户是否登录
-        return redirect('users:index')
+        return redirect('users:user')
     # flush()方法是比较安全的一种做法,一次性将session中的所有内容全部清空
     request.session.flush()
     # 或者使用下面的方法
     # del request.session['is_login']
     # del request.session['user_id']
     # del request.session['user_name']
-    return redirect('users:index')
+    return redirect('users:user')
 
 
 # 注册用户
 def register(request):
     if request.session.get('is_login', None):  # 已登录则不能注册
         # 登录状态不允许注册,可以修改这条原则！
-        return redirect("users:index")
+        return redirect("users:user")
 
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)

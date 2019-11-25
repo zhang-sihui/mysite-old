@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-    <link rel="stylesheet" href="/static/css/blog.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-<button><a href="{% url 'polls:home' %}">Back</a></button>
-<h2>Hello, Friend! Blog home page!!</h2>
-<ul class="nav menu">
-    <li><a href="{% url 'blog:index' %}">Home</a></li>
-    <li><a href="{% url 'blog:programming' %}">Programming</a></li>
-    <li><a href="{% url 'blog:thinking' %}">Thinking</a></li>
-    <li><a href="{% url 'blog:other' %}">Other</a></li>
-</ul>
+{% extends 'blog/base.html' %}
+
+{% block content %}
 <article id="list" class="site-content">
     <div class="site-t">
         <div class="desc-title">
-            <h3>Overview</h3>
+            <p>Overview</p>
         </div>
         <div class="search-form">
             <form method="get" action="{% url 'blog:search' %}">
@@ -29,8 +15,12 @@
         </div>
     </div>
     <div class="content-list">
-        <hr style="color: #fff;">
         {% if search_list %}
+        {% if success_msg %}
+        <div class="tip">
+            <p>{{ success_msg }}</p>
+        </div>
+        {% endif %}
         {% for search in search_list %}
         <ol>
             <li>
@@ -38,7 +28,7 @@
                     <div class="card-header">Release time: {{ search.pub_date }}</div>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a class="text-warning" href="{% url 'blog:blog_list' search.id %}">
+                            <a class="text-warning" href="{% url 'blog:blog_body' search.id %}">
                                 {{ search.title }}</a>
                         </h4>
                         <p class="card-text">Category: {{ search.category }}</p>
@@ -51,7 +41,7 @@
         {% else %}
         {% if error_msg %}
         <div class="tip">
-            <h2>{{ error_msg }}</h2>
+            <p>{{ error_msg }}</p>
         </div>
         {% endif %}
         {% for context in contexts %}
@@ -75,12 +65,10 @@
 </article>
 
 <div class="widget-area">
-    <h4>Notice:</h4>
+    <p>Notice:</p>
     {% for notice in notices %}
     <p> {{ notice.notice }}</p><br>
     <p> {{ notice.content }}</p>
     {% endfor %}
 </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Programming</title>
-    <link rel="stylesheet" href="/static/css/blog.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{% extends 'blog/base.html' %}
 
-</head>
-<body>
-<button><a href="{% url 'blog:index' %}">Back</a></button>
-<br>
+{% block title %}
+<h3>Programming</h3>
+{% endblock %}
+
+{% block content %}
 <article id="list" class="site-content">
-    <h3>Programming</h3>
-    <hr style="color: #fff;">
     {% for context in context %}
     <ol>
         <li>
@@ -30,6 +23,4 @@
     </ol>
     {% endfor %}
 </article>
-
-</body>
-</html>
+{% endblock %}

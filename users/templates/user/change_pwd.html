@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ChangePwd</title>
-    <link rel="stylesheet" href="/static/css/user.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% extends 'user/base.html' %}
 
-</head>
-<body>
+{% block content %}
 <button class="bn"><a class="lk" href="{% url 'users:login' %}">Back</a></button>
-
 
 <div class="col-md-6 col-md-offset-6 col-center-block">
     <form class='form-change-pwd' action="" method="post">
@@ -50,6 +42,4 @@
         </div>
     </form>
 </div>
-
-</body>
-</html>
+{% endblock %}

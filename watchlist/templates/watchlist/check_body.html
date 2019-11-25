@@ -1,0 +1,20 @@
+{% extends 'watchlist/base.html' %}
+
+{% block content %}
+<nav>
+    <ul>
+        <li><a href="{% url 'watchlist:watchlist' %}">全部</a></li>
+        <li><a href="{% url 'watchlist:book' %}">书籍</a></li>
+        <li><a href="{% url 'watchlist:film' %}">电影</a></li>
+    </ul>
+</nav>
+<div class="article-box">
+    <div class="article">
+        <h1>{{ checklists.title }}</h1>
+        <p>日期: {{ checklists.pub_date }} | 分类: {{ checklists.category }}</p>
+        <div>{{ checklists.content | safe }}</div>
+    </div>
+</div>
+
+{% endblock %}
+

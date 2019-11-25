@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>File list</title>
-    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
-    <link rel="stylesheet" href="/static/css/style3.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% extends 'files/base.html' %}
 
-</head>
-<body>
+{% block content %}
 
-<button class="bn"><a class="lk" href="{% url 'polls:home' %}">Back</a></button>
-<button class="bn"><a class="lk" href="{% url 'polls:upload' %}">Upload</a></button>
 <div class="list-box">
     {% if dir_file_list %}
     <ul class="list-group">{% for id, file in files_dict.items %}
@@ -29,6 +18,4 @@
     {% endif %}
     <br>
 </div>
-
-</body>
-</html>
+{% endblock %}

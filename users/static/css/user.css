@@ -46,3 +46,10 @@ ul {    /* 列表 */
     margin-left: auto;
     margin-right: auto;
 }
+
+footer {  /* 页脚 */
+    color: #888;
+    margin: 15px;
+    text-align: center;
+    padding: 10px;
+}

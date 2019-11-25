@@ -21,10 +21,13 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', include('index.urls')),
     path('polls/', include('polls.urls')),
-    path('users/', include('users.urls')),
     path('blog/', include('blog.urls')),
     path('photos/', include('photos.urls')),
+    path('users/', include('users.urls')),
+    path('watchlist/', include('watchlist.urls')),
 
     path('mdeditor', include('mdeditor.urls')),
     path('captcha', include('captcha.urls'))

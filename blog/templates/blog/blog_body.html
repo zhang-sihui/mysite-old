@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Thinking</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/static/css/blog.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-<button><a href="{% url 'blog:index' %}">Back</a></button>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
 <div class="article-box">
     <div class="article">
         <h1>{{ context.title }}</h1>
@@ -17,5 +10,4 @@
         <div>{{ context.body | safe }}</div>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

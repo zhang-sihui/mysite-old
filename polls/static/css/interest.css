@@ -1,0 +1,54 @@
+/* interest */
+
+.lk {
+    text-decoration: none;
+    color: black;
+}
+.lk:hover {
+    color: #007bff;
+    text-decoration:underline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+    padding: 3px;
+}
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    color:green;
+    text-decoration:underline;
+}
+h1, h2, h3, h5 {
+    text-align: center
+}
+h1, h3, h5 {
+    color: #000;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.bn {
+    background-color: #e7e7e7; color: black;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="/static/css/user.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% extends 'user/base.html' %}
 
-</head>
-<body>
-<button class="bn"><a class="lk" href="{% url 'users:index' %}">Back</a></button>
+{% block content %}
+<button class="bn"><a class="lk" href="{% url 'users:user' %}">Back</a></button>
 
 <div class="col-md-6 col-md-offset-6 col-center-block">
     <form class='form-login' action="" method="post">
@@ -35,7 +27,7 @@
         </div>
         <div class="form-block">
             <button type="reset" class="bn btn-secondary pull-left">重置</button>
-            <button type="submit" class="bn btn-secondary pull-right">提交</button>
+            <button type="submit" class="bn btn-secondary pull-right">登录</button>
         </div>
     </form>
 </div>
@@ -49,5 +41,4 @@
         新用户? 点这里去注册.</a>
 </div>
 
-</body>
-</html>
+{% endblock %}

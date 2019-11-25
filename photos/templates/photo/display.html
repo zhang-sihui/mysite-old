@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Display</title>
-    <link rel="stylesheet" href="/static/css/photo.css">
-    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'photo/base.html' %}
 
-<button class="bn"><a class="lk" href="{% url 'polls:home' %}">Back</a></button>
+{% block content %}
+<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
 
 <a class="lk" href="{% url 'photos:upload_photo' %}">upload_photo</a>
 
@@ -17,6 +9,7 @@
     这些图片为个人创作，可以个人使用，但禁止用于商业获利。本人享有图片所有解释权。</h5>
 
 <div class="pic-box">
+    <h5>{{ page|length }} Photos</h5>
     {% for photo in page.object_list %}
     <img class="list-col" src="http://127.0.0.1:8000/photos/download/{{ photo.id }}">
     {% endfor %}
@@ -61,5 +54,4 @@
         {% endif %}
     </ul>
 </nav>
-</body>
-</html>
+{% endblock %}

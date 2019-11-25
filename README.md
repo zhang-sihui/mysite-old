@@ -36,3 +36,7 @@ starting with version 1.0.0 for personal website content.
         3. 博客功能中增加功能：后台添加提示。
     * v1.4.0:
         1. 将polls应用中的image改成单独的应用photos。
+    * v1.5.0:
+        1. 增加watchlist应用。
+        2. 去除polls应用中的film功能。
+        3. 优化html文件代码。

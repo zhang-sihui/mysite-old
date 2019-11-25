@@ -35,7 +35,7 @@ li {
     color: #6A6A6A;
     float: left;
     padding: 0px;
-    margin: 0 0  0 10px;
+    margin: 0 0 0 10px;
     list-style: none;
 }
 
@@ -43,27 +43,30 @@ li {
     float: left;
     width: 66%;
     margin: 0;
-    padding: 10px 0 0 10px;
+    padding: 10px 0 20px 10px;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-    min-width: 600px;
+    min-width: 710px;
 }
 
 .site-t {  /* overview及搜索表单 */
-    margin:0 0 10px 0;
+    margin:0 0 5px 0;
     padding: 3px;
     float: center;
-    height: 60px;
+    height: 50px;
+    width: 665px;
 }
 .desc-title {  /* overview */
     float: left;
     width: 150px;
     height: 46px;
+    font-size: 30px;
+    padding: 0 0 0 40px;
 }
 .search-form {  /* 搜索表单 */
-    padding: 10px 0 5px 10px;
-    float:right;
+    margin: 5px 0px 5px 100px;
+    float: right;
     height: 46px;
 }
 .txt {  /* 搜索栏样式 */
@@ -88,38 +91,30 @@ li {
     float: right;
     width: 30%;
     margin: 0;
-    padding: 30px 0 0 30px;
+    padding: 5px 0 0 5px;
     border: 0;
     min-width: 300px;
 }
 
 h3 {
-    padding: 0 0 0 20px;
-    column-span: all;
-}
-h2 {
-    text-align: center;
+    padding: 0 0 0 60px;
 }
 
 .tip {   /* 提示块内容 */
-    background-color: grey;
+    background-color: #eee;
     width: 300px;
     height: 30px;
-    margin: 10px;
+    margin: 0px 0 5px 0;
     position: relative;
     left: 200px;
     border-radius:3px;
+    text-align: center;
+    font-size: 24px;
 }
 
-body {  /*  */
-    color: #444;
+body {  /* 页面 */
     line-height: 1;
     padding: 5px;
-    margin: 0;
-}
-
-hr {  /*  */
-    padding: 0;
     margin: 0;
 }
 
@@ -175,8 +170,14 @@ hr {  /*  */
     padding: 20px 100px 0 100px;
 
 }
-
 .article {
     text-align: left;
 }
-
+.foot {  /* 页脚 */
+    color: #888;
+    margin: 5px;
+    text-align: left;
+    padding: 5px;
+    position:absolute;
+    bottom:0px;
+}

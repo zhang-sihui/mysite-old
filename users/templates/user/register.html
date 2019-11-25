@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="/static/css/user.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% extends 'user/base.html' %}
 
-</head>
-<body>
+{% block content %}
 <button class="bn"><a class="lk" href="{% url 'users:login' %}">Back</a></button>
 
 <div><h4 class="text-center">创建帐户</h4></div>
@@ -61,6 +54,4 @@
     </form>
 
 </div>
-
-</body>
-</html>
+{% endblock %}

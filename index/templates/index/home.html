@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="shortcut icon" href="/static/index/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="http://127.0.0.1:8000/admin" target="_blank">
+                    <i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="list-inline-item"><a href="{% url 'polls:vote' %}">Vote</a></li>
+                <li class="list-inline-item"><a href="{% url 'polls:show' %}">File</a></li>
+                <li class="list-inline-item"><a href="{% url 'photos:display' %}">Image</a></li>
+                <li class="list-inline-item"><a href="{% url 'polls:music' %}">Music</a></li>
+                <li class="list-inline-item"><a href="{% url 'watchlist:watchlist' %}">Watchlist</a></li>
+                <li class="list-inline-item"><a href="{% url 'blog:blog' %}">Blog</a></li>
+                <li class="list-inline-item" style="float:right">
+                    <a href="{% url 'users:user' %}">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <h1>Welcome, Dear friends!</h1>
+    <h2>This is Zhang Sihui's personal website.</h2>
+
+    <h5>推荐使用Chrome浏览器和火狐浏览器，IE和Edge浏览器可能存在一些页面显示问题。</h5>
+
+    <div>
+        <dl>My info:
+            <dt><i class="fa fa-at" aria-hidden="true"></i>
+                <a class="lk" href="#">name: zhangsihui</a></dt>
+            <dt><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a class="lk" href="https://mail.qq.com/" target="_blank">
+                    email: zhang_sihui@qq.com</a></dt>
+            <dt><i class="fa fa-github" aria-hidden="true"></i>
+                <a class="lk" href="https://github.com/zhang-sihui/mysite">
+                    All the code is on github, click here</a></dt>
+            <dt><br><i class="fa fa-comment-o" aria-hidden="true"></i>
+                Based on Django2.1 and Python3.7
+            </dt>
+        </dl>
+    </div>
+</div>
+<footer>&copy; 2019 zh</footer>
+</body>
+</html>

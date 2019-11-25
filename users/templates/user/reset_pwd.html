@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ResetPwd</title>
-    <link rel="stylesheet" href="/static/css/user.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+{% extends 'user/base.html' %}
 
-</head>
-<body>
+{% block content %}
 <button class="bn"><a class="lk" href="{% url 'users:login' %}">Back</a></button>
 
 <div><h4 class="text-center">重置密码</h4></div>
@@ -51,6 +44,4 @@
         </div>
     </form>
 </div>
-
-</body>
-</html>
+{% endblock %}

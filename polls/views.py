@@ -11,13 +11,8 @@ from . import base_dir
 
 
 # Create your views here.
-# 网站主页面
-def home(request):
-    return render(request, 'main/home.html')
-
-
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
+    template_name = 'polls/vote.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
@@ -145,26 +140,6 @@ def download(request, file_id):
     return response
 
 
-# 图片
-def image(request):
-    return render(request, 'interest/image.html')
-
-
-# 电影
-def film(request):
-    return render(request, 'interest/film.html')
-
-
 # 音乐
 def music(request):
     return render(request, 'interest/music.html')
-
-
-# 404
-def page_not_founds(request):
-    return render(request, "error/404.html")
-
-
-# 500
-def server_error(request):
-    return render(request, "error/500.html")

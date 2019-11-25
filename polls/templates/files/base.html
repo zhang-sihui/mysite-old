@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File</title>
+    <link rel="shortcut icon" href="/static/polls/images/favicon.ico">
+    <link rel="stylesheet" href="/static/css/files.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    {% endblock %}
+</head>
+<body>
+<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
+<button class="bn"><a class="lk" href="{% url 'polls:show' %}">Show</a></button>
+<button class="bn"><a class="lk" href="{% url 'polls:upload' %}">upload</a></button>
+<button class="bn"><a class="lk" href="{% url 'polls:uploaded' %}">Uploaded</a></button>
+{% block content %}{% endblock %}
+</body>
+</html>
