@@ -6,7 +6,7 @@ Terminal: Go to mysite folder(终端：进入mysite文件夹)
 Enter the following command, then enter（输入以下命令，回车运行）  
 "python manage.py runserver"
   
-http://127.0.0.1:8000/polls/  
+http://127.0.0.1:8000/  
 user UI(用户)  
 http://127.0.0.1:8000/admin/  
 admin UI(管理)
