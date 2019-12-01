@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MessageBoard</title>
+    <link rel="shortcut icon" href="/static/index/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/css/msgboard.css">
+</head>
+<body>
+
+{% block title %}
+<p class="body-title">留言板</p>
+{% endblock %}
+{% block nav %}
+<nav>
+    <ul>
+        <li><a href="{% url 'index:index' %}">返回</a></li>
+        <li><a href="{% url 'messageboard:message_create' %}">去留言</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}{% endblock %}
+<footer>
+    <small>&copy; 2018 zh</small>
+</footer>
+</body>
+</html>

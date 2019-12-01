@@ -3,7 +3,7 @@
 
 <button class="bn"><a class="btn-a" href="{% url 'index:index' %}">Back</a></button>
 <div class="content-box">
-    <h4>Question list:</h4>
+    <h3>Question list:</h3>
     {% if latest_question_list %}
     <ol>
         {% for question in latest_question_list %}

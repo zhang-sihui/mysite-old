@@ -27,6 +27,7 @@ SECRET_KEY = '+j1x03ogt^+uzt@c_3@2)9$1o^0g5v#!*q%9lh#$3p&2ktc&hq'
 # 开发模式
 DEBUG = True
 ALLOWED_HOSTS = []
+# DEBUG = False
 # ALLOWED_HOSTS = ['192.168.49.24']
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'photos.apps.PhotosConfig',
     'watchlist.apps.WatchlistConfig',
+    'messageboard.apps.MessageboardConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',

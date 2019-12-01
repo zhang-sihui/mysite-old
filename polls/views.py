@@ -63,8 +63,8 @@ def upload(request):
     if request.method == 'POST':
         up_file = request.FILES.get('file')  # 获取文件
         if not up_file:  # 未选择文件
-            return render(request, 'files/upload.html',
-                          {'error_message': 'no file. please choose a file.'})
+            error_message = 'no file. please choose a file.'
+            return render(request, 'files/upload.html', locals())
         else:
             # 这里filter不替换为get，因为get查询不到会报错，而filter查询不到，会返回空列表，
             # 而我们上传的文件，数据库中很可能不存在（存在也不要上传了），这时代码会报错，而不是返回空列表
@@ -73,12 +73,12 @@ def upload(request):
             if not db_file:  # 判断数据库中是否已有正在上传的文件名
                 File.objects.create(file_name='%s' % up_file)  # 如果没有，文件名存入数据库
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
-                return render(request, 'files/upload.html',
-                              {'success_message': 'upload success. please continue.'})
+                success_message = 'upload success. please continue.'
+                return render(request, 'files/upload.html', locals())
             else:   # 数据库中已存在，直接处理文件
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
-                return render(request, 'files/upload.html',
-                              {'success_message': 'upload success. please continue.'})
+                success_message = 'upload success. please continue.'
+                return render(request, 'files/upload.html', locals())
     return render(request, 'files/upload.html')
 
 
@@ -94,13 +94,9 @@ def handle_uploaded_file(file, filename):
 
 # 展示已经上传的文件
 def uploaded(request):
-    # 获取数据库存储的所有文件名及对应id,格式为[("",""),("","")]
-    db_files_list = File.objects.values_list()
-    file_name_list = []
-    for db_file in db_files_list:  # 获取单个文件名及id元组("id", "name")
-        file_name = db_file[1]  # 获取数据库文件名
-        file_name_list.append(file_name)  # 数据库文件名存储列表中
-    return render(request, 'files/uploaded.html', {'file_name_list': file_name_list})
+    # 获取数据库存储的文件信息,以pub_date字段值为过滤器，条件为今天之前的所有数据
+    db_files_list = File.objects.filter(pub_date__lte=timezone.now())
+    return render(request, 'files/uploaded.html', locals())
 
 
 # 展示可供下载的文件()

@@ -8,30 +8,36 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="http://127.0.0.1:8000/admin" target="_blank">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-1 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://127.0.0.1:8000/admin" target="_blank">
                     <i class="fa fa-home" aria-hidden="true"></i></a></li>
-                <li class="list-inline-item"><a href="{% url 'polls:vote' %}">Vote</a></li>
-                <li class="list-inline-item"><a href="{% url 'polls:show' %}">File</a></li>
-                <li class="list-inline-item"><a href="{% url 'photos:display' %}">Image</a></li>
-                <li class="list-inline-item"><a href="{% url 'polls:music' %}">Music</a></li>
-                <li class="list-inline-item"><a href="{% url 'watchlist:watchlist' %}">Watchlist</a></li>
-                <li class="list-inline-item"><a href="{% url 'blog:blog' %}">Blog</a></li>
-                <li class="list-inline-item" style="float:right">
-                    <a href="{% url 'users:user' %}">Login</a></li>
-            </ul>
-        </div>
+            <li class="nav-item"><a class="nav-link" href="{% url 'polls:vote' %}">Vote</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'polls:show' %}">File</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'photos:display' %}">Image</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'polls:music' %}">Music</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'watchlist:watchlist' %}">Watchlist</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'messageboard:message_list' %}">MessageBoard</a></li>
+        </ul>
     </div>
-    <h1>Welcome, Dear friends!</h1>
-    <h2>This is Zhang Sihui's personal website.</h2>
-
+    <a class="nav-item nav-link lk" style="float:right" href="{% url 'users:user' %}">Login</a>
+</nav>
+<div class="container-fluid">
+    <h2>Welcome, Dear friends!</h2>
+    <h4>This is Zhang Sihui's personal website.</h4>
     <h5>推荐使用Chrome浏览器和火狐浏览器，IE和Edge浏览器可能存在一些页面显示问题。</h5>
-
     <div>
         <dl>My info:
             <dt><i class="fa fa-at" aria-hidden="true"></i>
@@ -42,12 +48,13 @@
             <dt><i class="fa fa-github" aria-hidden="true"></i>
                 <a class="lk" href="https://github.com/zhang-sihui/mysite">
                     All the code is on github, click here</a></dt>
-            <dt><br><i class="fa fa-comment-o" aria-hidden="true"></i>
-                Based on Django2.1 and Python3.7
+            <dt><p class="lk"><i class="fa fa-comment-o" aria-hidden="true"></i>
+                    Based on Django2.1 and Python3.7</p>
             </dt>
         </dl>
     </div>
+    <footer>&copy; 2019 zh</footer>
 </div>
-<footer>&copy; 2019 zh</footer>
+
 </body>
 </html>

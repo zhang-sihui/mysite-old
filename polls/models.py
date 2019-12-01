@@ -33,6 +33,7 @@ class Choice(models.Model):
 # file upload
 class File(models.Model):
     file_name = models.CharField(max_length=100)
+    pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.file_name

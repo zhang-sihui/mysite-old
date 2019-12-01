@@ -6,7 +6,7 @@ Terminal: Go to mysite folder(终端：进入mysite文件夹)
 Enter the following command, then enter（输入以下命令，回车运行）  
 "python manage.py runserver"
   
-http://127.0.0.1:8000/  
+http://127.0.0.1:8000/
 user UI(用户)  
 http://127.0.0.1:8000/admin/  
 admin UI(管理)
@@ -40,3 +40,7 @@ starting with version 1.0.0 for personal website content.
         1. 增加watchlist应用。
         2. 去除polls应用中的film功能。
         3. 优化html文件代码。
+    * v1.6.0:
+        1. 增加messageboard app,留言功能。
+        2. 数据库文件为空文件，所以如果你要运行这个版本代码，需要在终端mysite目录下运行两条命令迁移数据库：
+        "python manage.py makemigrations","python manage.py migrate",再启动服务。

@@ -1,47 +1,24 @@
 
 .lk {
     text-decoration: none;
-    color: black;
+    color: #999;
 }
 .lk:hover {
-    color: #007bff;
-    text-decoration:underline;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #f3f3f3;
+    color: #555;
 }
 
 li {
-    float: left;
-    padding: 3px;
+    padding: 3px 15px 3px 0;
 }
-li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover {
-    color:green;
-    text-decoration:underline;
-}
-h1, h2, h3, h5 {
+
+h2,h4,h5 {
     text-align: center
 }
-h1, h3, h5 {
-    color: #000;
-    font-size: 2em;
-    font-weight: bold;
+h4, h5 {
+    color: #222;
 }
 footer {  /* 页脚 */
     color: #888;
-    margin: 10px;
     text-align: left;
     padding: 0px;
 }

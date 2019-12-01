@@ -30,17 +30,19 @@
 /* vote result */
 .text-a {
     color: #17A2B8;
+    font-size: 20px;
 }
 .text-a:hover {
     color: green;
     text-decoration:underline;
 }
 
+/* detail */
 .text-list {
+    font-size: 20px;
     padding: 5px;
 }
 
-/* detail */
 .vote {
     background-color: #e7e7e7; color: black;
     border: none;
@@ -59,4 +61,7 @@
 }
 strong {
     color:#FFc107;
+}
+li {
+    font-size:20px;
 }

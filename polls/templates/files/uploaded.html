@@ -2,10 +2,10 @@
 
 {% block content %}
 <div class="list-box">
-    {% if file_name_list %}
+    {% if db_files_list %}
     <ul class="list-group">
-        {% for file in file_name_list %}
-        <li class="list-group-item">{{ file }}</li>
+        {% for file in db_files_list %}
+        <li class="list-group-item">{{ file.file_name }}</li>
         {% endfor %}
     </ul>
     {% else %}

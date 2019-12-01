@@ -28,6 +28,7 @@ urlpatterns = [
     path('photos/', include('photos.urls')),
     path('users/', include('users.urls')),
     path('watchlist/', include('watchlist.urls')),
+    path('messageboard/', include('messageboard.urls')),
 
     path('mdeditor', include('mdeditor.urls')),
     path('captcha', include('captcha.urls'))
