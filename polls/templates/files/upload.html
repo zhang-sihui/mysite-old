@@ -7,9 +7,8 @@
 <link rel="stylesheet" href="/static/css/files.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 {% endblock %}
+
 {% block content %}
-
-
 <div class="file-box">
     <div class="title">
         <p>File Upload</p>
@@ -26,7 +25,6 @@
         <p>10MiB maximum size</p>
     </div>
 </div>
-
 <div class="message">
     {% if error_message %}
     <div class="message_danger"><strong>{{ error_message }}</strong></div>

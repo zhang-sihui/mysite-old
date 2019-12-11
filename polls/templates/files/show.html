@@ -1,12 +1,17 @@
 {% extends 'files/base.html' %}
 
+
+{% block nav %}
+<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
+{{ block.super }}
+{% endblock %}
+
 {% block content %}
 
 <div class="list-box">
     {% if dir_file_list %}
     <ul class="list-group">{% for id, file in files_dict.items %}
         <li class="list-group-item">
-            <img src="http://127.0.0.1:8000/polls/download/{{ id }}" width="48" height="27">
             {{ file }}
             <a class="lk" href="polls/download/{{ id }}/">
                 <i class="fa fa-cloud-download" aria-hidden="true"></i></a>

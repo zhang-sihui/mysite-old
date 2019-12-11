@@ -12,10 +12,15 @@
     {% endblock %}
 </head>
 <body>
-<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
-<button class="bn"><a class="lk" href="{% url 'polls:show' %}">Show</a></button>
-<button class="bn"><a class="lk" href="{% url 'polls:upload' %}">upload</a></button>
-<button class="bn"><a class="lk" href="{% url 'polls:uploaded' %}">Uploaded</a></button>
+<div class="nav-list">
+    {% block nav %}
+    <button class="bn"><a class="lk" href="{% url 'polls:show' %}">Download</a></button>
+    <button class="bn"><a class="lk" href="{% url 'polls:upload' %}">Upload</a></button>
+    <button class="bn"><a class="lk" href="{% url 'polls:uploaded' %}">Uploaded</a></button>
+    {% endblock %}
+</div>
+
 {% block content %}{% endblock %}
+
 </body>
 </html>
