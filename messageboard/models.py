@@ -6,9 +6,10 @@ from django.utils import timezone
 
 
 class MessageBoard(models.Model):
-    message = models.TextField(max_length=1024)
+    content = models.TextField(max_length=1024)
     sub_date = models.DateTimeField(default=timezone.now)
     reply = models.TextField(max_length=1024, default="暂未回复")
+    reply_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.message
+        return self.content

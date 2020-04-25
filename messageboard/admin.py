@@ -5,11 +5,12 @@ from .models import MessageBoard
 # Register your models here.
 class MessageBoardAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['message']}),
-        (None, {'fields': ['sub_date']}),
+        (None, {'fields': ['content']}),
+        ('Date information', {'fields': ['sub_date'], 'classes': ['collapse']}),
         (None, {'fields': ['reply']}),
+        (None, {'fields': ['reply_date']}),
     ]
-    list_display = ('message', 'sub_date')
+    list_display = ('id', 'sub_date',)
     list_filter = ['sub_date']
     search_fields = ['message']
 

@@ -1,22 +1,19 @@
 {% extends 'message/base.html' %}
 
-{% block nav %}
-<nav>
-    <ul>
-        <li><a href="{% url 'messageboard:message_list' %}">返回</a></li>
-    </ul>
-</nav>
-{% endblock %}
-
 {% block content %}
-<div class="msg-board">
-    <form method="post" action="{% url 'messageboard:message_create' %}">
-        {% csrf_token %}
-        {{ form.message.label_tag }}
-        <br>
-        {{ form.message}}
-        <br>
-        <button class="bn" type="submit">提交</button>
-    </form>
-</div>
+<form class="" method="post" action="{% url 'messageboard:message_create' %}">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-header">
+            {{ msg_form.content.label_tag }}
+        </div>
+        <div class="card-body">
+            {{ msg_form.content }}
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-light" type="submit">提交</button>
+        </div>
+    </div>
+</form>
+
 {% endblock %}

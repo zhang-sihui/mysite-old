@@ -1,13 +1,20 @@
 {% extends 'blog/base.html' %}
 
-{% block content %}
+{% block title %}<h3>文章详情</h3>{% endblock %}
 
-<div class="article-box">
-    <div class="article">
-        <h1>{{ context.title }}</h1>
-        <p>Time: {{ context.pub_date }} | Category: {{ context.category }}</p>
-        <hr>
-        <div>{{ context.body | safe }}</div>
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ context.title }}</h2>
+        <span>作者: {{ context.author }} | 时间: {{ context.pub_date }} |
+            标签: <a class="text-dark"
+                href="{% url 'blog:get_blog_by_label' context.category %}">
+                {{ context.category }}</a>
+        </span>
     </div>
+    <div class="card-body">
+        {{ context.body | safe }}
+    </div>
+    <div class="card-footer"></div>
 </div>
 {% endblock %}

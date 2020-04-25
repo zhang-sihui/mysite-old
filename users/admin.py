@@ -8,9 +8,10 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['username']}),
         (None, {'fields': ['email']}),
-        (None, {'fields': ['password']})
+        (None, {'fields': ['password']}),
+        (None, {'fields': ['register_code']}),
     ]
-    list_display = ('username', 'create_time', 'was_created_recently')
+    list_display = ('username', 'email', 'create_time', 'register_code')
     list_filter = ['create_time']
     search_fields = ['username']
 

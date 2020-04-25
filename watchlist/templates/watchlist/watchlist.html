@@ -1,35 +1,29 @@
 {% extends 'watchlist/base.html' %}
 
 {% block content %}
-<h2>关于电影和书籍的观看清单</h2>
-<nav>
-    <ul>
-        <li><a href="{% url 'index:index' %}">返回</a></li>
-        <li><a href="{% url 'watchlist:watchlist' %}">全部</a></li>
-        <li><a href="{% url 'watchlist:book' %}">书籍</a></li>
-        <li><a href="{% url 'watchlist:film' %}">电影</a></li>
-    </ul>
-</nav>
-
-<p>{{ checklists|length }} 条内容</p>
-<ul class="movie-list">
-    {% for checklist in checklists %}
-    <li><a class="lk" href="{% url 'watchlist:check_body' checklist.id %}">{{ checklist.title }}</a>
-        <span class="float-right">
-            <a class="DouBan" href="https://www.douban.com/search?q={{ checklist.title }}" target="_blank"
-               title="Find this movie on IMDb">豆瓣</a>
-        </span>
-    </li>
-    {% endfor %}
-</ul>
-
-<h2>
-    <a class="lk" href="https://www.douban.com/people/168600825/" target="_blank">
-        <i class="fa fa-link" aria-hidden="true"></i>
-        点击查看我豆瓣里看过的书和电影。
-    </a>
-</h2>
-<h4>
-    提示: 在查看之前，必须先登录您的豆瓣账号。
-</h4>
+<div class="card">
+    <div class="card-header">
+        <span>{{ checklists|length }} 条内容</span>
+    </div>
+    <div class="card-body">
+        {% for checklist in checklists %}
+        <div class="list-group">
+            <div class="list-group-item">
+                <a class="text-dark" href="{% url 'watchlist:check_body' checklist.id %}">{{ checklist.title }}</a>
+                <span class="float-right">
+                <a class="text-dark" href="https://www.douban.com/search?q={{ checklist.title }}" target="_blank">
+                    豆瓣</a>
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="card-footer">
+        <a class="text-dark" href="https://www.douban.com/people/168600825/" target="_blank">
+            <i class="fa fa-link" aria-hidden="true"></i>
+            点击查看我豆瓣里看过的书和电影。
+        </a>
+        提示: 在查看之前，必须先登录您的豆瓣账号。
+    </div>
+</div>
 {% endblock %}

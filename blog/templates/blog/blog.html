@@ -1,57 +1,32 @@
 {% extends 'blog/base.html' %}
-{% block title %}
-<h3>Hello, Blog home page!!</h3>
-{% endblock %}
-
-{% block nav %}
-
-<ul class="nav menu">
-    <li><a href="{% url 'index:index' %}">Back</a></li>
-    <li><a href="{% url 'blog:blog' %}">Home</a></li>
-    <li><a href="{% url 'blog:programming' %}">Programming</a></li>
-    <li><a href="{% url 'blog:thinking' %}">Thinking</a></li>
-    <li><a href="{% url 'blog:other' %}">Other</a></li>
-</ul>
-{% endblock %}
+{% block title %}<h3>文章主页</h3>{% endblock %}
 
 {% block content %}
-<article id="list" class="site-content">
-    <div class="site-t">
-        <div class="desc-title">
-            <p>Overview</p>
-        </div>
-        <div class="search-form">
-            <form method="get" action="{% url 'blog:search' %}">
-                {% csrf_token %}
-                <input class="txt" type="search" name="q" placeholder="Search" required>
-                <button type="submit">Search</button>
-            </form>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <span>共 <strong>{{ contexts|length }}</strong> 篇文章，
+            最近 <strong>{{ contexts_part|length }}</strong> 篇文章如下：</span>
+        <form class="float-right" method="get" action="{% url 'blog:search' %}">
+            {% csrf_token %}
+            <input type="search" class="p-2 border" name="q" value="Search" required>
+            <button type="submit" class="p-2 border">搜索</button>
+        </form>
     </div>
-    <div class="content-list">
-        {% for context in contexts %}
-        <ol>
-            <li>
-                <div class="card bg-secondary mb-3">
-                    <div class="card-header">Release time: {{ context.pub_date }}</div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a class="text-warning" href="{% url 'blog:blog_body' context.id %}">{{ context.title }}</a>
-                        </h4>
-                        <p class="card-text">Category: {{ context.category }}</p>
-                    </div>
-                </div>
-                <br>
-            </li>
-        </ol>
+    <div class="card-body">
+        {% for context in contexts_part %}
+        <div class="list-group">
+            <div class="list-group-item">
+                作者：{{ context.author }} &
+                时间：{{ context.pub_date }} &
+                标签：{{ context.category }}
+                <p><strong>
+                    <a class="text-dark" href="{% url 'blog:blog_body' context.id %}">
+                        {{ context.title }}</a>
+                </strong></p>
+            </div>
+        </div>
         {% endfor %}
     </div>
-</article>
-<div class="widget-area">
-    <p>Notice:</p>
-    {% for notice in notices %}
-    <p> {{ notice.notice }}</p><br>
-    <p> {{ notice.content }}</p>
-    {% endfor %}
+    <div class="card-footer"></div>
 </div>
 {% endblock %}

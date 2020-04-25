@@ -1,43 +1,36 @@
 {% extends 'files/base.html' %}
-{% block head %}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>File</title>
-<link rel="shortcut icon" href="/static/polls/favicon.ico">
-<link rel="stylesheet" href="/static/css/files.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-{% endblock %}
+{% block head %}<h3>文件上传</h3>{% endblock %}
 
 {% block content %}
-<div class="file-box">
-    <div class="title">
-        <p>File Upload</p>
+<div class="card">
+    <div class="card-header">
+        <h3><p class="text-center"><span>文件上传</span>
+            <small><a class="text-dark" href="{% url 'polls:upload' %}">
+                <i class="fa fa-refresh" aria-hidden="true"></i></a></small>
+        </p></h3>
     </div>
-    <form class="form" action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" id="textfield" class="txt"/>
-        <input type="button" class="sbt" value="Browse"/>
-        <input type="file" name="file" class="file" id="fileField"
-               onchange="document.getElementById('textfield').value=this.files[0].name"/>
-        <input type="submit" class="sbn" value="Upload"/>
-    </form>
-    <div class="title">
-        <p>10MiB maximum size</p>
+    <div class="card-header">
+        <div class="col-md-6 offset-md-3">
+            <form class="form-inline" action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input class="form-control border border-secondary" type="text" id="textfield" disabled/>
+                <label class="btn btn-light border border-secondary" for="customFile">选择文件</label>
+                <input class="form-control" type="file" name="file" id="customFile" style="display:none;"
+                       onchange="document.getElementById('textfield').value=this.files[0].name"/>
+                <input class="btn btn-light border border-secondary" type="submit" value="提交"/>
+            </form>
+        </div>
     </div>
+    <div class="card-footer"><p class="text-center">10MiB maximum size</p></div>
 </div>
-<div class="message">
+
+<div class="card">
     {% if error_message %}
-    <div class="message_danger"><strong>{{ error_message }}</strong></div>
+    <div class="text-center"><strong class="text-info">{{ error_message }}</strong></div>
     {% endif %}
     {% if success_message %}
-    <div class="message_success"><strong>{{ success_message }}</strong></div>
+    <div class="text-center"><strong class="text-info">{{ success_message }}</strong></div>
     {% endif %}
-    <h4>Tips:
-        Refresh the page Please use the Refresh button,<br>
-        do not use the browser's own icon, thank you.
-        <a class="lk" href="{% url 'polls:upload' %}">
-            <i class="fa fa-refresh" aria-hidden="true"></i></a>
-    </h4>
 </div>
 
 {% endblock %}

@@ -1,17 +1,24 @@
 {% extends 'polls/base.html' %}
+{% block head %}<h3>问题列表</h3>{% endblock %}
 {% block content %}
-
-<button class="bn"><a class="btn-a" href="{% url 'index:index' %}">Back</a></button>
-<div class="content-box">
-    <h3>Question list:</h3>
-    {% if latest_question_list %}
-    <ol>
-        {% for question in latest_question_list %}
-        <li class="text-list"><a class="text-a " href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-    </ol>
-    {% else %}
-    <p>No polls are available.</p>
-    {% endif %}
+<div class="card">
+    <div class="card-header">
+        <h3>Question list:</h3>
+    </div>
+    <div class="card-body">
+        {% if latest_question_list %}
+        <ol>
+            {% for question in latest_question_list %}
+            <li><strong>
+                <a class="text-dark" href="{% url 'polls:detail' question.id %}">
+                {{ question.question_text }}</a></strong></li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div class="card-footer">
+        {% else %}
+        <p>No polls are available.</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

@@ -1,57 +1,61 @@
 {% extends 'photo/base.html' %}
+{% block head %}<h3>图片主页</h3>{% endblock %}
 
 {% block content %}
-<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
-
-<a class="lk" href="{% url 'photos:upload_photo' %}">upload_photo</a>
-
-<h5>注意：此页面用于显示个人照片。
-    这些图片为个人创作，可以个人使用，但禁止用于商业获利。本人享有图片所有解释权。</h5>
-
-<div class="pic-box">
-    <h5>{{ page|length }} Photos</h5>
-    {% for photo in page.object_list %}
-    <img class="list-col" src="http://127.0.0.1:8000/photos/download/{{ photo.id }}">
-    {% endfor %}
-</div>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        {# 如果当前页还有上一页 #}
-        {% if page.has_previous %}
-        <li class="page-item">
-            {# 点击a标签，跳转到上一页链接 ?index 为地址后面拼接的参数 #}
-            <a class="page-link" href="?index={{page.previous_page_number}}">上一页</a>
-        </li>
-        {% else %}
-        {# 如果没有上一页， 则上一页按钮不可点击 #}
-        <li class="disabled">
-            <a class="page-link" href="#">上一页</a>
-        </li>
-        {% endif %}
-
-        {% for page_number in paginator.page_range %}
-        {# 获取当前页的页码 #}
-        {% if page_number == page.number %}
-        {# 如果是当前页的话，选中 #}
-        <li class="active">
-            <a class="page-link" href="?index={{page_number}}">{{page_number}}</a>
-        </li>
-        {% else %}
-        <li>
-            <a class="page-link" href="?index={{page_number}}">{{page_number}}</a>
-        </li>
-        {% endif %}
+<div class="card bg-light text-dark">
+    <div class="card-header">
+        <span class="text-dark">Counts: {{ db_photo_list|length }} Photos</span></div>
+    <div class="card-body">
+        {% if page.object_list %}
+        {% for photo in page.object_list %}
+        <img style="margin: 5px;"
+             src="http://127.0.0.1:8000/photos/download/{{ photo.id }}"
+             width="300" height="180">
         {% endfor %}
-
-        {% if page.has_next %}
-        <li>
-            <a class="page-link" href="?index={{page.next_page_number}}">下一页</a>
-        </li>
         {% else %}
-        <li class="disabled">
-            <a class="page-link" href="#">下一页</a>
-        </li>
+        <p>还没有图片！</p>
         {% endif %}
-    </ul>
-</nav>
+    </div>
+    <div class="card-footer">
+
+        <ol class="pagination justify-content-center">
+            {# 如果当前页还有上一页 #}
+            {% if page.has_previous %}
+            <li class="page-item">
+                {# 点击a标签，跳转到上一页链接 ?index 为地址后面拼接的参数 #}
+                <a class="page-link" href="?index={{page.previous_page_number}}">上一页</a>
+            </li>
+            {% else %}
+            {# 如果没有上一页， 则上一页按钮不可点击 #}
+            <li class="disabled">
+                <a class="page-link" href="#">上一页</a>
+            </li>
+            {% endif %}
+
+            {% for page_number in paginator.page_range %}
+            {# 获取当前页的页码 #}
+            {% if page_number == page.number %}
+            {# 如果是当前页的话，选中 #}
+            <li class="active">
+                <a class="page-link" href="?index={{page_number}}">{{page_number}}</a>
+            </li>
+            {% else %}
+            <li>
+                <a class="page-link" href="?index={{page_number}}">{{page_number}}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page.has_next %}
+            <li>
+                <a class="page-link" href="?index={{page.next_page_number}}">下一页</a>
+            </li>
+            {% else %}
+            <li class="disabled">
+                <a class="page-link" href="#">下一页</a>
+            </li>
+            {% endif %}
+        </ol>
+    </div>
+</div>
 {% endblock %}

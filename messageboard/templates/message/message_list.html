@@ -1,20 +1,28 @@
 {% extends 'message/base.html' %}
 
 {% block content %}
-<p>{{ latest_message_list|length }} 条留言</p>
-{% if latest_message_list %}
-<ul class="msg-list">
-    {% for message in latest_message_list %}
-    <li>留言：{{ message }}
-        <span class="float-right">
-            {{ message.sub_date }}
-        </span>
-        <hr>
-        回复：{{ message.reply }}
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>暂无留言</p>
-{% endif %}
+<div class="card">
+    <div class="card-header">
+        <span>{{ latest_message_list|length }} 条留言</span>
+    </div>
+    <div class="card-body">
+        {% if latest_message_list %}
+        {% for message in latest_message_list %}
+        <div class="list-group">
+            <div class="list-group-item">
+                <p>内容：{{ message.content }}
+                    <span class="float-right">{{ message.sub_date }}</span>
+                </p>
+                <p>回复：{{ message.reply }}
+                    <span class="float-right">{{ message.sub_date }}</span>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>暂无留言</p>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}

@@ -2,59 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="shortcut icon" href="/static/index/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/static/css/index.css">
+    {% block title %}<title>Home</title>{% endblock %}
+    <link rel="shortcut icon" href="/static/index/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <ul class="navbar-nav mr-auto mt-1 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="http://127.0.0.1:8000/admin" target="_blank">
-                    <i class="fa fa-home" aria-hidden="true"></i></a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'polls:vote' %}">Vote</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'polls:show' %}">File</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'photos:display' %}">Image</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'polls:music' %}">Music</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'watchlist:watchlist' %}">Watchlist</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'messageboard:message_list' %}">MessageBoard</a></li>
-        </ul>
-    </div>
-    <a class="nav-item nav-link lk" style="float:right" href="{% url 'users:user' %}">Login</a>
-</nav>
+<body style="background: #ddd;">
 <div class="container-fluid">
-    <h2>Welcome, Dear friends!</h2>
-    <h4>This is Zhang Sihui's personal website.</h4>
-    <h5>推荐使用Chrome浏览器和火狐浏览器，IE和Edge浏览器可能存在一些页面显示问题。</h5>
-    <div>
-        <dl>My info:
-            <dt><i class="fa fa-at" aria-hidden="true"></i>
-                <a class="lk" href="#">name: zhangsihui</a></dt>
-            <dt><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                <a class="lk" href="https://mail.qq.com/" target="_blank">
-                    email: zhang_sihui@qq.com</a></dt>
-            <dt><i class="fa fa-github" aria-hidden="true"></i>
-                <a class="lk" href="https://github.com/zhang-sihui/mysite">
-                    All the code is on github, click here</a></dt>
-            <dt><p class="lk"><i class="fa fa-comment-o" aria-hidden="true"></i>
-                    Based on Django2.1 and Python3.7</p>
-            </dt>
-        </dl>
+    {% block nav %}
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:8000/admin" target="_blank">
+                        <i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'index:index' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'polls:vote' %}">Vote</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'polls:show' %}">File</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'polls:music' %}">Music</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'blog:blog' %}">Blog</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'photos:display' %}">Photo</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'watchlist:watchlist' %}">Watchlist</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'messageboard:message_list' %}">Guestbook</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="{% url 'index:about_me' %}">AboutMe</a></li>
+                <li class="nav-item active"><a class="nav-link " href="#" data-toggle="tooltip" data-html="true"
+                                        title="name：zhangsihui <br> email：zhang_sihui@foxmail.com">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a></li>
+                <script>
+                $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();});
+                </script>
+            </ul>
+        </div>
+        <a class="text-dark" href="{% url 'users:user' %}">Login</a>
+    </nav>
+    {% endblock %}
+    {% block space %}&nbsp;&nbsp;&nbsp;&nbsp;{% endblock %}
+    {% block content %}
+    <div class="text-center">
+        <h5 style="margin: 80px;">Welcome, Dear friends!</h5>
+        <h5>This is Zhang Sihui's personal website.</h5>
     </div>
-    <footer>&copy; 2019 zh</footer>
+    {% endblock %}
 </div>
-
 </body>
 </html>

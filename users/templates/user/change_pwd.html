@@ -1,45 +1,47 @@
 {% extends 'user/base.html' %}
-
+{% block head %}<title>修改密码</title>{% endblock %}
 {% block content %}
-<button class="bn"><a class="lk" href="{% url 'users:login' %}">Back</a></button>
-
-<div class="col-md-6 col-md-offset-6 col-center-block">
-    <form class='form-change-pwd' action="" method="post">
-
-        {% if success_message %}
-        <div class="alert alert-success">{{ success_message }}</div>
-        {% endif %}
-        {% if message %}
-        <div class="alert alert-warning">{{ message }}</div>
-        {% endif %}
-
-        {% csrf_token %}
-        <div><h4 class="text-center">修改密码</h4></div>
-        <div class="form-group">
-            {{ change_pwd_form.username.label_tag }}
-            {{ change_pwd_form.username}}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <h5 class="text-center">修改密码</h5>
+            <div class="card-body">
+                <form class='form-change-pwd' action="" method="post">
+                    {% csrf_token %}
+                    {% if success_message %}
+                    <div class="alert alert-success">{{ success_message }}</div>
+                    {% endif %}
+                    {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                    {% endif %}
+                    <div class="form-group">
+                        {{ change_pwd_form.username.label_tag }}
+                        {{ change_pwd_form.username}}
+                    </div>
+                    <div class="form-group">
+                        {{ change_pwd_form.old_password.label_tag }}
+                        {{ change_pwd_form.old_password }}
+                    </div>
+                    <div class="form-group">
+                        {{ change_pwd_form.new_password.label_tag }}
+                        {{ change_pwd_form.new_password }}
+                    </div>
+                    <div class="form-group">
+                        {{ change_pwd_form.captcha.errors }}
+                        {{ change_pwd_form.captcha.label_tag }}
+                        {{ change_pwd_form.captcha }}
+                    </div>
+                    <div class="float-left">
+                        <button type="reset" class="btn btn-light">重置</button>
+                    </div>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-light"
+                                onclick="return confirm('Are you sure?');">提交
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="form-group">
-            {{ change_pwd_form.old_password.label_tag }}
-            {{ change_pwd_form.old_password }}
-        </div>
-
-        <div class="form-group">
-            {{ change_pwd_form.new_password.label_tag }}
-            {{ change_pwd_form.new_password }}
-        </div>
-
-        <div class="form-group">
-            {{ change_pwd_form.captcha.errors }}
-            {{ change_pwd_form.captcha.label_tag }}
-            {{ change_pwd_form.captcha }}
-        </div>
-        <div class="form-block">
-            <button class="bn btn-secondary pull-left"><a class="btn-a" href="{% url 'users:login' %}">登录</a></button>
-            <button type="reset" class="bn btn-secondary pull-left">重置</button>
-            <button type="submit" class="bn btn-secondary pull-right">提交</button>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

@@ -1,26 +1,24 @@
 {% extends 'files/base.html' %}
-
-
-{% block nav %}
-<button class="bn"><a class="lk" href="{% url 'index:index' %}">Back</a></button>
-{{ block.super }}
-{% endblock %}
+{% block head %}<h3>文件下载</h3>{% endblock %}
 
 {% block content %}
-
-<div class="list-box">
-    {% if dir_file_list %}
-    <ul class="list-group">{% for id, file in files_dict.items %}
-        <li class="list-group-item">
-            {{ file }}
-            <a class="lk" href="polls/download/{{ id }}/">
+<div class="card">
+    <div class="card-header">
+        <span>可下载文件</span>
+    </div>
+    <div class="card-body">
+        {% if dir_file_list %}
+        <ul class="list-group">
+            {% for id, file in files_dict.items %}
+            <li class="list-group-item">
+                {{ file }}<a class="text-dark" href="polls/download/{{ id }}/">
                 <i class="fa fa-cloud-download" aria-hidden="true"></i></a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No File.</p>
-    {% endif %}
-    <br>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No File.</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

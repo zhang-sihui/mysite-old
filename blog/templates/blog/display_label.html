@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% block head %}<title>label</title>{% endblock %}
+
+{% block title %}<h3>标签详情</h3>{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5>所有标签如下：</h5>
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-horizontal">
+            {% if labels_set %}
+            {% for label in labels_set %}
+            <a class="list-group-item text-dark"
+               href="{% url 'blog:get_blog_by_label' label %}">{{ label }}</a>
+            {% endfor %}
+            {% else %}
+            暂无标签！！！
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

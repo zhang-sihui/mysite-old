@@ -7,22 +7,23 @@ from .models import Article, Notice
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['title']}),
+        (None, {'fields': ['author']}),
         (None, {'fields': ['category']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
         (None, {'fields': ['body']}),
     ]
-    list_display = ('title', 'pub_date', 'was_published_recently')
+    list_display = ('title', 'author', 'category', 'pub_date')
     list_filter = ['pub_date']
     search_fields = ['title']
 
 
 class NoticeAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['notice']}),
+        (None, {'fields': ['caption']}),
         (None, {'fields': ['content']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
-    list_display = ('notice', 'pub_date', 'was_published_recently')
+    list_display = ('caption', 'content', 'pub_date')
     list_filter = ['pub_date']
 
 

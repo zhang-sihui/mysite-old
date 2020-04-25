@@ -1,0 +1,55 @@
+{% extends 'user/base.html' %}
+{% block head %}<title>个人信息</title>{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="card">
+            <h5 class="text-center">欢迎登录</h5>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <caption>个人资料</caption>
+                    <thead>
+                    <tr>
+                        <th>描述</th>
+                        <th>内容</th>
+                        <th>其他</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>昵称</td>
+                        <td>{{ info.username }}</td>
+                        <td>用于修改密码</td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td>*********</td>
+                        <td><a class="text-dark" href="{% url 'users:change_pwd' %}">修改密码</a></td>
+                    </tr>
+                    <tr>
+                        <td>电子邮箱</td>
+                        <td>{{ info.email }}</td>
+                        <td>用于重置密码</td>
+                    </tr>
+                    <tr>
+                        <td>注册时间</td>
+                        <td>{{ info.create_time }}</td>
+                        <td>注册时间</td>
+                    </tr>
+                    <tr>
+                        <td>注册码</td>
+                        <td>{{ info.register_code }}</td>
+                        <td>用于重置密码</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="card bg-dark text-white">
+                    <div class="card-body">即将出现的你的个人简介</div>
+                    <table class="table"><p></p></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

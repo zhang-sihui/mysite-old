@@ -1,44 +1,48 @@
 {% extends 'user/base.html' %}
-
+{% block head %}<title>Login</title>{% endblock %}
 {% block content %}
-<button class="bn"><a class="lk" href="{% url 'users:user' %}">Back</a></button>
 
-<div class="col-md-6 col-md-offset-6 col-center-block">
-    <form class='form-login' action="" method="post">
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <h5 class="text-center">登录</h5>
+            <div class="card-body">
+                <form class='form-login' action="" method="post">
+                    {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ login_form.username.label_tag }}
+                        {{ login_form.username}}
+                    </div>
+                    <div class="form-group">
+                        {{ login_form.password.label_tag }}
+                        {{ login_form.password }}
+                    </div>
+                    <div class="form-group">
+                        {{ login_form.captcha.errors }}
+                        {{ login_form.captcha.label_tag }}
+                        {{ login_form.captcha }}
+                    </div>
+                    <div class="float-left">
+                        <button type="reset" class="btn btn-light">重置</button>
+                    </div>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-light">登录</button>
+                    </div>
 
-        {% if message %}
-        <div class="alert alert-warning">{{ message }}</div>
-        {% endif %}
-
-        {% csrf_token %}
-        <h2 class="text-center">欢迎登录</h2>
-        <div class="form-group">
-            {{ login_form.username.label_tag }}
-            {{ login_form.username}}
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            {{ login_form.password.label_tag }}
-            {{ login_form.password }}
-        </div>
-        <div class="form-group">
-            {{ login_form.captcha.errors }}
-            {{ login_form.captcha.label_tag }}
-            {{ login_form.captcha }}
-        </div>
-        <div class="form-block">
-            <button type="reset" class="bn btn-secondary pull-left">重置</button>
-            <button type="submit" class="bn btn-secondary pull-right">登录</button>
-        </div>
-    </form>
+    </div>
 </div>
-
-<div class="some-text">
-    <a class="lk" href="{% url 'users:change_pwd' %}"><i class="fa fa-link" aria-hidden="true"></i>
-        修改密码?</a>
-    <a class="lk" href="{% url 'users:reset_pwd' %}"><i class="fa fa-link" aria-hidden="true"></i>
-        忘记密码?</a>
-    <a class="lk" href="{% url 'users:register' %}"><i class="fa fa-link" aria-hidden="true"></i>
-        新用户? 点这里去注册.</a>
+<div class="text-center">
+    <a class="text-dark" href="{% url 'users:change_pwd' %}">
+        <i class="fa fa-link" aria-hidden="true"></i>修改密码?</a>
+    <a class="text-dark" href="{% url 'users:reset_pwd' %}">
+        <i class="fa fa-link" aria-hidden="true"></i>忘记密码?</a>
+    <a class="text-dark" href="{% url 'users:register' %}">
+        <i class="fa fa-link" aria-hidden="true"></i>无账号户?点这里去注册</a>
 </div>
-
 {% endblock %}

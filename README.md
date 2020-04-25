@@ -43,4 +43,9 @@ starting with version 1.0.0 for personal website content.
     * v1.6.0:
         1. 增加messageboard app,留言功能。
         2. 数据库文件为空文件，所以如果你要运行这个版本代码，需要在终端mysite目录下运行两条命令迁移数据库：
-        "python manage.py makemigrations","python manage.py migrate",再启动服务。
+        "python manage.py makemigrations","python manage.py migrate",再启动服务。 
+- v2.0:  
+	* v2.0.0:
+        1. 删除了一些功能，添加了一些功能，修改了一些功能。
+        2. 前端完全采用Bootstrap4.4.0重写。
+ 

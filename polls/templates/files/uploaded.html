@@ -1,15 +1,22 @@
 {% extends 'files/base.html' %}
-
+{% block head %}<h3>历史上传</h3>{% endblock %}
 {% block content %}
-<div class="list-box">
-    {% if db_files_list %}
-    <ul class="list-group">
-        {% for file in db_files_list %}
-        <li class="list-group-item">{{ file.file_name }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No file.</p>
-    {% endif %}
+
+<div class="card">
+    <div class="card-header">
+        <span>历史记录</span>
+    </div>
+    <div class="card-body">
+        {% if db_files_list %}
+        <ul class="list-group">
+            {% for file in db_files_list %}
+            <li class="list-group-item">{{ file.file_name }}
+                <p class="float-right">{{ file.pub_date }}</p></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No file.</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

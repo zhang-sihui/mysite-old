@@ -1,74 +1,55 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<article id="list" class="site-content">
-    <div class="site-t">
-        <div class="desc-title">
-            <p>Overview</p>
-        </div>
-        <div class="search-form">
-            <form method="get" action="{% url 'blog:search' %}">
-                {% csrf_token %}
-                <input class="txt" type="search" name="q" placeholder="Search" required>
-                <button type="submit" value="Search">Search</button>
-            </form>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <span>共 <strong>{{ contexts|length }}</strong> 篇文章，
+            最近 <strong>{{ contexts_part|length }}</strong> 篇文章如下：</span>
+        <form class="float-right" method="get" action="{% url 'blog:search' %}">
+            {% csrf_token %}
+            <input type="search" class="p-2 border" name="q" value="Search" required>
+            <button type="submit" class="p-2 border">搜索</button>
+        </form>
     </div>
-    <div class="content-list">
+    <div class="card-body">
         {% if search_list %}
         {% if success_msg %}
-        <div class="tip">
-            <p>{{ success_msg }}</p>
+        <div class="text-center">
+            <h3 class="text-success"><strong>{{ success_msg }}</strong></h3>
         </div>
         {% endif %}
         {% for search in search_list %}
-        <ol>
-            <li>
-                <div class="card bg-secondary mb-3">
-                    <div class="card-header">Release time: {{ search.pub_date }}</div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a class="text-warning" href="{% url 'blog:blog_body' search.id %}">
-                                {{ search.title }}</a>
-                        </h4>
-                        <p class="card-text">Category: {{ search.category }}</p>
-                    </div>
-                </div>
-                <br>
-            </li>
-        </ol>
+        <div class="list-group">
+            <div class="list-group-item">
+                作者：{{ search.author }} &
+                时间：{{ search.pub_date }} &
+                标签：{{ search.category }}
+                <p><strong>
+                    <a class="text-dark" href="{% url 'blog:blog_body' search.id %}">
+                        {{ search.title }}</a></strong></p>
+            </div>
+        </div>
         {% endfor %}
+
         {% else %}
         {% if error_msg %}
-        <div class="tip">
-            <p>{{ error_msg }}</p>
+        <div class="text-center">
+            <h3 class="text-info"><strong>{{ error_msg }}</strong></h3>
         </div>
         {% endif %}
         {% for context in contexts %}
-        <ol>
-            <li>
-                <div class="card bg-secondary mb-3">
-                    <div class="card-header">Release time: {{ context.pub_date }}</div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a class="text-warning" href="{% url 'blog:blog_body' context.id %}">{{ context.title }}</a>
-                        </h4>
-                        <p class="card-text">Category: {{ context.category }}</p>
-                    </div>
-                </div>
-                <br>
-            </li>
-        </ol>
+        <div class="list-group">
+            <div class="list-group-item">
+                作者：{{ context.author }} &
+                时间：{{ context.pub_date }} &
+                标签：{{ context.category }}
+                <p><strong>
+                    <a class="text-dark" href="{% url 'blog:blog_body' context.id %}">
+                        {{ context.title }}</a></strong></p>
+            </div>
+        </div>
         {% endfor %}
         {% endif %}
     </div>
-</article>
-
-<div class="widget-area">
-    <p>Notice:</p>
-    {% for notice in notices %}
-    <p> {{ notice.notice }}</p><br>
-    <p> {{ notice.content }}</p>
-    {% endfor %}
 </div>
 {% endblock %}

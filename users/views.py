@@ -1,4 +1,8 @@
 import hashlib
+import random
+import string
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from .forms import UserForm, RegisterForm, ChangePwdForm, ResetPwdForm
 from .models import User
@@ -6,7 +10,11 @@ from .models import User
 
 # Create your views here.
 def user(request):
-    return render(request, 'user/user.html')
+    user_name = None
+    if request.session.get('is_login', None):
+        user_name = request.session['user_name']
+        info = User.objects.get(username=user_name)
+    return render(request, 'user/user.html', locals())
 
 
 # 登录
@@ -21,11 +29,12 @@ def login(request):
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
             try:
-                user = User.objects.get(username=username)  # 查询用户名
-                if user.password == hash_code(password):  # 判断密码
+                user_info = User.objects.get(username=username)  # 查询用户名
+                if user_info.password == hash_code(password):  # 判断密码
                     request.session['is_login'] = True
-                    request.session['user_id'] = user.id
-                    request.session['user_name'] = user.username
+                    request.session['user_id'] = user_info.id
+                    request.session['user_name'] = user_info.username
+                    request.session['email'] = user_info.email
                     return redirect('users:user')
                 else:
                     message = '密码不正确！'
@@ -47,6 +56,16 @@ def logout(request):
     # del request.session['user_id']
     # del request.session['user_name']
     return redirect('users:user')
+
+
+# 生成8位注册码
+def generate_code(length):
+    for_select = string.ascii_letters + string.digits
+    register_code = ""
+    for j in range(length):
+        register_code += random.choice(for_select)
+    print(register_code)
+    return register_code
 
 
 # 注册用户
@@ -79,9 +98,10 @@ def register(request):
                 new_user.username = username
                 new_user.password = hash_code(password1)
                 new_user.email = email
+                new_user.register_code = generate_code(8)
                 new_user.save()
                 success_message = '注册成功！去登录？'
-                return render(request, 'user/register.html', locals())  # 自动跳转到登录页面
+                return render(request, 'user/register.html', locals())
 
     register_form = RegisterForm()
     return render(request, "user/register.html", locals())
@@ -104,8 +124,8 @@ def change_pwd(request):
             old_password = change_pwd_form.cleaned_data['old_password']
             new_password = change_pwd_form.cleaned_data['new_password']
             # 判断
-            user = User.objects.filter(username=username)
-            if user:
+            user_info = User.objects.filter(username=username)
+            if user_info:
                 pwd = User.objects.filter(username=username, password=hash_code(old_password))
                 if pwd:
                     User.objects.filter(username=username,
@@ -113,7 +133,7 @@ def change_pwd(request):
                     success_message = '密码修改成功！'
                 else:
                     message = '请检查原密码是否正确！'
-            elif len(user) == 0:
+            elif len(user_info) == 0:
                 message = '请检查用户名是否正确！'
         return render(request, 'user/change_pwd.html', locals())
 
@@ -128,19 +148,29 @@ def reset_pwd(request):
         if reset_pwd_form.is_valid():
             username = reset_pwd_form.cleaned_data['username']
             email = reset_pwd_form.cleaned_data['email']
+            register_code = reset_pwd_form.cleaned_data['register_code']
             new_password = reset_pwd_form.cleaned_data['new_password']
             # 判断用户是否存在
-            user = User.objects.filter(username=username)
-            if user:
+            user_info = User.objects.filter(username=username)
+            if user_info:
                 email = User.objects.filter(username=username, email=email)
                 if email:
                     User.objects.filter(username=username).update(password=hash_code(new_password))
                     success_message = '密码重置成功！'
                 else:
                     message = '请检查邮箱是否正确！'
-            elif len(user) == 0:
+            elif len(user_info) == 0:
                 message = '请检查用户名是否正确！'
         return render(request, 'user/reset_pwd.html', locals())
 
     reset_pwd_form = ResetPwdForm()
     return render(request, 'user/reset_pwd.html', locals())
+
+
+# 个人信息
+def personal_info(request):
+    user_name = None
+    if request.session.get('is_login', None):
+        user_name = request.session['user_name']
+        info = User.objects.get(username=user_name)
+    return render(request, 'user/personal_info.html', locals())
