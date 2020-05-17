@@ -75,7 +75,7 @@ def upload(request):
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
                 success_message = 'upload success. please continue.'
                 return render(request, 'files/upload.html', locals())
-            else:   # 数据库中已存在，直接处理文件
+            else:  # 数据库中已存在，直接处理文件
                 handle_uploaded_file(up_file, str(up_file))  # 处理文件
                 success_message = 'upload success. please continue.'
                 return render(request, 'files/upload.html', locals())
@@ -118,14 +118,15 @@ def show(request):
             file_info = File.objects.get(file_name=file)  # 通过文件夹里的文件名获取文件在数据库里的文件信息
             id_list.append(file_info.id)  # 获取文件在数据库里文件的id,并存入列表
         files_dict = dict(zip(id_list, dir_file_list))  # id与name合成字典，一边传入前端，此id用来下载文件
-        return render(request, 'files/show.html', {'dir_file_list': dir_file_list,
-                                                   'files_dict': files_dict})
+        return render(request, 'files/show.html', locals())
 
 
 # 文件下载
 def download(request, file_id):
     file = File.objects.get(id=file_id)
     file_name = file.file_name
+    file.downloads_count += 1
+    file.save()
     files_path = os.path.join(base_dir, 'polls', 'manage_files', 'download', file_name)  # 获取文件
     files = open(files_path, 'rb')
     response = FileResponse(files)
@@ -138,4 +139,23 @@ def download(request, file_id):
 
 # 音乐
 def music(request):
-    return render(request, 'interest/music.html')
+    dir_file_path = os.path.join(base_dir, 'polls', 'static', 'music')
+    dir_file = os.listdir(dir_file_path)
+    dir_file_list = set()
+    for file in dir_file:
+        if file[-3:] == 'mp3':
+            dir_file_list.add(file)
+    return render(request, 'music/music.html', locals())
+
+
+def music_lyric(request, filename):
+    dir_file_path = os.path.join(base_dir, 'polls', 'static', 'music')
+    dir_file = os.listdir(dir_file_path)
+    dir_file_list = set()
+    for file in dir_file:
+        if file[-3:] == 'mp3':
+            dir_file_list.add(file)
+    file_name = filename[:-4] + '.lrc'
+    with open(dir_file_path + '/' + file_name, 'r', encoding='utf8') as f:
+        lyric = f.readlines()
+    return render(request, 'music/music_lyric.html', locals())

@@ -4,14 +4,16 @@
 
 <div class="card">
     <div class="card-header">
-        <span>历史记录</span>
+        <strong><span>历史记录: {{ db_files_list|length }} 个</span></strong>
     </div>
     <div class="card-body">
         {% if db_files_list %}
         <ul class="list-group">
             {% for file in db_files_list %}
             <li class="list-group-item">{{ file.file_name }}
-                <p class="float-right">{{ file.pub_date }}</p></li>
+                <p class="float-right">
+                    已下载:{{ file.downloads_count }} | 上传时间:{{ file.pub_date }}</p>
+            </li>
             {% endfor %}
         </ul>
         {% else %}

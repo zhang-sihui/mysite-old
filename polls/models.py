@@ -34,6 +34,7 @@ class Choice(models.Model):
 class File(models.Model):
     file_name = models.CharField(max_length=100)
     pub_date = models.DateTimeField(default=timezone.now)
+    downloads_count = models.IntegerField('下载数', default=0)
 
     def __str__(self):
         return self.file_name

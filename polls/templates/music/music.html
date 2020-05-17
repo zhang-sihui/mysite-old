@@ -1,0 +1,153 @@
+{% extends 'music/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7">
+        <div class="card bg-light">
+            <div class="card-body">
+                <div id="lyric-content" class="text-center">
+                    <label class="bg-light">歌词内容</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-0 col-md-0 col-lg-5 col-xl-5">
+        <div class="card bg-white">
+            <div class="card-header">
+                <div class="text-center">
+                    <div class="float-center">
+                        <button class="btn btn-link" title="随机播放"><a class="text-dark" id="randoms">
+                            <i class="fa fa-random" aria-hidden="true"></i></a></button>
+                        <button class="btn btn-link" title="上一首"><a class="text-dark"  id="top">
+                            <i class="fa fa-backward" aria-hidden="true"></i></a></button>
+                        <button class="btn btn-link" title="播放第一首"><a class="text-dark" id="play">
+                            <i class="fa fa-play" aria-hidden="true"></i></a></button>
+                        <button class="btn btn-link" title="下一首"><a class="text-dark"  id="down">
+                            <i class="fa fa-forward" aria-hidden="true"></i></a></button>
+                        <button class="btn btn-link" title="顺序播放"><a class="text-dark" id="sequence">
+                            <i class="fa fa-retweet" aria-hidden="true"></i></a></button>
+                        <!--  <input class="custom-range" name="schedule" type="range" min="1" max="10" value="1"><span class="schedule"></span>-->
+                    </div>
+                    <audio id="audio" preload="auto" controls loop>
+                        Your browser does not support the audio tag.
+                    </audio>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="music_list" id="music_list">
+                    <ul class="list-group" id="ul">
+                        {% for dir_file in dir_file_list %}
+                        <li class="list-group-item">
+                            <a class="text-dark" href="{% url 'polls:music_lyric' dir_file %}">{{ dir_file|slice:"0:-4" }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="text-dark" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
+                    This is my the link of NetYi Yun music account.</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    var oAudio = document.getElementById("audio");
+    var oPlay = document.getElementById('play');
+    var oTop = document.getElementById("top");
+	var oDown = document.getElementById("down");
+	var oUl = document.getElementById("ul");
+	var oLi = oUl.getElementsByTagName("li");
+	var oSequence = document.getElementById("sequence");
+	var oRandoms = document.getElementById("randoms");
+	var oLyric = document.getElementById("lyric");
+
+    var dv=document.getElementById("music_list");
+    var ularr=dv.getElementsByTagName("ul");
+    var liarr=ularr[0].getElementsByTagName("li");
+
+    var oTotal = document.getElementsByClassName("total_time")[0]
+    var oStart = document.getElementById("start_time")
+	var oRound = document.getElementById("round")
+	var oLoad = document.getElementById("load")
+
+
+    var num = 0;
+    var arr = [];
+    // 将后台获取的歌曲添加到arr数组中
+    for(let i=0; i<liarr.length; i++){
+        v = ularr[0].getElementsByTagName("li")[i].innerText;
+        arr.push("/static/music/" + v + '.mp3');
+    }
+
+    // 模拟arr数组，存放歌曲
+<!--	var arr = ["/static/music/李志 - 热河.mp3","/static/music/汪峰 - 勇敢的心.mp3"];-->
+
+    oAudio.src = arr[num];
+    // 进入主页后第一首歌曲
+    oPlay.onclick = function() {
+		if(oAudio.paused) {
+			oAudio.play();
+			oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+		}
+		else {
+			oAudio.pause();
+			oPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+		}
+	}
+
+    //点击切换歌曲，即点击列表歌曲切换。 暂时无用，<li>标签暂时用于获取歌曲歌词
+	for(var i = 0; i < oLi.length; i++) {
+		oLi[i].index = i;
+		oLi[i].onclick = function() {
+			num = this.index;
+			oAudio.src = arr[this.index];
+			oAudio.play();
+			oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true">';
+		}
+	}
+
+	//上一首
+	oTop.onclick = function() {
+		num--
+		if(num < 0) {
+			num = 0;
+		}
+		oAudio.src = arr[num]
+		oAudio.play()
+        oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+	}
+
+    //下一首
+	oDown.onclick = function() {
+		num++
+		if(num > arr.length - 1) {
+			num = arr.length - 1
+		}
+		oAudio.src = arr[num]
+		oAudio.play()
+		oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+	}
+
+    // 顺序播放 暂时未使用
+    oSequence.onclick = function () {
+        oAudio.onended = function () {
+             $('#btn-next').click();
+        }
+    }
+
+    $(function() {
+    /* 进度控制 暂时未用 */
+        $('[name="schedule"]').change(function() {
+            var audioLength = audio.duration;  // 获取当前音频的长度
+            var unit = audioLength / parseInt($(this).attr('max'));  // 每1格对应的实例秒数
+            audio.currentTime = $(this).val() * unit;
+            $('.schedule').text(audio.currentTime+'秒');
+        });
+    });
+
+</script>
+<style>
+
+</style>
+{% endblock %}

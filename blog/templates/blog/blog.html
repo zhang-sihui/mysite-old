@@ -4,13 +4,17 @@
 {% block content %}
 <div class="card">
     <div class="card-header">
+        <div class="float-left">
         <span>共 <strong>{{ contexts|length }}</strong> 篇文章，
             最近 <strong>{{ contexts_part|length }}</strong> 篇文章如下：</span>
-        <form class="float-right" method="get" action="{% url 'blog:search' %}">
+        </div>
+        <div class="float-right">
+        <form class="form-inline" method="get" action="{% url 'blog:search' %}">
             {% csrf_token %}
-            <input type="search" class="p-2 border" name="q" value="Search" required>
-            <button type="submit" class="p-2 border">搜索</button>
+            <input type="search" class="form-control" name="q" placeholder="Search" required>&nbsp;
+            <button type="submit" class="btn btn-light border">搜索</button>
         </form>
+        </div>
     </div>
     <div class="card-body">
         {% for context in contexts_part %}

@@ -20,5 +20,11 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['question_text']
 
 
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('file_name', 'pub_date', 'downloads_count')
+    list_filter = ['pub_date']
+    search_fields = ['file_name']
+
+
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(File)
+admin.site.register(File, FileAdmin)

@@ -48,4 +48,6 @@ starting with version 1.0.0 for personal website content.
 	* v2.0.0:
         1. 删除了一些功能，添加了一些功能，修改了一些功能。
         2. 前端完全采用Bootstrap4.4.0重写。
- 
+    * v2.1.0:
+        1. 文件下载次数统计、Blog浏览次数统计
+        2. 增加音乐播放器功能

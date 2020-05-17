@@ -6,10 +6,13 @@
 <div class="card">
     <div class="card-header">
         <h2>{{ context.title }}</h2>
-        <span>作者: {{ context.author }} | 时间: {{ context.pub_date }} |
-            标签: <a class="text-dark"
-                href="{% url 'blog:get_blog_by_label' context.category %}">
-                {{ context.category }}</a>
+        <span>
+            作者<i class="fa fa-user-o" aria-hidden="true"></i>: {{ context.author }} |
+            时间<i class="fa fa-calendar" aria-hidden="true"></i>: {{ context.pub_date }} |
+            标签<i class="fa fa-tag" aria-hidden="true"></i>:
+                <a class="text-dark"
+                   href="{% url 'blog:get_blog_by_label' context.category %}">{{ context.category }}</a> |
+            浏览<i class="fa fa-eye" aria-hidden="true"></i>: {{ context.views }}
         </span>
     </div>
     <div class="card-body">

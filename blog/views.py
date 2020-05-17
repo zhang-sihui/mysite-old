@@ -21,6 +21,8 @@ def blog_body(request, blog_id):
                                          "markdown.extensions.codehilite",
                                          "markdown.extensions.toc",
                                      ])
+    context.views += 1
+    context.save()
     return render(request, 'blog/blog_body.html', locals())
 
 

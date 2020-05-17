@@ -15,8 +15,9 @@ urlpatterns = [
     path('uploaded/', views.uploaded, name='uploaded'),
     path('show/', views.show, name='show'),
     re_path('download/(?P<file_id>\\d+)/', views.download, name='download'),
-    # interest
+    # music
     path('music/', views.music, name='music'),
+    path('music_lyric/<str:filename>/', views.music_lyric, name='music_lyric'),
 
 ]
 
