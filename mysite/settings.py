@@ -145,3 +145,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog', 'article')
+
+# 缓存
+# localhost
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backend.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}

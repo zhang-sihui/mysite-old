@@ -24,11 +24,11 @@ urlpatterns = [
 
     path('', include('index.urls')),
     path('polls/', include('polls.urls')),
-    path('blog/', include('blog.urls')),
+    path('blogs/', include('blog.urls')),
     path('photos/', include('photos.urls')),
     path('users/', include('users.urls')),
-    path('watchlist/', include('watchlist.urls')),
-    path('messageboard/', include('messageboard.urls')),
+    path('watchList/', include('watchlist.urls')),
+    path('guestBooks/', include('messageboard.urls')),
 
     path('mdeditor', include('mdeditor.urls')),
     path('captcha', include('captcha.urls'))

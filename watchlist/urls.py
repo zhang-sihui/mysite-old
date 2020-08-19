@@ -5,7 +5,7 @@ app_name = 'watchlist'
 
 urlpatterns = [
     path('', views.watchlist, name='watchlist'),
-    path('book/', views.book, name='book'),
-    path('film/', views.film, name='film'),
-    path('article/<int:check_id>/', views.check_body, name='check_body'),
+    path('books', views.book, name='book'),
+    path('films', views.film, name='film'),
+    path('articles/<int:check_id>', views.check_body, name='check_body'),
 ]

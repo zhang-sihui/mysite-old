@@ -117,12 +117,13 @@ def show(request):
         for file in dir_file_list:
             file_info = File.objects.get(file_name=file)  # 通过文件夹里的文件名获取文件在数据库里的文件信息
             id_list.append(file_info.id)  # 获取文件在数据库里文件的id,并存入列表
-        files_dict = dict(zip(id_list, dir_file_list))  # id与name合成字典，一边传入前端，此id用来下载文件
+        # id与name合成字典，一边传入前端，此id用来下载文件 【如果在前端直接传入文件名在数据库中搜索，似乎不在需要id】
+        files_dict = dict(zip(id_list, dir_file_list))
         return render(request, 'files/show.html', locals())
 
 
 # 文件下载
-def download(request, file_id):
+def download(request, file_id):  # 这里可以传入文件名，直接在数据库中搜索文件名，甚至直接在文件中搜索，但是不能统计下载次数
     file = File.objects.get(id=file_id)
     file_name = file.file_name
     file.downloads_count += 1

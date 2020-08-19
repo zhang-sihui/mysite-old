@@ -29,9 +29,9 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'polls:music' %}">Music</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'photos:display' %}">Photo</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'watchlist:watchlist' %}">Watchlist</a>
+                <li class="nav-item"><a class="nav-link" href="{% url 'watchlist:watchlist' %}">WatchList</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'messageboard:message_list' %}">Guestbook</a>
+                <li class="nav-item"><a class="nav-link" href="{% url 'messageboard:message_list' %}">GuestBook</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'index:about_me' %}">AboutMe</a></li>
                 <li class="nav-item active"><a class="nav-link " href="#" data-toggle="tooltip" data-html="true"
@@ -90,6 +90,10 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <p>当前访问人数：{{ ip_infos|length }}</p>
+<!--                    <p>您是第 {{ ip_get.serial_number }} 访问者</p>-->
                 </div>
             </div>
         </div>

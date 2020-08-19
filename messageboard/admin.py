@@ -10,9 +10,9 @@ class MessageBoardAdmin(admin.ModelAdmin):
         (None, {'fields': ['reply']}),
         (None, {'fields': ['reply_date']}),
     ]
-    list_display = ('id', 'sub_date',)
+    list_display = ('id', 'sub_date', 'content')
     list_filter = ['sub_date']
-    search_fields = ['message']
+    search_fields = ['content']
 
 
 admin.site.register(MessageBoard, MessageBoardAdmin)
