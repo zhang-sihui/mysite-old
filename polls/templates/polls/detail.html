@@ -1,5 +1,7 @@
 {% extends 'polls/base.html' %}
+
 {% block head %}<h3>具体问题</h3>{% endblock %}
+
 {% block content %}
 
 <div class="card">
@@ -8,14 +10,13 @@
     </div>
     <div class="card-body">
         {% if error_message %}
-        <p class="text-info"><strong>{{ error_message }}</strong></p>
+            <p class="text-info"><strong>{{ error_message }}</strong></p>
         {% endif %}
-
         <form action="{% url 'polls:vote' question.id %}" method="post">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label class="" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label class="" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
             {% endfor %}
             <input class="btn btn-dark" type="submit" value="Vote">
         </form>

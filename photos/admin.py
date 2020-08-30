@@ -8,7 +8,6 @@ class PhotoAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['photo_name']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
-
     ]
     list_display = ('photo_name', 'pub_date')
     list_filter = ['pub_date']

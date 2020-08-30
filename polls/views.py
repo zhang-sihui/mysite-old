@@ -6,11 +6,13 @@ from django.utils import timezone
 from django.utils.encoding import escape_uri_path
 from django.views import generic
 from django.shortcuts import get_object_or_404, render
+from django.views.decorators.cache import cache_page
 from .models import Choice, Question, File
 from . import base_dir
 
 
 # Create your views here.
+
 class IndexView(generic.ListView):
     template_name = 'polls/vote.html'
     context_object_name = 'latest_question_list'
@@ -58,49 +60,42 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-# 文件上传
-def upload(request):
+def upload_file(request):
     if request.method == 'POST':
-        up_file = request.FILES.get('file')  # 获取文件
-        if not up_file:  # 未选择文件
-            error_message = 'no file. please choose a file.'
+        get_file = request.FILES.get('file')
+        if not get_file:
+            not_file = '尚未选择文件，请选择文件。'
             return render(request, 'files/upload.html', locals())
         else:
-            # 这里filter不替换为get，因为get查询不到会报错，而filter查询不到，会返回空列表，
-            # 而我们上传的文件，数据库中很可能不存在（存在也不要上传了），这时代码会报错，而不是返回空列表
-            # 所以应该使用filter查询。
-            db_file = File.objects.filter(file_name=up_file)
-            if not db_file:  # 判断数据库中是否已有正在上传的文件名
-                File.objects.create(file_name='%s' % up_file)  # 如果没有，文件名存入数据库
-                handle_uploaded_file(up_file, str(up_file))  # 处理文件
-                success_message = 'upload success. please continue.'
+            file = File.objects.filter(file_name=get_file)
+            if not file:
+                File.objects.create(file_name='%s' % get_file)
+                handle_uploaded_file(get_file, str(get_file))
+                success_upload = '上传成功，可以继续。'
                 return render(request, 'files/upload.html', locals())
-            else:  # 数据库中已存在，直接处理文件
-                handle_uploaded_file(up_file, str(up_file))  # 处理文件
-                success_message = 'upload success. please continue.'
+            else:
+                handle_uploaded_file(get_file, str(get_file))
+                success_upload = '上传成功，可以继续。'
                 return render(request, 'files/upload.html', locals())
     return render(request, 'files/upload.html')
 
 
-# 处理上传的文件
 def handle_uploaded_file(file, filename):
-    file_path = path.join(base_dir, 'polls', 'manage_files', 'download')
-    if not path.exists(file_path):  # 判断存储文件的路径是否存在
-        os.mkdir(file_path)
-    with open(file_path + '/' + filename, 'wb+') as destination:
+    file_upload_path = path.join(base_dir, 'polls', 'manage_files', 'download')
+    if not path.exists(file_upload_path):
+        os.mkdir(file_upload_path)
+    with open(file_upload_path + '/' + filename, 'wb+') as f:
         for chunk in file.chunks():
-            destination.write(chunk)
+            f.write(chunk)
 
 
-# 展示已经上传的文件
-def uploaded(request):
-    # 获取数据库存储的文件信息,以pub_date字段值为过滤器，条件为今天之前的所有数据
-    db_files_list = File.objects.filter(pub_date__lte=timezone.now())
+def uploaded_files(request):
+    files = File.objects.filter(pub_date__lte=timezone.now())
+    not_files = '暂时没有文件。'
     return render(request, 'files/uploaded.html', locals())
 
 
-# 展示可供下载的文件()
-def show(request):
+def show_files(request):
     """
         先从文件夹获取文件，反向从数据库获取id，拼接称字典，
         不直接从数据库获取文件名传入前端，原因是：如果存储文件的文件夹过大及想要删除一些文件时，
@@ -108,55 +103,60 @@ def show(request):
         通过文件夹里的文件反向获取id,可以避免此问题。如此，文件的上传与下载可以统一化。
         上传的文件可以从页面支持下载，不需要修改源代码。
     """
-    dir_file_path = os.path.join(base_dir, 'polls', 'manage_files', 'download')
-    dir_file_list = os.listdir(dir_file_path)  # 获取文件夹里的文件，可以下载的文件
-    id_list = []
-    if not dir_file_list:  # 判断文件夹中是否存在文件
-        return render(request, 'files/show.html', {'dir_file_list': dir_file_list})
+    file_dir = os.path.join(base_dir, 'polls', 'manage_files', 'download')
+    files = os.listdir(file_dir)
+    ids = []
+    if not files:
+        not_files = '暂时没有文件。'
+        return render(request, 'files/show.html', locals())
     else:
-        for file in dir_file_list:
-            file_info = File.objects.get(file_name=file)  # 通过文件夹里的文件名获取文件在数据库里的文件信息
-            id_list.append(file_info.id)  # 获取文件在数据库里文件的id,并存入列表
-        # id与name合成字典，一边传入前端，此id用来下载文件 【如果在前端直接传入文件名在数据库中搜索，似乎不在需要id】
-        files_dict = dict(zip(id_list, dir_file_list))
+        for file in files:
+            file_info = File.objects.get(file_name=file)
+            ids.append(file_info.id)
+        # id 与 name 合成字典，一边传入前端，此 id 用来下载文件。【如果在前端直接传入文件名在数据库中搜索，似乎不在需要 id】
+        files_dict = dict(zip(ids, files))
         return render(request, 'files/show.html', locals())
 
 
-# 文件下载
-def download(request, file_id):  # 这里可以传入文件名，直接在数据库中搜索文件名，甚至直接在文件中搜索，但是不能统计下载次数
+  # 这里可以传入文件名，直接在数据库中搜索文件名，甚至直接在文件中搜索，但是不能统计下载次数
+def download_file(request, file_id):
     file = File.objects.get(id=file_id)
     file_name = file.file_name
     file.downloads_count += 1
     file.save()
-    files_path = os.path.join(base_dir, 'polls', 'manage_files', 'download', file_name)  # 获取文件
-    files = open(files_path, 'rb')
-    response = FileResponse(files)
+    file_path = os.path.join(base_dir, 'polls', 'manage_files', 'download', file_name)
+    file_ = open(file_path, 'rb')
+    response = FileResponse(file_)
     response['Content-Type'] = 'application/octet-stream'
-    # 文件名为中文时无法识别，使用UTF-8和escape_uri_path处理
+    # 文件名为中文时无法识别，使用 UTF-8 和 escape_uri_path 处理
     response["Content-Disposition"] = "attachment; " \
                                       "filename*=UTF-8''{}".format(escape_uri_path(file_name))
     return response
 
 
-# 音乐
-def music(request):
-    dir_file_path = os.path.join(base_dir, 'polls', 'static', 'music')
-    dir_file = os.listdir(dir_file_path)
-    dir_file_list = set()
-    for file in dir_file:
+@cache_page(60 * 60 * 24)
+def play_music(request):
+    file_dir = os.path.join(base_dir, 'polls', 'static', 'music')
+    files = os.listdir(file_dir)
+    files_set = set()
+    for file in files:
         if file[-3:] == 'mp3':
-            dir_file_list.add(file)
+            files_set.add(file)
     return render(request, 'music/music.html', locals())
 
 
-def music_lyric(request, filename):
-    dir_file_path = os.path.join(base_dir, 'polls', 'static', 'music')
-    dir_file = os.listdir(dir_file_path)
-    dir_file_list = set()
-    for file in dir_file:
+@cache_page(60 * 60 * 24)
+def get_music_lyric(request, filename):
+    file_dir = os.path.join(base_dir, 'polls', 'static', 'music')
+    files = os.listdir(file_dir)
+    files_set = set()
+    for file in files:
         if file[-3:] == 'mp3':
-            dir_file_list.add(file)
+            files_set.add(file)
     file_name = filename[:-4] + '.lrc'
-    with open(dir_file_path + '/' + file_name, 'r', encoding='utf8') as f:
-        lyric = f.readlines()
+    try:
+        with open(file_dir + '/' + file_name, 'r', encoding='utf8') as f:
+            lyrics = f.readlines()
+    except:
+        not_lyric = '暂无歌词文件。'
     return render(request, 'music/music_lyric.html', locals())

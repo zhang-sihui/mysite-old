@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import UserIP
 
-# Register your models here.
 
+# Register your models here.
 
 class UserIPAdmin(admin.ModelAdmin):
     fieldsets = [

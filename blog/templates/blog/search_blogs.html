@@ -1,0 +1,65 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}<h3>文章主页</h3>{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <div class="float-left">
+            <span>共 <strong>{{ search_articles|length }}</strong> 篇文章，
+                最近 <strong>{{ search_articles|length }}</strong> 篇文章如下：
+            </span>
+        </div>
+        <div class="float-right">
+            <form class="form-inline" method="get" action="{% url 'blog:search_blogs' %}">
+                {% csrf_token %}
+                <input type="search" class="form-control" name="q" placeholder="Search" required> &nbsp;
+                <button type="submit" class="btn btn-light border">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if search_articles %}
+            {% if success_search_msg %}
+            <div class="text-center">
+                <h3 class="text-success"><strong>{{ success_search_msg }}</strong></h3>
+            </div>
+            {% endif %}
+            {% for search_article in search_articles %}
+            <div class="list-group">
+                <div class="list-group-item">
+                    作者：{{ search_article.author }} &
+                    时间：{{ search_article.pub_date }} &
+                    标签：{{ search_article.category }}
+                    <p><strong>
+                        <a class="text-dark font-italic"
+                           href="{% url 'blog:blog_body' search_article.id %}">{{ search_article.title }}
+                        </a>
+                    </strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            {% if not_search_msg %}
+            <div class="text-center">
+                <h3 class="text-info"><strong>{{ not_search_msg }}</strong></h3>
+            </div>
+            {% endif %}
+            {% for article in articles %}
+            <div class="list-group">
+                <div class="list-group-item">
+                    作者：{{ article.author }} &
+                    时间：{{ article.pub_date }} &
+                    标签：{{ article.category }}
+                    <p><strong>
+                        <a class="text-dark font-italic"
+                           href="{% url 'blog:blog_body' article.id %}">{{ article.title }}
+                        </a>
+                    </strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

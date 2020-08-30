@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -24,12 +23,10 @@ SECRET_KEY = '+j1x03ogt^+uzt@c_3@2)9$1o^0g5v#!*q%9lh#$3p&2ktc&hq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# 开发模式
 DEBUG = True
 ALLOWED_HOSTS = []
 # DEBUG = False
 # ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -49,8 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mdeditor',  # django markdown 富文本编辑器
-    'captcha',   # 图片验证码
+    'captcha',  # 图片验证码
 ]
+
+# 此缓存使用 python-memcached 模块连接 memcached
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,7 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -91,18 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'mysite',
-    #     'USER': 'root',
-    #     'PASSWORD': '****',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    # },
-
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -122,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -136,21 +128,11 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog', 'article')
-
-# 缓存
-# localhost
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backend.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}

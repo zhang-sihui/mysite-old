@@ -9,17 +9,18 @@
         {% for checklist in checklists %}
         <div class="list-group">
             <div class="list-group-item">
-                <a class="text-dark" href="{% url 'watchlist:check_body' checklist.id %}">{{ checklist.title }}</a>
+                <a class="text-dark font-italic" href="{% url 'watchlist:check_body' checklist.id %}">{{ checklist.title }}</a>
                 <span class="float-right">
-                <a class="text-dark" href="https://www.douban.com/search?q={{ checklist.title }}" target="_blank">
-                    豆瓣</a>
+                    <span class="font-weight-light">{{ checklist.pub_date }} &nbsp;</span>
+                    <a class="text-dark font-italic" href="https://www.douban.com/search?q={{ checklist.title }}"
+                       target="_blank">豆瓣</a>
                 </span>
             </div>
         </div>
         {% endfor %}
     </div>
     <div class="card-footer">
-        <a class="text-dark" href="https://www.douban.com/people/168600825/" target="_blank">
+        <a class="text-dark font-italic" href="https://www.douban.com/people/168600825/" target="_blank">
             <i class="fa fa-link" aria-hidden="true"></i>
             点击查看我豆瓣里看过的书和电影。
         </a>

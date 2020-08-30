@@ -17,12 +17,12 @@
                     </div>
                     <div class="card-body">
                         <div id="lyric-content" class="text-center">
-                            {% if lyric %}
-                            {% for lyc in lyric %}
-                            <p>{{ lyc|slice:'10:' }}</p>
-                            {% endfor %}
+                            {% if lyrics %}
+                                {% for lyric in lyrics %}
+                                    <p>{{ lyric|slice:'10:' }}</p>
+                                {% endfor %}
                             {% else %}
-                            暂无歌词内容...
+                                {{ not_lyric }}
                             {% endif %}
                         </div>
                     </div>
@@ -46,27 +46,24 @@
                             <i class="fa fa-forward" aria-hidden="true"></i></a></button>
                         <button class="btn btn-link" title="顺序播放"><a class="text-dark" id="sequence">
                             <i class="fa fa-retweet" aria-hidden="true"></i></a></button>
-                        <!--  <input class="custom-range" name="schedule" type="range" min="1" max="10" value="1"><span class="schedule"></span>-->
                     </div>
-                    <audio id="audio" preload="auto" controls loop>
-                        Your browser does not support the audio tag.
-                    </audio>
+                    <audio id="audio" preload="auto" controls loop>Your browser does not support the audio tag.</audio>
                 </div>
             </div>
             <div class="card-body">
-                <div class="music_list" id="music_list">
+                <div id="songs">
                     <ul class="list-group" id="ul">
-                        {% for dir_file in dir_file_list %}
+                        {% for file in files_set %}
                         <li class="list-group-item">
-                            <a class="text-dark"
-                               href="{% url 'polls:music_lyric' dir_file %}">{{ dir_file|slice:"0:-4" }}</a>
+                            <a class="text-dark font-italic"
+                               href="{% url 'polls:get_music_lyric' file %}">{{ file|slice:"0:-4" }}</a>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
             <div class="card-footer">
-                <a class="text-dark" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
+                <a class="text-dark font-italic" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
                     This is my the link of NetYi Yun music account.</a>
             </div>
         </div>
@@ -84,10 +81,9 @@
 	var oRandoms = document.getElementById("randoms");
 	var oName = document.getElementById("music_name");
 
-    var dv=document.getElementById("music_list");
-    var ularr=dv.getElementsByTagName("ul");
-    var liarr=ularr[0].getElementsByTagName("li");
-
+    var songs_div = document.getElementById("songs");
+    var ul_arr = songs_div.getElementsByTagName("ul");
+    var li_arr = ul_arr[0].getElementsByTagName("li");
     var oTotal = document.getElementsByClassName("total_time")[0]
     var oStart = document.getElementById("start_time")
 	var oRound = document.getElementById("round")
@@ -95,12 +91,10 @@
 
     var num = 0;
     var arr = [];
-    for(let i=0; i<liarr.length; i++){
-        v = ularr[0].getElementsByTagName("li")[i].innerText;
-        arr.push("/static/music/" + v + '.mp3');
+    for(let i=0; i < li_arr.length; i++){
+        song_title = ul_arr[0].getElementsByTagName("li")[i].innerText;
+        arr.push("/static/music/" + song_title + '.mp3');
     }
-
-<!--	var arr = ["/static/music/李志 - 热河.mp3","/static/music/汪峰 - 勇敢的心.mp3"];-->
 
     oAudio.src = arr[num];
 

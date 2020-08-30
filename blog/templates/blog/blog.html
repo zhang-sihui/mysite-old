@@ -1,31 +1,30 @@
 {% extends 'blog/base.html' %}
+
 {% block title %}<h3>文章主页</h3>{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-header">
         <div class="float-left">
-        <span>共 <strong>{{ contexts|length }}</strong> 篇文章，
-            最近 <strong>{{ contexts_part|length }}</strong> 篇文章如下：</span>
+            <span>共 <strong>{{ articles|length }}</strong> 篇文章如下：</span>
         </div>
         <div class="float-right">
-        <form class="form-inline" method="get" action="{% url 'blog:search' %}">
+        <form class="form-inline" method="get" action="{% url 'blog:search_blogs' %}">
             {% csrf_token %}
-            <input type="search" class="form-control" name="q" placeholder="Search" required>&nbsp;
+            <input type="search" class="form-control" name="q" placeholder="Search" required> &nbsp;
             <button type="submit" class="btn btn-light border">搜索</button>
         </form>
         </div>
     </div>
     <div class="card-body">
-        {% for context in contexts_part %}
+        {% for article in articles %}
         <div class="list-group">
             <div class="list-group-item">
-                作者：{{ context.author }} &
-                时间：{{ context.pub_date }} &
-                标签：{{ context.category }}
+                作者：{{ article.author }} &
+                时间：{{ article.pub_date }} &
+                标签：{{ article.category }}
                 <p><strong>
-                    <a class="text-dark" href="{% url 'blog:blog_body' context.id %}">
-                        {{ context.title }}</a>
+                    <a class="text-dark font-italic" href="{% url 'blog:blog_body' article.id %}">{{ article.title }}</a>
                 </strong></p>
             </div>
         </div>

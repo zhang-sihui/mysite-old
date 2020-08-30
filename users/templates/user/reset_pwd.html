@@ -1,18 +1,22 @@
 {% extends 'user/base.html' %}
+
 {% block head %}<title>重置密码</title>{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <div class="card">
-            <h5 class="text-center">重置密码</h5>
+            <div class="card-header text-center">
+                <h3>重置密码</h3>
+            </div>
             <div class="card-body">
                 <form class='form-reset-pwd' action="" method="post">
                     {% csrf_token %}
                     {% if success_message %}
                     <div class="alert alert-success">{{ success_message }}</div>
                     {% endif %}
-                    {% if message %}
-                    <div class="alert alert-warning">{{ message }}</div>
+                    {% if error_message %}
+                    <div class="alert alert-warning">{{ error_message }}</div>
                     {% endif %}
                     <div class="form-group">
                         {{ reset_pwd_form.username.label_tag }}

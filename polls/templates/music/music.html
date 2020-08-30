@@ -26,31 +26,30 @@
                             <i class="fa fa-forward" aria-hidden="true"></i></a></button>
                         <button class="btn btn-link" title="顺序播放"><a class="text-dark" id="sequence">
                             <i class="fa fa-retweet" aria-hidden="true"></i></a></button>
-                        <!--  <input class="custom-range" name="schedule" type="range" min="1" max="10" value="1"><span class="schedule"></span>-->
                     </div>
-                    <audio id="audio" preload="auto" controls loop>
-                        Your browser does not support the audio tag.
-                    </audio>
+                    <audio id="audio" preload="auto" controls loop>Your browser does not support the audio tag.</audio>
                 </div>
             </div>
             <div class="card-body">
-                <div class="music_list" id="music_list">
+                <div class="songs" id="songs">
                     <ul class="list-group" id="ul">
-                        {% for dir_file in dir_file_list %}
-                        <li class="list-group-item">
-                            <a class="text-dark" href="{% url 'polls:music_lyric' dir_file %}">{{ dir_file|slice:"0:-4" }}</a>
-                        </li>
+                        {% for file in files_set %}
+                            <li class="list-group-item">
+                                <a class="text-dark font-italic"
+                                   href="{% url 'polls:get_music_lyric' file %}">{{ file|slice:"0:-4" }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
             <div class="card-footer">
-                <a class="text-dark" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
+                <a class="text-dark font-italic" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
                     This is my the link of NetYi Yun music account.</a>
             </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript" charset="utf-8">
     var oAudio = document.getElementById("audio");
     var oPlay = document.getElementById('play');
@@ -62,26 +61,22 @@
 	var oRandoms = document.getElementById("randoms");
 	var oLyric = document.getElementById("lyric");
 
-    var dv=document.getElementById("music_list");
-    var ularr=dv.getElementsByTagName("ul");
-    var liarr=ularr[0].getElementsByTagName("li");
-
+    var songs_div = document.getElementById("songs");
+    var ul_arr = songs_div.getElementsByTagName("ul");
+    var li_arr = ul_arr[0].getElementsByTagName("li");
     var oTotal = document.getElementsByClassName("total_time")[0]
     var oStart = document.getElementById("start_time")
 	var oRound = document.getElementById("round")
 	var oLoad = document.getElementById("load")
 
-
     var num = 0;
     var arr = [];
-    // 将后台获取的歌曲添加到arr数组中
-    for(let i=0; i<liarr.length; i++){
-        v = ularr[0].getElementsByTagName("li")[i].innerText;
-        arr.push("/static/music/" + v + '.mp3');
-    }
 
-    // 模拟arr数组，存放歌曲
-<!--	var arr = ["/static/music/李志 - 热河.mp3","/static/music/汪峰 - 勇敢的心.mp3"];-->
+    // 将后台获取的歌曲添加到arr数组中
+    for(let i = 0; i < li_arr.length; i++){
+        song_title = ul_arr[0].getElementsByTagName("li")[i].innerText;
+        arr.push("/static/music/" + song_title + '.mp3');
+    }
 
     oAudio.src = arr[num];
     // 进入主页后第一首歌曲
@@ -145,9 +140,5 @@
             $('.schedule').text(audio.currentTime+'秒');
         });
     });
-
 </script>
-<style>
-
-</style>
 {% endblock %}

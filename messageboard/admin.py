@@ -3,6 +3,7 @@ from .models import MessageBoard
 
 
 # Register your models here.
+
 class MessageBoardAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['content']}),

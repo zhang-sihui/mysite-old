@@ -1,49 +1,51 @@
 {% extends 'user/base.html' %}
+
 {% block head %}<title>Register</title>{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <h5 class="text-center">创建账号</h5>
-                <div class="card-body">
-                    <form class='form-register' action="" method="post">
-                        {% csrf_token %}
-                        {% if success_message %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>注册</h3>
+            </div>
+            <div class="card-body">
+                <form class='form-register' action="" method="post">
+                    {% csrf_token %}
+                    {% if success_message %}
                         <div class="alert alert-success">{{ success_message }}</div>
-                        {% endif %}
-                        {% if message %}
-                        <div class="alert alert-warning">{{ message }}</div>
-                        {% endif %}
-                        <div class="form-group">
-                            {{ register_form.username.label_tag }} 4-16字符，支持中文、字母和数字的组合
-                            {{ register_form.username}}
-                        </div>
-                        <div class="form-group">
-                            {{ register_form.email.label_tag }} 电子邮箱很重要，找回密码需要，请记住
-                            {{ register_form.email }}
-                        </div>
-                        <div class="form-group">
-                            {{ register_form.password1.label_tag }} 6-16个字符，支持字母、数字和字符组合
-                            {{ register_form.password1 }}
-                        </div>
-                        <div class="form-group">
-                            {{ register_form.password2.label_tag }} 请再次输入密码
-                            {{ register_form.password2 }}
-                        </div>
-                        <div class="form-group">
-                            {{ register_form.captcha.errors }}
-                            {{ register_form.captcha.label_tag }}
-                            {{ register_form.captcha }}
-                        </div>
-                        <div class="float-left">
-                            <button type="reset" class="btn btn-light">重置</button>
-                        </div>
-                        <div class="float-right">
-                            <button type="submit" class="btn btn-light">提交</button>
-                        </div>
-                    </form>
-                </div>
+                    {% endif %}
+                    {% if error_message %}
+                        <div class="alert alert-warning">{{ error_message }}</div>
+                    {% endif %}
+                    <div class="form-group">
+                        {{ register_form.username.label_tag }} 4-16 字符，支持中文、字母和数字的组合
+                        {{ register_form.username}}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.email.label_tag }} 电子邮箱很重要，找回密码需要，请记住
+                        {{ register_form.email }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.password1.label_tag }} 6-16 个字符，支持字母、数字和字符组合
+                        {{ register_form.password1 }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.password2.label_tag }} 请再次输入密码
+                        {{ register_form.password2 }}
+                    </div>
+                    <div class="form-group">
+                        {{ register_form.captcha.errors }}
+                        {{ register_form.captcha.label_tag }}
+                        {{ register_form.captcha }}
+                    </div>
+                    <div class="float-left">
+                        <button type="reset" class="btn btn-light">重置</button>
+                    </div>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-light">提交</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

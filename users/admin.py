@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, Notice
 
 
 # Register your models here.
@@ -16,4 +16,15 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['username']
 
 
+class NoticeAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['title']}),
+        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        (None, {'fields': ['content']}),
+    ]
+    list_display = ('title', 'content', 'pub_date')
+    list_filter = ['pub_date']
+
+
+admin.site.register(Notice, NoticeAdmin)
 admin.site.register(User, UserAdmin)

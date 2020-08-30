@@ -21,7 +21,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('', include('index.urls')),
     path('polls/', include('polls.urls')),
     path('blogs/', include('blog.urls')),
@@ -29,7 +28,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('watchList/', include('watchlist.urls')),
     path('guestBooks/', include('messageboard.urls')),
-
     path('mdeditor', include('mdeditor.urls')),
     path('captcha', include('captcha.urls'))
 ]

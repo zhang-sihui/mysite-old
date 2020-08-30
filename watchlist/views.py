@@ -5,8 +5,6 @@ from .models import Checklist
 
 # Create your views here.
 
-
-# 清单
 def watchlist(request):
     checklists = Checklist.objects.all().order_by('-pub_date')
     return render(request, 'watchlist/watchlist.html', locals())
@@ -23,22 +21,21 @@ def check_body(request, check_id):
     return render(request, 'watchlist/check_body.html', locals())
 
 
-def book(request):
+def get_books(request):
     books = Checklist.objects.filter(category='book').order_by('-pub_date')
     return render(request, 'watchlist/book_film.html', locals())
 
 
-def film(request):
+def get_films(request):
     films = Checklist.objects.filter(category='film').order_by('-pub_date')
     return render(request, 'watchlist/book_film.html', locals())
 
 
-# 搜索
-def search(request):
+def search_check(request):
     q = request.GET.get('q')
     checklists = Checklist.objects.all().order_by('-pub_date')
     search_list = Checklist.objects.filter(title__icontains=q)
     search_count = len(search_list)
-    success_msg = '{} results for {}'.format(search_count, q)
-    error_msg = '0 results for {}'.format(q)
+    success_search_msg = '{} 个 {} 相关内容。'.format(search_count, q)
+    not_search_msg = '没有与 {} 相关的内容。'.format(q)
     return render(request, 'watchlist/search.html', locals())
