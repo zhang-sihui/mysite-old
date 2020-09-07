@@ -104,17 +104,19 @@ def show_files(request):
         上传的文件可以从页面支持下载，不需要修改源代码。
     """
     file_dir = os.path.join(base_dir, 'polls', 'manage_files', 'download')
-    files = os.listdir(file_dir)
+    files_name = os.listdir(file_dir)
+    files_name_size = []
     ids = []
-    if not files:
+    if not files_name:
         not_files = '暂时没有文件。'
         return render(request, 'files/show.html', locals())
     else:
-        for file in files:
-            file_info = File.objects.get(file_name=file)
+        for file_name in files_name:
+            file_info = File.objects.get(file_name=file_name)
             ids.append(file_info.id)
+            files_name_size.append(file_name + ' -- ' + str(path.getsize(file_dir + '/' + file_name) // 1024) + ' KB')
         # id 与 name 合成字典，一边传入前端，此 id 用来下载文件。【如果在前端直接传入文件名在数据库中搜索，似乎不在需要 id】
-        files_dict = dict(zip(ids, files))
+        files_dict = dict(zip(ids, files_name_size))
         return render(request, 'files/show.html', locals())
 
 
@@ -129,8 +131,7 @@ def download_file(request, file_id):
     response = FileResponse(file_)
     response['Content-Type'] = 'application/octet-stream'
     # 文件名为中文时无法识别，使用 UTF-8 和 escape_uri_path 处理
-    response["Content-Disposition"] = "attachment; " \
-                                      "filename*=UTF-8''{}".format(escape_uri_path(file_name))
+    response["Content-Disposition"] = "attachment; filename*=UTF-8''{}".format(escape_uri_path(file_name))
     return response
 
 

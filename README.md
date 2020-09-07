@@ -2,6 +2,13 @@
 
 ## A personal website
 
+### 开发环境
+
+- Windows 10
+- PyCharm 2019
+- Python 3.7.3
+- Django 2.2
+
 ### 终端操作
 
 - Terminal: Go to mysite folder（终端：进入 mysite 文件夹）。
@@ -67,3 +74,5 @@
         - 修改部分代码中的命名问题，以及删除多余注释。
         - 用户登录中，增加 notice 通知 model。
         - user 注册、登录等的页面标题太靠上，优化。
+    - v2.2.1：
+        - 在文件下载中，增加可下载文件的大小，全部以 KB 表示。
