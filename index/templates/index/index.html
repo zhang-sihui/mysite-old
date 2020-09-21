@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% block title %}<title>Home</title>{% endblock %}
+    <title>Home</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
@@ -11,91 +12,109 @@
     <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
 </head>
-<body style="background: #ddd;">
-<div class="container-fluid">
-    {% block nav %}
-    <nav class="navbar navbar-expand-md bg-light navbar-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="http://127.0.0.1:8000/admin" target="_blank">
-                        <i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'index:index' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:vote' %}">Vote</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:show_files' %}">File</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:play_music' %}">Music</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'blog:blog' %}">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'photos:display_photos' %}">Photo</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'watchlist:watchlist' %}">WatchList</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'messageboard:messages' %}">GuestBook</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'index:about_me' %}">AboutMe</a></li>
-                <li class="nav-item active"><a class="nav-link " href="#" data-toggle="tooltip" data-html="true"
-                                               title="name：zhangsihui <br> email：zhang_sihui@foxmail.com">
-                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i></a></li>
-                <script>
-                $(document).ready(function(){
-                    $('[data-toggle="tooltip"]').tooltip();});
-                </script>
-            </ul>
+
+<body class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        {% block nav %}
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
+                <a class="text-dark" href="{% url 'polls:vote' %}">
+                    <i class="fa fa-check-square fa-3x" aria-hidden="true"></i>
+                    <p>Vote</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'polls:play_music' %}">
+                    <i class="fa fa-music fa-3x" aria-hidden="true"></i>
+                    <p>Music</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'polls:show_files' %}">
+                    <i class="fa fa-file fa-3x" aria-hidden="true"></i>
+                    <p>File</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'blog:blog' %}">
+                    <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
+                    <p>Blog</p>
+                </a>
+            </div>
         </div>
-        <a class="text-dark" href="{% url 'users:user' %}">Login</a>
-    </nav>
-    {% endblock %}
 
-    {% block space %}<p>&nbsp;</p>{% endblock %}
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
+                <a class="text-dark" href="http://127.0.0.1:8000/admin" target="_blank">
+                    <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+                    <p>Admin</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'photos:display_photos' %}">
+                    <i class="fa fa-photo fa-3x" aria-hidden="true"></i>
+                    <p>Photo</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'watchlist:watchlist' %}">
+                    <i class="fa fa-list fa-3x" aria-hidden="true"></i>
+                    <p>WatchList</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'messageboard:messages' %}">
+                    <i class="fa fa-comments fa-3x" aria-hidden="true"></i>
+                    <p>GuestBook</p>
+                </a>
+            </div>
+        </div>
 
-    {% block content %}
-    <div class="col-md-8 offset-md-2">
-        <div id="accordion">
+        <div class="row">
+            <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
+                <a class="text-dark" href="{% url 'index:index' %}">
+                    <i class="fa fa-home fa-3x" aria-hidden="true"></i>
+                    <p>Home</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'index:about_me' %}">
+                    <i class="fa fa-yelp fa-3x" aria-hidden="true"></i>
+                    <p>AboutSite</p>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="#" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                    title="name：zhangsihui <br> email：zhang_sihui@foxmail.com">
+                    <i class="fa fa-info-circle fa-3x" aria-hidden="true"></i>
+                    <p>Info</p>
+                </a>
+                <script>
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
+            </div>
+            <div class="col-3 col-sm-3 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'users:user' %}">
+                    <i class="fa fa-sign-in fa-3x" aria-hidden="true"></i>
+                    <p>Login</p>
+                </a>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block content %}
+        <div class="row my-5"></div>
+        <div class="col-md-8 offset-md-2">
             <div class="card">
-                <div class="card-header">
-                    <a class="text-dark" data-toggle="collapse" href="#collapseOne">
-                        <p class="text-center"><strong>It's Beijing time: {{ Beijing_isoformat }} More</strong></p></a>
-                </div>
-                <div id="collapseOne" class="collapse" data-parent="#accordion">
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>City</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>NewYork</td>
-                                <td>{{ NewYork_isoformat }}</td>
-                            </tr>
-                            <tr>
-                                <td>UTC</td>
-                                <td>{{ UTC_isoformat }}</td>
-                            </tr>
-                            <tr>
-                                <td>London</td>
-                                <td>{{ London_isoformat }}</td>
-                            </tr>
-                            <tr>
-                                <td>Moscow</td>
-                                <td>{{ Moscow_isoformat }}</td>
-                            </tr>
-                            <tr>
-                                <td>Tokyo</td>
-                                <td>{{ Tokyo_isoformat }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <p>当前访问人数：{{ ips_info|length }}</p>
+                <div class="card-body">
+                    <div><i class="fa fa-vimeo-square" aria-hidden="true"></i> Visitors：{{ ips_info|length }}</div>
+                    <div><i class="fa fa-clock-o" aria-hidden="true"></i> BeijingTime：{{ localtime }}</div>
                 </div>
             </div>
         </div>
+        {% endblock %}
     </div>
-    {% endblock %}
-</div>
 </body>
 </html>

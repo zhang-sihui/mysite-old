@@ -1,11 +1,9 @@
 {% extends 'files/base.html' %}
 
-{% block head %}<h3>历史上传</h3>{% endblock %}
-
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <strong><span>历史记录：{{ files|length }} 个</span></strong>
+        <strong><span><i class="fa fa-history" aria-hidden="true"></i> 历史记录：{{ files|length }} 个</span></strong>
     </div>
     <div class="card-body">
         {% if files %}

@@ -1,23 +1,20 @@
 {% extends 'index/index.html' %}
 
-{% block title %}<title>About</title>{% endblock %}
-
 {% block content %}
-<div class="container">
+<div class="col-md-8 offset-md-2">
     <div class="card bg-light text-dark">
-        <div class="card-header">My info:</div>
+        <div class="card-header">My Info:</div>
         <div class="card-body">
             <div class="text-dark">
-                <p><i class="fa fa-info-circle" aria-hidden="true">This is Zhang Sihui's personal website.</i></p>
-                <p><i class="fa fa-at" aria-hidden="true"></i><a class="text-dark" href="#">Name: zhangsihui</a></p>
-                <p><i class="fa fa-envelope-o" aria-hidden="true"></i>Email: zhang_sihui@foxmail.com</p>
+                <p><i class="fa fa-info-circle" aria-hidden="true"></i> This is Zhang Sihui's personal website.</p>
+                <p><i class="fa fa-at" aria-hidden="true"></i><a class="text-dark" href="#"> Name: zhangsihui</a></p>
+                <p><i class="fa fa-envelope-o" aria-hidden="true"></i> Email: zhang_sihui@foxmail.com</p>
                 <p><i class="fa fa-github" aria-hidden="true"></i>
                     <a class="text-dark font-italic" href="https://github.com/zhang-sihui/mysite" target="_blank">
                         All the code is on github, click here</a></p>
-                <p><i class="fa fa-comment-o" aria-hidden="true"></i>Based on Django2.1 & Python3.7.3 & Bootstrap4.4.0</p>
+                <p><i class="fa fa-code-fork" aria-hidden="true"></i> Based on Django2.2 & Python3.7.3 & Bootstrap4.4.0</p>
             </div>
         </div>
     </div>
 </div>
-<table class="table"><p></p></table>
 {% endblock %}

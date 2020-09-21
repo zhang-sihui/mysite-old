@@ -1,6 +1,7 @@
 import hashlib
 import random
 import string
+import markdown
 from django.shortcuts import render, redirect
 from .forms import UserForm, RegisterForm, ChangePwdForm, ResetPwdForm
 from .models import User, Notice
@@ -13,7 +14,16 @@ def user(request):
     if request.session.get('is_login', None):
         user_name = request.session['user_name']
         info = User.objects.get(username=user_name)
-    notices = Notice.objects.all()
+    notice = Notice.objects.last()
+    if notice:
+        notice.content = markdown.markdown(notice.content,
+                                           extensions=[
+                                               'markdown.extensions.extra',
+                                               'markdown.extensions.codehilite',
+                                               'markdown.extensions.toc',
+                                           ])
+    else:
+        not_notice = '暂时没有通知!'
     return render(request, 'user/user.html', locals())
 
 

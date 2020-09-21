@@ -6,12 +6,8 @@ from .models import UserIP
 # Create your views here.
 
 def index(request):
-    UTC_isoformat = utc_to_iso(0 * 60)
-    London_isoformat = utc_to_iso(1 * 3600)
-    Moscow_isoformat = utc_to_iso(3 * 3600)
-    Beijing_isoformat = utc_to_iso(8 * 3600)
-    Tokyo_isoformat = utc_to_iso(9 * 3600)
-    NewYork_isoformat = utc_to_iso(-4 * 3600)
+    datatime_now = datetime.datetime.now().isoformat()
+    localtime = datatime_now[:10] + " " + datatime_now[11:19]
 
     ips = UserIP.objects.all()
     length = len(ips)

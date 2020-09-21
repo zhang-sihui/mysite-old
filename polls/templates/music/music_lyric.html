@@ -63,7 +63,7 @@
             </div>
             <div class="card-footer">
                 <a class="text-dark font-italic" href="https://music.163.com/#/user/home?id=367481153" target="_blank">
-                    This is my the link of NetYi Yun music account.</a>
+                    <i class="fa fa-cloud" aria-hidden="true"></i> This is my the link of NetYi Yun music account.</a>
             </div>
         </div>
     </div>
@@ -73,20 +73,20 @@
     var oPlay = document.getElementById('play');
     var nPlay = document.getElementById('n_play');
     var oTop = document.getElementById("top");
-	var oDown = document.getElementById("down");
-	var oUl = document.getElementById("ul");
-	var oLi = oUl.getElementsByTagName("li");
-	var oSequence = document.getElementById("sequence");
-	var oRandoms = document.getElementById("randoms");
-	var oName = document.getElementById("music_name");
+    var oDown = document.getElementById("down");
+    var oUl = document.getElementById("ul");
+    var oLi = oUl.getElementsByTagName("li");
+    var oSequence = document.getElementById("sequence");
+    var oRandoms = document.getElementById("randoms");
+    var oName = document.getElementById("music_name");
 
     var songs_div = document.getElementById("songs");
     var ul_arr = songs_div.getElementsByTagName("ul");
     var li_arr = ul_arr[0].getElementsByTagName("li");
     var oTotal = document.getElementsByClassName("total_time")[0]
     var oStart = document.getElementById("start_time")
-	var oRound = document.getElementById("round")
-	var oLoad = document.getElementById("load")
+    var oRound = document.getElementById("round")
+    var oLoad = document.getElementById("load")
 
     var num = 0;
     var arr = [];
@@ -98,63 +98,63 @@
     oAudio.src = arr[num];
 
     oPlay.onclick = function() {
-		if(oAudio.paused) {
-			oAudio.play();
-			oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
-		}
-		else {
-			oAudio.pause();
-			oPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
-		}
-	}
+        if(oAudio.paused) {
+            oAudio.play();
+            oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+        }
+        else {
+            oAudio.pause();
+            oPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+        }
+    }
 
     curr_name = oName.innerText;
     curr_path = "/static/music/" + curr_name + ".mp3"
     oAudio.src = curr_path
 
     nPlay.onclick = function() {
-		if(oAudio.paused) {
-			oAudio.play();
-			nPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i> 播放';
-		}
-		else {
-			oAudio.pause();
-			nPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i> 播放';
-		}
-	}
+        if(oAudio.paused) {
+            oAudio.play();
+            nPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i> 播放';
+        }
+        else {
+            oAudio.pause();
+            nPlay.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i> 播放';
+        }
+    }
 
     //点击切换歌曲
-	for(var i = 0; i < oLi.length; i++) {
-		oLi[i].index = i;
-		oLi[i].onclick = function() {
-			num = this.index;
-			oAudio.src = arr[this.index];
-			oAudio.play();
-			oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
-		}
-	}
+    for(var i = 0; i < oLi.length; i++) {
+        oLi[i].index = i;
+        oLi[i].onclick = function() {
+            num = this.index;
+            oAudio.src = arr[this.index];
+            oAudio.play();
+            oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+        }
+    }
 
-	//上一首
-	oTop.onclick = function() {
-		num--
-		if(num < 0) {
-			num = 0;
-		}
-		oAudio.src = arr[num]
-		oAudio.play()
+    //上一首
+    oTop.onclick = function() {
+        num--
+        if(num < 0) {
+            num = 0;
+        }
+        oAudio.src = arr[num]
+        oAudio.play()
         oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
-	}
+    }
 
     //下一首
-	oDown.onclick = function() {
-		num++
-		if(num > arr.length - 1) {
-			num = arr.length - 1
-		}
-		oAudio.src = arr[num]
-		oAudio.play()
-		oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
-	}
+    oDown.onclick = function() {
+        num++
+        if(num > arr.length - 1) {
+            num = arr.length - 1
+        }
+        oAudio.src = arr[num]
+        oAudio.play()
+        oPlay.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+    }
 
     // 顺序播放
     oSequence.onclick = function () {

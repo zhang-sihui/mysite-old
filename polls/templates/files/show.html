@@ -1,11 +1,9 @@
 {% extends 'files/base.html' %}
 
-{% block head %}<h3>文件下载</h3>{% endblock %}
-
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <strong><span>{{ files_name|length }} 个可下载文件</span></strong>
+        <strong><span><i class="fa fa-cloud-download" aria-hidden="true"></i> {{ files_name|length }} 个可下载文件</span></strong>
     </div>
     <div class="card-body">
         {% if files_name %}

@@ -1,11 +1,9 @@
 {% extends 'photo/base.html' %}
 
-{% block head %}<h3>图片主页</h3>{% endblock %}
-
 {% block content %}
 <div class="card bg-light text-dark">
     <div class="card-header">
-        <span class="text-dark">Counts: {{ photos|length }} Photos</span>
+        <span class="text-dark"><i class="fa fa-picture-o" aria-hidden="true"></i> Photos: {{ photos|length }}</span>
     </div>
     <div class="card-body">
         {% if page.object_list %}

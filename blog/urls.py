@@ -7,8 +7,6 @@ urlpatterns = [
     path('', views.blog, name='blog'),
     path('articles/<int:blog_id>', views.blog_body, name='blog_body'),
     path('searchBlogs', views.search_blogs, name='search_blogs'),
-    path('displayLabels', views.display_labels, name='display_labels'),
     path('blogsByLabel/<str:label>', views.get_blogs_by_label, name='get_blogs_by_label'),
-    path('displayYears', views.display_years, name='display_years'),
     path('blogsByYear/<str:year>', views.get_blogs_by_year, name='get_blogs_by_year'),
 ]

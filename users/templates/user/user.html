@@ -1,7 +1,5 @@
 {% extends 'user/base.html' %}
 
-{% block head %}<title>User</title>{% endblock %}
-
 {% block content %}
     <div class="card">
         <div class="card-header">
@@ -9,15 +7,13 @@
             <p>您已登录！！！</p>
         </div>
         <div class="card-body">
-            {% if notices %}
-                {% for notice in notices %}
+            {% if notice %}
                 <p>系统通知：</p>
-                <p>标题： {{ notice.title }}</p>
-                <p>内容： {{ notice.content }}</p>
-                <p>时间： {{ notice.pub_date }}</p>
-                {% endfor %}
+                <p>标题：{{ notice.title }}</p>
+                <p>内容：{{ notice.content | safe }}</p>
+                <p>时间：{{ notice.pub_date }}</p>
             {% else %}
-                <p>暂时没有通知!</p>
+                <p>{{ not_notice }}</p>
             {% endif %}
         </div>
     </div>

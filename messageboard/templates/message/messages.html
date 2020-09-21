@@ -3,7 +3,7 @@
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <span>{{ latest_message_list|length }} 条留言</span>
+        <span><i class="fa fa-th-list" aria-hidden="true"></i> {{ latest_message_list|length }} 条留言</span>
     </div>
     <div class="card-body">
         {% if latest_message_list %}

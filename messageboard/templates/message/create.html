@@ -5,7 +5,7 @@
     {% csrf_token %}
     <div class="card">
         <div class="card-header">
-            {{ msg_form.content.label_tag }}
+            <i class="fa fa-pencil-square" aria-hidden="true"></i> {{ msg_form.content.label_tag }}
         </div>
         <div class="card-body">
             {{ msg_form.content }}

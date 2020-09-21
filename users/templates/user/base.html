@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% block head %}<title>用户</title>{% endblock %}
+    <title>用户</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
@@ -12,9 +12,9 @@
     <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
 </head>
-<body style="background: #ddd;">
+<body class="jumbotron jumbotron-fluid">
 <div class="container">
-    {% block title %}<h4>用户主页!!!</h4>{% endblock %}
+    <div class="row my-3"></div>
     {% block nav %}
     <nav class="navbar navbar-expand-md bg-light navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -46,9 +46,10 @@
         </div>
     </nav>
     {% endblock %}
-    {% block space %}&nbsp;{% endblock %}
+    <div class="row my-3"></div>
     {% block content %}{% endblock %}
     {% block message %}{% endblock %}
+    <div class="row my-3"></div>
 </div>
 </body>
 </html>
