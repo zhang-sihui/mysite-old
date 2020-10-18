@@ -12,6 +12,7 @@ class Article(models.Model):
     body = MDTextField('内容')
     pub_date = models.DateTimeField('发布日期', default=timezone.now)
     views = models.IntegerField('浏览量', default=0)
+    mod_date = models.DateTimeField('修改时间', default=timezone.now)
 
     def __str__(self):
         return self.title

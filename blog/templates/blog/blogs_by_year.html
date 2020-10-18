@@ -12,9 +12,11 @@
                 {% for article in articles %}
                 <div class="list-group">
                     <div class="list-group-item">
+                        <small>
                         作者：{{ article.author }} &
                         时间：{{ article.pub_date }} &
                         标签：{{ article.category }}
+                        </small>
                         <div><strong>
                                 <a class="text-dark font-italic"
                                     href="{% url 'blog:blog_body' article.id %}">{{ article.title }}</a>

@@ -25,8 +25,6 @@ SECRET_KEY = '+j1x03ogt^+uzt@c_3@2)9$1o^0g5v#!*q%9lh#$3p&2ktc&hq'
 
 DEBUG = True
 ALLOWED_HOSTS = []
-# DEBUG = False
-# ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -126,7 +124,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

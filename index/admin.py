@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserIP
+from .models import UserIP, EverydayVisit
 
 
 # Register your models here.
@@ -17,3 +17,16 @@ class UserIPAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserIP, UserIPAdmin)
+
+
+class EverydayVisitAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['date']}),
+        (None, {'fields': ['visits']}),
+    ]
+    list_display = ('date', 'visits')
+    search_fields = ['date']
+    list_filter = ['date']
+
+
+admin.site.register(EverydayVisit, EverydayVisitAdmin)

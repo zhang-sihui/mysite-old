@@ -9,3 +9,7 @@ class UserIP(models.Model):
     access_time = models.DateTimeField('首次访问时间', default=timezone.now)
     serial_number = models.CharField('访问序号', max_length=10, default=0)
     ip_attribution = models.CharField('ip地址', max_length=64, default='')
+
+class EverydayVisit(models.Model):
+    date = models.DateField('日期', default=timezone.localdate)
+    visits = models.IntegerField('访问量', default=0)

@@ -109,8 +109,9 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
-                    <div><i class="fa fa-vimeo-square" aria-hidden="true"></i> Visitors：{{ ips_info|length }}</div>
-                    <div><i class="fa fa-clock-o" aria-hidden="true"></i> BeijingTime：{{ localtime }}</div>
+                    <div><i class="fa fa-vimeo-square" aria-hidden="true"></i> Today Visits：{{ today_visits.visits }}</div>
+                    <div><i class="fa fa-vimeo" aria-hidden="true"></i> Total Visits：{{ total_visits.visits__sum }}</div>
+                    <div><i class="fa fa-clock-o" aria-hidden="true"></i> Beijing Time：{{ localtime|date:'Y-m-d H:i:s' }}</div>
                 </div>
             </div>
         </div>

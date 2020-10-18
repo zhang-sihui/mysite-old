@@ -1,13 +1,13 @@
-import datetime
+from django.utils import timezone
 from django.shortcuts import render
-from .models import UserIP
+from django.db.models import Sum
+from .models import UserIP, EverydayVisit
 
 
 # Create your views here.
 
 def index(request):
-    datatime_now = datetime.datetime.now().isoformat()
-    localtime = datatime_now[:10] + " " + datatime_now[11:19]
+    localtime = timezone.now()
 
     ips = UserIP.objects.all()
     length = len(ips)
@@ -20,13 +20,15 @@ def index(request):
             ip_info.serial_number = length+1
             ip_info.save()
     ips_info = UserIP.objects.all()
+
+    today_visits = EverydayVisit.objects.filter(date=timezone.localdate())
+    if not today_visits:
+        today_visits = EverydayVisit.objects.create()
+    today_visits = EverydayVisit.objects.get(date=timezone.localdate())
+    today_visits.visits += 1
+    today_visits.save()
+    total_visits = EverydayVisit.objects.aggregate(Sum('visits'))
     return render(request, 'index/index.html', locals())
-
-
-def utc_to_iso(timedelta):
-    timedelta = datetime.timedelta(days=0, seconds=int(timedelta), microseconds=0)
-    iso_time = (datetime.datetime.utcnow() + timedelta).isoformat()
-    return iso_time[:10] + " " + iso_time[11:19]
 
 
 def get_user_ip(request):

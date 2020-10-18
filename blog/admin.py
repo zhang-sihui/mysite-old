@@ -10,6 +10,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['author']}),
         (None, {'fields': ['category']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        ('Date information', {'fields': ['mod_date'], 'classes': ['collapse']}),
         (None, {'fields': ['body']}),
     ]
     list_display = ('title', 'author', 'category', 'pub_date')

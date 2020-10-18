@@ -6,14 +6,22 @@
         <div class="card">
             <div class="card-header">
                 <h2>{{ article.title }}</h2>
-                <span>
+                <div><small>
                     作者 <i class="fa fa-user-o" aria-hidden="true"></i>: {{ article.author }} |
-                    时间 <i class="fa fa-calendar" aria-hidden="true"></i>: {{ article.pub_date }} |
+                    <a class="text-dark" href="#" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                    title="发布：{{ article.pub_date|date:'Y-m-d H:i:s' }} <br> 修改：{{ article.mod_date|date:'Y-m-d H:i:s' }}">
+                        <span>发布 <i class="fa fa-calendar" aria-hidden="true"></i>: {{ article.pub_date|date:'Y-m-d H:i:s' }} |</span>
+                    </a>
+                    <script>
+                        $(document).ready(function () {
+                            $('[data-toggle="tooltip"]').tooltip();
+                        });
+                    </script>
                     标签 <i class="fa fa-tag" aria-hidden="true"></i>:
                     <a class="text-dark font-italic"
                         href="{% url 'blog:get_blogs_by_label' article.category %}">{{ article.category }}</a> |
                     浏览 <i class="fa fa-eye" aria-hidden="true"></i>: {{ article.views }}
-                </span>
+                </small></div>
             </div>
             <div class="card-body">
                 <p>{{ article.body | safe }}</p>
