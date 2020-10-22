@@ -1,5 +1,4 @@
 import os
-from os import path
 from django.http import HttpResponseRedirect, FileResponse
 from django.urls import reverse
 from django.utils import timezone
@@ -81,9 +80,9 @@ def upload_file(request):
 
 
 def handle_uploaded_file(file, filename):
-    file_upload_path = path.join(base_dir, 'polls', 'manage_files', 'download')
-    if not path.exists(file_upload_path):
-        os.mkdir(file_upload_path)
+    file_upload_path = os.path.join(base_dir, 'polls', 'manage_files', 'download')
+    if not os.path.exists(file_upload_path):
+        os.makedirs(file_upload_path)
     with open(file_upload_path + '/' + filename, 'wb+') as f:
         for chunk in file.chunks():
             f.write(chunk)
@@ -104,6 +103,8 @@ def show_files(request):
         上传的文件可以从页面支持下载，不需要修改源代码。
     """
     file_dir = os.path.join(base_dir, 'polls', 'manage_files', 'download')
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
     files_name = os.listdir(file_dir)
     files_name_size = []
     ids = []
@@ -114,7 +115,7 @@ def show_files(request):
         for file_name in files_name:
             file_info = File.objects.get(file_name=file_name)
             ids.append(file_info.id)
-            files_name_size.append(file_name + ' -- ' + str(path.getsize(file_dir + '/' + file_name) // 1024) + ' KB')
+            files_name_size.append(file_name + ' -- ' + str(os.path.getsize(file_dir + '/' + file_name) // 1024) + ' KB')
         # id 与 name 合成字典，一边传入前端，此 id 用来下载文件。【如果在前端直接传入文件名在数据库中搜索，似乎不在需要 id】
         files_dict = dict(zip(ids, files_name_size))
         return render(request, 'files/show.html', locals())
@@ -138,6 +139,8 @@ def download_file(request, file_id):
 @cache_page(60 * 60 * 24)
 def play_music(request):
     file_dir = os.path.join(base_dir, 'polls', 'static', 'music')
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
     files = os.listdir(file_dir)
     files_set = set()
     for file in files:

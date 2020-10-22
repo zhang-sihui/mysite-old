@@ -1,6 +1,6 @@
-import datetime
 import markdown
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Min, Max
 from .models import Article
 
 
@@ -13,9 +13,10 @@ def get_label_and_year_to_articles():
         articles_by_label = Article.objects.filter(category=label_set)
         label_to_articles[label_set] = articles_by_label
 
-    current_year = datetime.datetime.now().year
+    min_pub_date_year = Article.objects.aggregate(Min('pub_date'))['pub_date__min'].year
+    max_pub_date_year = Article.objects.aggregate(Max('pub_date'))['pub_date__max'].year
     years_set = set()
-    for i in range(2019, current_year + 1):
+    for i in range(min_pub_date_year, max_pub_date_year + 1):
         years_set.add(i)
     year_to_articles = {}
     for year_set in years_set:
