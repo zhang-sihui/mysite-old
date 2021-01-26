@@ -9,6 +9,16 @@
 - Python 3.7.3
 - Django 2.2
 
+## 准备
+
+- 安装模块：
+    - 按照 requirements.txt 文件安装需要的模块，可以单个 `pip install xxx`；也可以一次全部安装，不过需要在项目文件夹路径下执行 `pip install -r requirements.txt`。
+- 创建超级用户：
+    - 在项目路径下：输入 `python manage.py createsuperuser`，进入超级用户（即管理员）创建终端。
+    - 依次提示输入用户名，邮箱（可为空），密码，验证密码，即可成功创建。
+- 初始化数据库：
+    - 在项目路径下，执行两条命令即可初始化数据库：`python manage.py makemigrations`，`python manage.py migrate`。
+
 ### 终端操作
 
 - Terminal: Go to mysite folder（终端：进入 mysite 文件夹）。
