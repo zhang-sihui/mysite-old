@@ -5,6 +5,7 @@ from .models import Article
 
 
 # Create your views here.
+
 def get_label_and_year_to_articles():
     labels_QuerySet = Article.objects.values_list('category')
     labels_set = {str(label)[2:-3] for label in set(labels_QuerySet)}
@@ -13,8 +14,10 @@ def get_label_and_year_to_articles():
         articles_by_label = Article.objects.filter(category=label_set)
         label_to_articles[label_set] = articles_by_label
 
-    min_pub_date_year = Article.objects.aggregate(Min('pub_date'))['pub_date__min'].year
-    max_pub_date_year = Article.objects.aggregate(Max('pub_date'))['pub_date__max'].year
+    min_pub_date = Article.objects.aggregate(Min('pub_date'))['pub_date__min']
+    min_pub_date_year = min_pub_date.year if min_pub_date else datetime.datetime.now().year
+    max_pub_date = Article.objects.aggregate(Max('pub_date'))['pub_date__max']
+    max_pub_date_year = max_pub_date.year if max_pub_date else datetime.datetime.now().year
     years_set = set()
     for i in range(min_pub_date_year, max_pub_date_year + 1):
         years_set.add(i)

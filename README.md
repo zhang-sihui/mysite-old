@@ -92,8 +92,10 @@
         - `index/views` 去掉用 datetime 表示 localtime，使用 timezone.now()。去掉无用的 utc_to_iso 函数。
         - 主页增加每日访问量，实质是页面刷新次数（一对多），全部访问量即所有每日访问量之和。去掉访问人数，实质是储存访问者 ip，并非真实人数（一对一）。
         - blog 增加修改时间。同时修改每个文章列表中作者、时间、标签信息的大小、格式等。
-    - v2.4.1
-        - MEDIA_ROOT 目前在 blog 下，改为项目根目录 mysite 下。
+    - v2.4.1：
+        - settings 中 MEDIA_ROOT 目前在 blog 下，改为项目根目录 mysite 下。
         - 当前没有文章时，blog 的时间标签从指定的 2019 开始。现在可以用 django.db.models 中的 Min、Max 函数找到 Article 时间字段的最小值及最大值来设置时间归档的始末时间点。
         - 一个新的项目下，有的文件夹暂时为空，如 photos/images/upload、polls/manage_files/download、polls/static/music，暂时没有上传图片、没有上传文件以供下载、以及没有添加可以播放的 .mp3 音乐文件，在上传 github 时空文件夹不能上传，之前没有新建过程，clone 的代码缺少文件夹报错，现在改为自动新建，使用 os.makedirs 递归创建目录。
         - Tips：之前各个版本的代码中，如有报错，大概是缺少文件夹或者有多余的文件出错。主要是 photos/images/upload、polls/manage_files/download 这两个文件夹，git clone 后注意，如果文件夹有文件需要清空，如果没有文件夹，就新建。目前音乐播放界面展示的歌曲，需要直接添加到文件夹中，歌曲为 mp3 文件，歌词为 lrc 文件。
+    - v2.4.2：
+        - 修复：空数据库按年份获取文章，文章数据表中没有年份字段时报错。
