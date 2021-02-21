@@ -14,6 +14,7 @@ def user(request):
     if request.session.get('is_login', None):
         user_name = request.session['user_name']
         info = User.objects.get(username=user_name)
+    # 返回最后创建，而非最后日期
     notice = Notice.objects.last()
     if notice:
         notice.content = markdown.markdown(notice.content,
@@ -33,10 +34,12 @@ def login(request):
 
     if request.method == 'POST':
         login_form = UserForm(request.POST)
-        error_message = '请检查填写的内容！'
+        # error_message = '请检查填写的内容！'
+        error_message = '验证码错误！'
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
+            captcha = login_form.cleaned_data['captcha']
             try:
                 user_info = User.objects.get(username=username)
                 if user_info.password == hash_code(password):
@@ -74,9 +77,9 @@ def register(request):
     if request.session.get('is_login', None):  # 已登录则不能注册
         # 登录状态不允许注册,可以修改这条原则！
         return redirect("users:user")
-
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
+        error_message = '验证码错误！'
         if register_form.is_valid():
             username = register_form.cleaned_data['username']
             password1 = register_form.cleaned_data['password1']
@@ -94,7 +97,6 @@ def register(request):
                 if same_email_user:
                     error_message = '该邮箱地址已被注册，请使用别的邮箱！'
                     return render(request, 'user/register.html', locals())
-
                 new_user = User.objects.create()
                 new_user.username = username
                 new_user.password = hash_code(password1)
@@ -103,7 +105,7 @@ def register(request):
                 new_user.save()
                 success_message = '注册成功！去登录？'
                 return render(request, 'user/register.html', locals())
-
+        return render(request, 'user/register.html', locals())
     register_form = RegisterForm()
     return render(request, "user/register.html", locals())
 
@@ -118,14 +120,14 @@ def hash_code(s, salt='site_login'):
 def change_pwd(request):
     if request.method == 'POST':
         change_pwd_form = ChangePwdForm(request.POST)
+        error_message = '验证码错误！'
         if change_pwd_form.is_valid():
             username = change_pwd_form.cleaned_data['username']
             old_password = change_pwd_form.cleaned_data['old_password']
             new_password = change_pwd_form.cleaned_data['new_password']
-            user_info = User.objects.filter(username=username)
+            user_info = User.objects.filter(username=username).values('username', 'password')
             if user_info:
-                pwd = User.objects.filter(username=username, password=hash_code(old_password))
-                if pwd:
+                if hash_code(old_password) == user_info[0]['password']:
                     User.objects.filter(username=username,
                                         password=hash_code(old_password)).update(password=hash_code(new_password))
                     success_message = '密码修改成功！'
@@ -134,7 +136,6 @@ def change_pwd(request):
             elif len(user_info) == 0:
                 error_message = '请检查用户名是否正确！'
         return render(request, 'user/change_pwd.html', locals())
-
     change_pwd_form = ChangePwdForm()
     return render(request, 'user/change_pwd.html', locals())
 
@@ -142,30 +143,32 @@ def change_pwd(request):
 def reset_pwd(request):
     if request.method == 'POST':
         reset_pwd_form = ResetPwdForm(request.POST)
+        error_message = '验证码错误！'
         if reset_pwd_form.is_valid():
             username = reset_pwd_form.cleaned_data['username']
             email = reset_pwd_form.cleaned_data['email']
             register_code = reset_pwd_form.cleaned_data['register_code']
             new_password = reset_pwd_form.cleaned_data['new_password']
-            user_info = User.objects.filter(username=username)
+            user_info = User.objects.filter(username=username).values('username', 'email', 'register_code')
             if user_info:
-                email = User.objects.filter(username=username, email=email)
-                if email:
-                    User.objects.filter(username=username).update(password=hash_code(new_password))
-                    success_message = '密码重置成功！'
+                if email == user_info[0]['email']:
+                    if register_code == user_info[0]['register_code']:
+                        User.objects.filter(username=username).update(password=hash_code(new_password))
+                        success_message = '密码重置成功！'
+                    else:
+                        error_message = '注册码错误！'
                 else:
                     error_message = '请检查邮箱是否正确！'
             elif len(user_info) == 0:
                 error_message = '请检查用户名是否正确！'
         return render(request, 'user/reset_pwd.html', locals())
-
     reset_pwd_form = ResetPwdForm()
     return render(request, 'user/reset_pwd.html', locals())
 
 
-def personal_info(request):
+def get_user_info(request):
     user_name = None
     if request.session.get('is_login', None):
         user_name = request.session['user_name']
         info = User.objects.get(username=user_name)
-    return render(request, 'user/personal_info.html', locals())
+    return render(request, 'user/user_info.html', locals())

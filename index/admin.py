@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserIP, EverydayVisit
+from .models import UserIP, EverydayVisit, AboutSite
 
 
 # Register your models here.
@@ -30,3 +30,15 @@ class EverydayVisitAdmin(admin.ModelAdmin):
 
 
 admin.site.register(EverydayVisit, EverydayVisitAdmin)
+
+class AboutSiteAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['title']}),
+        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        (None, {'fields': ['content']}),
+    ]
+    list_display = ('title', 'pub_date')
+    search_fields = ['title']
+    list_filter = ['pub_date']
+
+admin.site.register(AboutSite, AboutSiteAdmin)

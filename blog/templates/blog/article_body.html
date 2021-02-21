@@ -5,26 +5,26 @@
     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
         <div class="card">
             <div class="card-header">
-                <h2>{{ article.title }}</h2>
-                <div><small>
-                    作者 <i class="fa fa-user-o" aria-hidden="true"></i>: {{ article.author }} |
+                <h1>{{ article.title }}</h1>
+                <small>
+                    <i class="fa fa-user-o" aria-hidden="true"></i> {{ article.author }} &ensp;
                     <a class="text-dark" href="#" data-toggle="tooltip" data-html="true" data-placement="bottom"
-                    title="发布：{{ article.pub_date|date:'Y-m-d H:i:s' }} <br> 修改：{{ article.mod_date|date:'Y-m-d H:i:s' }}">
-                        <span>发布 <i class="fa fa-calendar" aria-hidden="true"></i>: {{ article.pub_date|date:'Y-m-d H:i:s' }} |</span>
-                    </a>
+                        title="发布：{{ article.pub_date|date:'Y-m-d H:i:s' }} <br> 修改：{{ article.mod_date|date:'Y-m-d H:i:s' }}">
+                        <span> <i class="fa fa-calendar" aria-hidden="true"></i> {{ article.pub_date|date:'Y-m-d H:i' }} </span>
+                    </a> &ensp;
                     <script>
                         $(document).ready(function () {
                             $('[data-toggle="tooltip"]').tooltip();
                         });
                     </script>
-                    标签 <i class="fa fa-tag" aria-hidden="true"></i>:
+                    <i class="fa fa-tag" aria-hidden="true"></i>
                     <a class="text-dark font-italic"
-                        href="{% url 'blog:get_blogs_by_label' article.category %}">{{ article.category }}</a> |
-                    浏览 <i class="fa fa-eye" aria-hidden="true"></i>: {{ article.views }}
-                </small></div>
+                        href="{% url 'blog:get_articles_by_label' article.category %}"> {{ article.category }}</a> &ensp;
+                    <i class="fa fa-eye" aria-hidden="true"></i> {{ article.views }}
+                </small>
             </div>
             <div class="card-body">
-                <p>{{ article.body | safe }}</p>
+                <span>{{ article.body|safe }}</span>
             </div>
         </div>
     </div>
@@ -37,14 +37,14 @@
             <div class="card-body">
                 {% if label_to_articles %}
                 {% for label, articles in label_to_articles.items %}
-                <div class="list-group-item">
-                    <a class="text-dark font-italic" href="{% url 'blog:get_blogs_by_label' label %}">
+                <a class="text-dark font-italic" href="{% url 'blog:get_articles_by_label' label %}">
+                    <div class="list-group-item">
                         {{ label }}
                         <div class="float-right">
                             {{ articles|length }}
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
                 {% endfor %}
                 {% endif %}
             </div>
@@ -57,7 +57,7 @@
             <div class="card-body">
                 {% if year_to_articles %}
                 {% for year, articles in year_to_articles.items %}
-                <a class="text-dark font-italic" href="{% url 'blog:get_blogs_by_year' year %}">
+                <a class="text-dark font-italic" href="{% url 'blog:get_articles_by_year' year %}">
                     <div class="list-group-item">
                         {{ year }}
                         <div class="float-right">

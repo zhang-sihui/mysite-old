@@ -10,7 +10,7 @@ class User(models.Model):
     password = models.CharField('密码', max_length=16)
     email = models.EmailField('邮箱', unique=True)
     create_time = models.DateTimeField('注册时间', auto_now_add=True)
-    register_code = models.CharField('注册码', max_length=8)  # 注册码
+    register_code = models.CharField('注册码', max_length=9)  # 注册码
 
     def __str__(self):
         return self.username

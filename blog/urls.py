@@ -4,9 +4,9 @@ from . import views
 app_name = 'blog'
 
 urlpatterns = [
-    path('', views.blog, name='blog'),
-    path('articles/<int:blog_id>', views.blog_body, name='blog_body'),
-    path('searchBlogs', views.search_blogs, name='search_blogs'),
-    path('blogsByLabel/<str:label>', views.get_blogs_by_label, name='get_blogs_by_label'),
-    path('blogsByYear/<str:year>', views.get_blogs_by_year, name='get_blogs_by_year'),
+    path('', views.article, name='article'),
+    path('articles/<int:article_id>', views.article_body, name='article_body'),
+    path('searchArticles', views.get_search_articles, name='get_search_articles'),
+    path('articlesByLabel/<str:label>', views.get_articles_by_label, name='get_articles_by_label'),
+    path('articlesByYear/<str:year>', views.get_articles_by_year, name='get_articles_by_year'),
 ]

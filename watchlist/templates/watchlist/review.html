@@ -1,0 +1,14 @@
+{% extends 'watchlist/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h1>{{ watchlists.title }}</h1>
+        <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ watchlists.pub_date|date:'Y-m-d H:i' }}
+            &ensp; <i class="fa fa-tag" aria-hidden="true"></i> {{ watchlists.category }}</span>
+    </div>
+    <div class="card-header">
+        {{ watchlists.content | safe }}
+    </div>
+</div>
+{% endblock %}

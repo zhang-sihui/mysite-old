@@ -10,7 +10,7 @@
         <ul class="list-group">
             {% for file in files %}
             <li class="list-group-item">{{ file.file_name }}
-                <p class="float-right">已下载：{{ file.downloads_count }} & 上传时间：{{ file.pub_date }}</p>
+                <span class="float-right">已下载：{{ file.downloads_count }} & 上传时间：{{ file.pub_date|date:'Y-m-d H:i' }}</span>
             </li>
             {% endfor %}
         </ul>

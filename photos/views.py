@@ -1,12 +1,11 @@
 import os
-from os import path
-from . import base_dir
-from .models import Photo
 from django.shortcuts import render
 from django.http import FileResponse
 from django.utils import timezone
 from django.utils.encoding import escape_uri_path
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from . import base_dir
+from .models import Photo
 
 
 # Create your views here.
@@ -21,7 +20,7 @@ def display_photos(request):
         page = paginator.page(1)
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
-    not_photos = '还没有图片！'
+    not_photos = '还没有图片'
     return render(request, 'photo/display.html', locals())
 
 
@@ -29,26 +28,26 @@ def upload_photo(request):
     if request.method == 'POST':
         get_photo = request.FILES.get('file')
         if not get_photo:
-            not_photo = '未选择文件！'
+            not_photo = '未选择文件'
             return render(request, 'photo/upload.html', locals())
         else:
             photos = Photo.objects.filter(photo_name=get_photo)
             if not photos:
                 Photo.objects.create(photo_name='%s' % get_photo)
                 handle_uploaded_photo(get_photo, str(get_photo))
-                success_upload = '上传成功，请继续！'
+                success_upload = '上传成功，请继续'
                 return render(request, 'photo/upload.html', locals())
             else:
                 handle_uploaded_photo(get_photo, str(get_photo))
-                success_upload = '上传成功，请继续！'
+                success_upload = '上传成功，请继续'
                 return render(request, 'photo/upload.html', locals())
     return render(request, 'photo/upload.html')
 
 
 def handle_uploaded_photo(file, filename):
-    photo_upload_path = path.join(base_dir, 'photos', 'images', 'upload')
-    if not path.exists(photo_upload_path):
-        os.mkdir(photo_upload_path)
+    photo_upload_path = os.path.join(base_dir, 'photos', 'images', 'upload')
+    if not os.path.exists(photo_upload_path):
+        os.makedirs(photo_upload_path)
     with open(photo_upload_path + '/' + filename, 'wb+') as f:
         for chunk in file.chunks():
             f.write(chunk)

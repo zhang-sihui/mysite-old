@@ -11,7 +11,7 @@
                 <p>系统通知：</p>
                 <p>标题：{{ notice.title }}</p>
                 <p>内容：{{ notice.content | safe }}</p>
-                <p>时间：{{ notice.pub_date }}</p>
+                <p>时间：{{ notice.pub_date | date:'Y-m-d H:i' }}</p>
             {% else %}
                 <p>{{ not_notice }}</p>
             {% endif %}

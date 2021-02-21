@@ -28,6 +28,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    'files.apps.FilesConfig',
     'polls.apps.PollsConfig',
     'index.apps.IndexConfig',
     'users.apps.UsersConfig',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'photos.apps.PhotosConfig',
     'watchlist.apps.WatchlistConfig',
     'messageboard.apps.MessageboardConfig',
+    'music.apps.MusicConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -134,3 +136,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

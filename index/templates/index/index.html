@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="jumbotron jumbotron-fluid">
@@ -24,21 +23,21 @@
                 </a>
             </div>
             <div class="col-3 col-sm-3 col-md-2 text-center">
-                <a class="text-dark" href="{% url 'polls:play_music' %}" target="_blank">
+                <a class="text-dark" href="{% url 'music:play_music' %}" target="_blank">
                     <i class="fa fa-music fa-3x" aria-hidden="true"></i>
                     <p>Music</p>
                 </a>
             </div>
             <div class="col-3 col-sm-3 col-md-2 text-center">
-                <a class="text-dark" href="{% url 'polls:show_files' %}" target="_blank">
+                <a class="text-dark" href="{% url 'files:files' %}" target="_blank">
                     <i class="fa fa-file fa-3x" aria-hidden="true"></i>
                     <p>File</p>
                 </a>
             </div>
             <div class="col-3 col-sm-3 col-md-2 text-center">
-                <a class="text-dark" href="{% url 'blog:blog' %}" target="_blank">
+                <a class="text-dark" href="{% url 'blog:article' %}" target="_blank">
                     <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
-                    <p>Blog</p>
+                    <p>Article</p>
                 </a>
             </div>
         </div>
@@ -57,7 +56,7 @@
                 </a>
             </div>
             <div class="col-3 col-sm-3 col-md-2 text-center">
-                <a class="text-dark" href="{% url 'watchlist:watchlist' %}" target="_blank">
+                <a class="text-dark" href="{% url 'watchlist:get_watchlists' %}" target="_blank">
                     <i class="fa fa-list fa-3x" aria-hidden="true"></i>
                     <p>WatchList</p>
                 </a>
@@ -65,20 +64,20 @@
             <div class="col-3 col-sm-3 col-md-2 text-center">
                 <a class="text-dark" href="{% url 'messageboard:messages' %}" target="_blank">
                     <i class="fa fa-comments fa-3x" aria-hidden="true"></i>
-                    <p>GuestBook</p>
+                    <p>MessageBoard</p>
                 </a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
-                <a class="text-dark" href="{% url 'index:index' %}" target="_blank">
+                <a class="text-dark" href="#">
                     <i class="fa fa-home fa-3x" aria-hidden="true"></i>
                     <p>Home</p>
                 </a>
             </div>
             <div class="col-3 col-sm-3 col-md-2 text-center">
-                <a class="text-dark" href="{% url 'index:about_me' %}">
+                <a class="text-dark" href="{% url 'index:about_site' %}" target="_blank">
                     <i class="fa fa-yelp fa-3x" aria-hidden="true"></i>
                     <p>AboutSite</p>
                 </a>
@@ -103,9 +102,8 @@
             </div>
         </div>
         {% endblock %}
-
+        <div class="row my-2"></div>
         {% block content %}
-        <div class="row my-5"></div>
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">

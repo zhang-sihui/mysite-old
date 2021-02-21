@@ -4,6 +4,6 @@ from . import views
 app_name = 'messageboard'
 
 urlpatterns = [
-    path('', views.MsgBoardIndexView.as_view(), name='messages'),
-    path('create', views.create_message, name='create_message'),
+    path('', views.MessageIndexView.as_view(), name='messages'),
+    path('addMessage', views.add_message, name='add_message'),
 ]

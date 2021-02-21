@@ -11,7 +11,7 @@
                     </span>
                 </div>
                 <div class="float-right">
-                    <form class="form-inline" method="get" action="{% url 'blog:search_blogs' %}">
+                    <form class="form-inline" method="get" action="{% url 'blog:get_search_articles' %}">
                         {% csrf_token %}
                         <input type="search" class="form-control" name="q" placeholder="Search" required> &nbsp;
                         <button type="submit" class="btn btn-light border">搜索</button>
@@ -28,18 +28,18 @@
                 {% for search_article in search_articles %}
                 <div class="list-group">
                     <div class="list-group-item">
-                        <small>
-                        作者：{{ search_article.author }} &
-                        发布：{{ search_article.pub_date }} &
-                        标签：{{ search_article.category }}
-                        </small>
-                        <div><strong>
-                                <a class="text-dark font-italic"
-                                    href="{% url 'blog:blog_body' search_article.id %}">{{ search_article.title }}
-                                </a>
-                            </strong></div>
+                        <h4>
+                            <a class="text-dark font-italic font-weight-bold"
+                            href="{% url 'blog:article_body' search_article.id %}">{{ search_article.title }}</a>
+                        </h4>
+                        <span class="text-muted">
+                            posted @ {{ search_article.pub_date|date:'Y-m-d H:i' }}
+                            &ensp; {{ search_article.author }}
+                            &ensp; <i class="fa fa-eye" aria-hidden="true"></i> {{ search_article.views }}
+                        </span>
                     </div>
                 </div>
+                <div class="row my-1"></div>
                 {% endfor %}
                 {% else %}
                 {% if not_search_msg %}
@@ -50,18 +50,18 @@
                 {% for article in articles %}
                 <div class="list-group">
                     <div class="list-group-item">
-                        <small>
-                        作者：{{ article.author }} &
-                        发布：{{ article.pub_date }} &
-                        标签：{{ article.category }}
-                        </small>
-                        <div><strong>
-                                <a class="text-dark font-italic"
-                                    href="{% url 'blog:blog_body' article.id %}">{{ article.title }}
-                                </a>
-                            </strong></div>
+                        <h4>
+                            <a class="text-dark font-italic font-weight-bold"
+                            href="{% url 'blog:article_body' article.id %}">{{ article.title }}</a>
+                        </h4>
+                        <span class="text-muted">
+                            posted @ {{ article.pub_date|date:'Y-m-d H:i' }}
+                            &ensp; {{ article.author }}
+                            &ensp; <i class="fa fa-eye" aria-hidden="true"></i> {{ article.views }}
+                        </span>
                     </div>
                 </div>
+                <div class="row my-1"></div>
                 {% endfor %}
                 {% endif %}
             </div>
@@ -76,14 +76,14 @@
             <div class="card-body">
                 {% if label_to_articles %}
                 {% for label, articles in label_to_articles.items %}
-                <div class="list-group-item">
-                    <a class="text-dark font-italic" href="{% url 'blog:get_blogs_by_label' label %}">
+                <a class="text-dark font-italic" href="{% url 'blog:get_articles_by_label' label %}">
+                    <div class="list-group-item">
                         {{ label }}
                         <div class="float-right">
                             {{ articles|length }}
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
                 {% endfor %}
                 {% endif %}
             </div>
@@ -96,7 +96,7 @@
             <div class="card-body">
                 {% if year_to_articles %}
                 {% for year, articles in year_to_articles.items %}
-                <a class="text-dark font-italic" href="{% url 'blog:get_blogs_by_year' year %}">
+                <a class="text-dark font-italic" href="{% url 'blog:get_articles_by_year' year %}">
                     <div class="list-group-item">
                         {{ year }}
                         <div class="float-right">

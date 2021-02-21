@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>File</title>
+    <title>Music</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
 </head>
 <body class="jumbotron jumbotron-fluid">
 <div class="container">
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
     {% block nav %}
     <nav class="navbar navbar-expand-md bg-light navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -26,25 +26,23 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'index:index' %}">Home</a>
                         <a class="dropdown-item" href="{% url 'polls:vote' %}">Vote</a>
-                        <a class="dropdown-item" href="{% url 'polls:play_music' %}">Music</a>
-                        <a class="dropdown-item" href="{% url 'blog:blog' %}">Blog</a>
+                        <a class="dropdown-item" href="{% url 'files:files' %}">File</a>
+                        <a class="dropdown-item" href="{% url 'blog:article' %}">Article</a>
                         <a class="dropdown-item" href="{% url 'photos:display_photos' %}">Photo</a>
-                        <a class="dropdown-item" href="{% url 'watchlist:watchlist' %}">WatchList</a>
-                        <a class="dropdown-item" href="{% url 'messageboard:messages' %}">GuestBook</a>
-                        <a class="dropdown-item" href="{% url 'index:about_me' %}">AboutMe</a>
+                        <a class="dropdown-item" href="{% url 'watchlist:get_watchlists' %}">WatchList</a>
+                        <a class="dropdown-item" href="{% url 'messageboard:messages' %}">MessageBoard</a>
+                        <a class="dropdown-item" href="{% url 'index:about_site' %}">AboutSite</a>
                         <a class="dropdown-item" href="{% url 'users:user' %}">Login</a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:show_files' %}">下载</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:upload_file' %}">上传</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'polls:uploaded_files' %}">历史上传</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'music:play_music' %}">音乐页</a></li>
             </ul>
         </div>
     </nav>
     {% endblock %}
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
     {% block content %}{% endblock %}
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
 </div>
 </body>
 </html>

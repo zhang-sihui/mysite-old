@@ -9,7 +9,7 @@ from .forms import MessageBoardForm
 
 # Create your views here.
 
-class MsgBoardIndexView(generic.ListView):
+class MessageIndexView(generic.ListView):
     template_name = 'message/messages.html'
     context_object_name = 'latest_message_list'
 
@@ -17,7 +17,7 @@ class MsgBoardIndexView(generic.ListView):
         return MessageBoard.objects.filter(sub_date__lte=timezone.now()).order_by('-sub_date')
 
 
-def create_message(request):
+def add_message(request):
     if request.method == 'POST':
         msg_form = MessageBoardForm(request.POST)
         if msg_form.is_valid():
@@ -31,4 +31,4 @@ def create_message(request):
             return HttpResponseRedirect(reverse('messageboard:messages'))
     else:
         msg_form = MessageBoardForm()
-    return render(request, 'message/create.html', locals())
+    return render(request, 'message/add_message.html', locals())

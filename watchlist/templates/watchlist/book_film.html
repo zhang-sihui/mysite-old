@@ -1,8 +1,8 @@
 {% extends 'watchlist/base.html' %}
 
 {% block content %}
-{% if books %}
 <div class="card">
+    {% if books %}
     <div class="card-header">
         <span><i class="fa fa-bars" aria-hidden="true"></i> {{ books|length }} 条内容</span>
     </div>
@@ -10,20 +10,21 @@
         {% for book in books %}
         <div class="list-group">
             <div class="list-group-item">
-                <a class="text-dark font-italic" href="{% url 'watchlist:check_body' book.id %}">{{ book.title }}</a>
+                <h4>
+                <a class="text-dark font-italic font-weight-bold" href="{% url 'watchlist:get_reviews' book.id %}">{{ book.title }}</a>
                 <span class="float-right">
-                    <span class="font-weight-light">{{ book.pub_date }} &nbsp;</span>
+                    <span class="font-weight-light">{{ book.pub_date|date:'Y-m-d H:i' }}&nbsp;</span>
                     <a href="https://www.douban.com/search?q={{ book.title }}"
                        class="text-dark font-italic" target="_blank"
                        title="Find this movie on IMDb">豆瓣</a>
                 </span>
+                </h4>
             </div>
         </div>
+        <div class="row my-1"></div>
         {% endfor %}
     </div>
-</div>
-{% else %}
-<div class="card">
+    {% else %}
     <div class="card-header">
         <span><i class="fa fa-bars" aria-hidden="true"></i> {{ films|length }} 条内容</span>
     </div>
@@ -31,26 +32,25 @@
         {% for film in films %}
         <div class="list-group">
             <div class="list-group-item">
-                <a class="text-dark font-italic" href="{% url 'watchlist:check_body' film.id %}">{{ film.title }}</a>
+                <h4>
+                <a class="text-dark font-italic font-weight-bold" href="{% url 'watchlist:get_reviews' film.id %}">{{ film.title }}</a>
                 <span class="float-right">
-                    <span class="font-weight-light">{{ film.pub_date }} &nbsp;</span>
+                    <span class="font-weight-light">{{ film.pub_date|date:'Y-m-d H:i' }} &nbsp;</span>
                     <a href="https://www.douban.com/search?q={{ film.title }}"
                        class="text-dark font-italic" target="_blank"
                        title="Find this movie on IMDb">豆瓣</a>
                 </span>
+                </h4>
             </div>
         </div>
+        <div class="row my-1"></div>
         {% endfor %}
     </div>
-</div>
-{% endif %}
-
-<div class="card">
+    {% endif %}
     <div class="card-footer">
-    <span class="text-left">
         <a class="text-dark font-italic" href="https://www.douban.com/people/168600825/" target="_blank">
         <i class="fa fa-link" aria-hidden="true"></i>点击查看我豆瓣里看过的书和电影。</a>
-        提示: 在查看之前，必须先登录您的豆瓣账号。</span>
+        提示: 在查看之前，必须先登录您的豆瓣账号。
     </div>
 </div>
 {% endblock %}

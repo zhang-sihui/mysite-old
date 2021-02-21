@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Vote</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.15.0/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="jumbotron jumbotron-fluid">
 <div class="container">
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
     {% block nav %}
     <nav class="navbar navbar-expand-md bg-light navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -25,13 +24,13 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">主页</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'index:index' %}">Home</a>
-                        <a class="dropdown-item" href="{% url 'polls:show_files' %}">File</a>
-                        <a class="dropdown-item" href="{% url 'polls:play_music' %}">Music</a>
-                        <a class="dropdown-item" href="{% url 'blog:blog' %}">Blog</a>
+                        <a class="dropdown-item" href="{% url 'files:files' %}">File</a>
+                        <a class="dropdown-item" href="{% url 'music:play_music' %}">Music</a>
+                        <a class="dropdown-item" href="{% url 'blog:article' %}">Article</a>
                         <a class="dropdown-item" href="{% url 'photos:display_photos' %}">Photo</a>
-                        <a class="dropdown-item" href="{% url 'watchlist:watchlist' %}">WatchList</a>
-                        <a class="dropdown-item" href="{% url 'messageboard:messages' %}">GuestBook</a>
-                        <a class="dropdown-item" href="{% url 'index:about_me' %}">AboutMe</a>
+                        <a class="dropdown-item" href="{% url 'watchlist:get_watchlists' %}">WatchList</a>
+                        <a class="dropdown-item" href="{% url 'messageboard:messages' %}">MessageBoard</a>
+                        <a class="dropdown-item" href="{% url 'index:about_site' %}">AboutSite</a>
                         <a class="dropdown-item" href="{% url 'users:user' %}">Login</a>
                     </div>
                 </li>
@@ -40,9 +39,9 @@
         </div>
     </nav>
     {% endblock %}
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
     {% block content %}{% endblock %}
-    <div class="row my-3"></div>
+    <div class="row my-1"></div>
 </div>
 </body>
 </html>

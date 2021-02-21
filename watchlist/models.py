@@ -5,7 +5,7 @@ from mdeditor.fields import MDTextField
 
 # Create your models here.
 
-class Checklist(models.Model):
+class Watchlist(models.Model):
     cate = (
         ('film', '电影'),
         ('book', '书籍'),

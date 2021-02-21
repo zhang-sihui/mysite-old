@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Checklist
+from .models import Watchlist
 
 
 # Register your models here.
 
-class ChecklistAdmin(admin.ModelAdmin):
+class WatchlistAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['title']}),
         (None, {'fields': ['category']}),
@@ -15,5 +15,4 @@ class ChecklistAdmin(admin.ModelAdmin):
     list_filter = ['pub_date']
 
 
-admin.site.register(Checklist, ChecklistAdmin)
-
+admin.site.register(Watchlist, WatchlistAdmin)

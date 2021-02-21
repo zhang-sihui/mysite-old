@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-6 offset-md-3">
         <div class="card">
             <div class="card-header text-center">
                 <h3>修改密码</h3>
@@ -12,9 +12,10 @@
                     {% csrf_token %}
                     {% if success_message %}
                         <div class="alert alert-success">{{ success_message }}</div>
-                    {% endif %}
-                    {% if error_message %}
+                    {% elif error_message %}
                         <div class="alert alert-warning">{{ error_message }}</div>
+                    {% else %}
+                        <div class=""></div>
                     {% endif %}
                     <div class="form-group">
                         {{ change_pwd_form.username.label_tag }}
@@ -29,9 +30,9 @@
                         {{ change_pwd_form.new_password }}
                     </div>
                     <div class="form-group">
-                        {{ change_pwd_form.captcha.errors }}
                         {{ change_pwd_form.captcha.label_tag }}
                         {{ change_pwd_form.captcha }}
+                        <a class="btn btn-light" id="refesh">刷新</a>
                     </div>
                     <div class="float-left">
                         <button type="reset" class="btn btn-light">重置</button>
