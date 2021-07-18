@@ -36,6 +36,11 @@ A personal website by Django.
 
 ### v3.0.0 series
 
+- v3.0.1:
+    - 修复年份归档与通过标签获取的文章列表事件不倒序排列的问题。
+    - 调整 aboutSite 页面展示。
+    - 留言添加一个名字字段。
+    - 上传界面中上传框居中，修复不对其问题。
 - v3.0.0:
     - 升级 Django 3.0。
     - 更新 readme.md 格式。
@@ -49,6 +54,8 @@ A personal website by Django.
     - blog 新加字段，草稿、发布，决定文章是否发布。
     - 拆分 polls 下的三个功能（polls，files，music），即新建 files，music 两个 app。
     - 增加数据库 ip 归属地自动查询。
+
+---
 
 ### v2.0.0 series
 

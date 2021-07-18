@@ -21,8 +21,10 @@ def add_message(request):
     if request.method == 'POST':
         msg_form = MessageBoardForm(request.POST)
         if msg_form.is_valid():
+            username = msg_form.cleaned_data['username']
             content = msg_form.cleaned_data['content']
             message_board = MessageBoard.objects.create()
+            message_board.username = username
             message_board.content = content
             message_board.sub_date = timezone.now()
             message_board.reply = '暂未回复'

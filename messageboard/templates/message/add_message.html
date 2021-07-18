@@ -5,13 +5,21 @@
     {% csrf_token %}
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-pencil-square" aria-hidden="true"></i> {{ msg_form.content.label_tag }}
+            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            <label>留言板</label>
         </div>
         <div class="card-body">
+            <p>
+            {{ msg_form.username.label_tag }}
+            {{ msg_form.username }}
+            </p>
+            <p>
+            {{ msg_form.content.label_tag }}
             {{ msg_form.content }}
+            <p>
         </div>
         <div class="card-footer">
-            <button class="btn btn-light" type="submit">提交</button>
+            <button class="btn btn-light border border-secondary" type="submit">提交</button>
         </div>
     </div>
 </form>

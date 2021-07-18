@@ -63,12 +63,12 @@ def get_search_articles(request):
 
 
 def get_articles_by_label(request, label):
-    article_label = Article.objects.filter(category=label, state='pub')
+    article_label = Article.objects.filter(category=label, state='pub').order_by('-pub_date')
     label_to_articles, year_to_articles = get_label_and_year_to_articles()
     return render(request, 'blog/articles_by_label.html', locals())
 
 
 def get_articles_by_year(request, year):
-    articles = Article.objects.filter(pub_date__year=year, state='pub')
+    articles = Article.objects.filter(pub_date__year=year, state='pub').order_by('-pub_date')
     label_to_articles, year_to_articles = get_label_and_year_to_articles()
     return render(request, 'blog/articles_by_year.html', locals())

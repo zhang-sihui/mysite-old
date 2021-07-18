@@ -10,10 +10,11 @@
             {% for message in latest_message_list %}
             <div class="list-group">
                 <div class="list-group-item">
-                    <div>内容：{{ message.content }}<div class="float-right">{{ message.sub_date|date:'Y-m-d H:i' }}</div></div><br>
-                    <div>回复：{{ message.reply }}<div class="float-right">{{ message.reply_date|date:'Y-m-d H:i' }}</div></div>
+                    <div>@{{ message.username }}：{{ message.content }}<div class="float-right">{{ message.sub_date|date:'Y-m-d H:i' }}</div></div><br>
+                    <div>@Author：{{ message.reply }}<div class="float-right">{{ message.reply_date|date:'Y-m-d H:i' }}</div></div>
                 </div>
             </div>
+            <div class="row my-1"></div>
             {% endfor %}
         {% else %}
             <p>暂无留言。</p>
