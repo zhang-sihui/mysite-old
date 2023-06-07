@@ -36,6 +36,9 @@ A personal website by Django.
 
 ### v3.0.0 series
 
+- v3.0.2:
+    - 调整 font-awesome、jquery、bootstrap 的 cdn 数据源。
+    - html 中删除一些应用链接。
 - v3.0.1:
     - 修复年份归档与通过标签获取的文章列表事件不倒序排列的问题。
     - 调整 aboutSite 页面展示。

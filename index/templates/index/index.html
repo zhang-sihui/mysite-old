@@ -6,35 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home</title>
     <link rel="shortcut icon" href="/static/index/images/favicon.ico">
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script> -->
+
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="jumbotron jumbotron-fluid">
     <div class="container-fluid">
         {% block nav %}
         <div class="row">
-            <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
+            <!-- <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
                 <a class="text-dark" href="{% url 'polls:vote' %}" target="_blank">
                     <i class="fa fa-check-square fa-3x" aria-hidden="true"></i>
                     <p>Vote</p>
                 </a>
-            </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            </div> -->
+            <div class="col-4 col-sm-2 col-md-2 offset-sm-3 offset-md-3 text-center">
                 <a class="text-dark" href="{% url 'music:play_music' %}" target="_blank">
                     <i class="fa fa-music fa-3x" aria-hidden="true"></i>
                     <p>Music</p>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            <div class="col-4 col-sm-2 col-md-2 text-center">
                 <a class="text-dark" href="{% url 'files:files' %}" target="_blank">
                     <i class="fa fa-file fa-3x" aria-hidden="true"></i>
                     <p>File</p>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            <div class="col-4 col-sm-2 col-md-2 text-center">
                 <a class="text-dark" href="{% url 'blog:article' %}" target="_blank">
                     <i class="fa fa-pencil-square fa-3x" aria-hidden="true"></i>
                     <p>Article</p>
@@ -42,7 +47,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
                 <a class="text-dark" href="http://127.0.0.1:8000/admin" target="_blank">
                     <i class="fa fa-user fa-3x" aria-hidden="true"></i>
@@ -67,22 +72,28 @@
                     <p>MessageBoard</p>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
-            <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
+            <!-- <div class="col-3 col-sm-3 col-md-2 offset-md-2 text-center">
                 <a class="text-dark" href="#">
                     <i class="fa fa-home fa-3x" aria-hidden="true"></i>
                     <p>Home</p>
                 </a>
-            </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            </div> -->
+            <div class="col-4 col-sm-2 col-md-2 offset-sm-3 offset-md-3 text-center">
                 <a class="text-dark" href="{% url 'index:about_site' %}" target="_blank">
                     <i class="fa fa-yelp fa-3x" aria-hidden="true"></i>
                     <p>AboutSite</p>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            <div class="col-4 col-sm-2 col-md-2 text-center">
+                <a class="text-dark" href="{% url 'messageboard:messages' %}" target="_blank">
+                    <i class="fa fa-comments fa-3x" aria-hidden="true"></i>
+                    <p>MessageBoard</p>
+                </a>
+            </div>
+            <!-- <div class="col-3 col-sm-3 col-md-2 text-center">
                 <a class="text-dark" href="#" data-toggle="tooltip" data-html="true" data-placement="bottom"
                     title="name：zhangsihui <br> email：zhang_sihui@foxmail.com">
                     <i class="fa fa-info-circle fa-3x" aria-hidden="true"></i>
@@ -93,8 +104,8 @@
                         $('[data-toggle="tooltip"]').tooltip();
                     });
                 </script>
-            </div>
-            <div class="col-3 col-sm-3 col-md-2 text-center">
+            </div> -->
+            <div class="col-4 col-sm-2 col-md-2 text-center">
                 <a class="text-dark" href="{% url 'users:user' %}" target="_blank">
                     <i class="fa fa-sign-in fa-3x" aria-hidden="true"></i>
                     <p>Login</p>
@@ -104,7 +115,7 @@
         {% endblock %}
         <div class="row my-2"></div>
         {% block content %}
-        <div class="col-md-8 offset-md-2">
+        <div class="col-sm-8 col-md-6 offset-sm-2 offset-md-3">
             <div class="card">
                 <div class="card-body">
                     <div><i class="fa fa-vimeo-square" aria-hidden="true"></i> Today Visits：{{ today_visits.visits }}</div>
